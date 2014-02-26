@@ -1,0 +1,24 @@
+{
+  "name": "Mely",
+  "version": "0.0.0",
+  "description": "Project Mely - Make Everything Look Yours",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EOL-Labs/Mely.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EOL-Labs/Mely/issues"
+  },
+  "homepage": "https://github.com/EOL-Labs/Mely",
+  "dependencies": {
+    "mysql": "2.1.0",
+    "sequelize": "1.7.0",
+    "mocha": "1.17.1"
+  }
+}
