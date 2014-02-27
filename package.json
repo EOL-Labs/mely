@@ -4,7 +4,7 @@
   "description": "Project Mely - Make Everything Look Yours",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -R spec ./test/database-tests.js"
   },
   "repository": {
     "type": "git",
