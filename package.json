@@ -21,6 +21,7 @@
     "sequelize": "1.7.0",
     "mocha": "1.17.1",
     "hapi": "^2.6.0",
-    "handlebars": "^2.0.0-alpha.1"
+    "handlebars": "^2.0.0-alpha.1",
+    "crypto": "0.0.3"
   }
 }

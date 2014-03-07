@@ -43,7 +43,7 @@ body {
   color: #222222;
   padding: 0;
   margin: 0;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: 'Sintony', sans-serif;
   font-weight: normal;
   font-style: normal;
   line-height: 1;
@@ -2312,18 +2312,18 @@ div.switch {
     float: left; }
     .tabs dd > a {
       display: block;
-      background: #efefef;
-      color: #222222;
+      background: #A06C90;
+      color: #FFFFFF;
       padding-top: 1rem;
       padding-right: 2rem;
       padding-bottom: 1.0625rem;
       padding-left: 2rem;
-      font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+      font-family: inherit;
       font-size: 1rem; }
       .tabs dd > a:hover {
-        background: #e1e1e1; }
+        background: #675CC5; }
     .tabs dd.active a {
-      background: white; }
+      background: #675CC5; }
   .tabs.radius dd:first-child a {
     -moz-border-radius-bottomleft: 3px;
     -moz-border-radius-topleft: 3px;
@@ -2365,7 +2365,7 @@ div.switch {
   .tabs-content.vertical {
     display: block; }
     .tabs-content.vertical > .content {
-      padding: 0 0.9375rem; }
+      padding: .3rem 1rem; }
 
 @media only screen and (min-width: 40.063em) {
   .tabs.vertical {
@@ -2656,7 +2656,7 @@ p {
 
 /* Default header styles */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: inherit;
   font-weight: normal;
   font-style: normal;
   color: #222222;
