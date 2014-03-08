@@ -8,20 +8,21 @@
     <link href='http://fonts.googleapis.com/css?family=Sintony' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/foundation.css" />
     <script src="/js/vendor/modernizr.js"></script>
+    <script src="/js/sorttable.js"></script>
   </head>
   <body>
     {{> menu}}
     <div class="large-12 columns">
       <br>
       <h5>List of Mely Users</h5>
-      <table>
+      <table class="sortable">
         <thead>
           <tr>
             <th>E-Mail Address</th>
             <th>User Status</th>
             <th>Date Created</th>
             <th>Last Updated</th>
-            <th>Options</th>
+            <th class="sorttable_nosort">Options</th>
           </tr>
         </thead>
         <tbody>
