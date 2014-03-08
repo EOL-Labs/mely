@@ -4,7 +4,7 @@
   "description": "Project Mely - Make Everything Look Yours",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -R spec ./test/database-tests.js"
+    "test": "mocha -R spec"
   },
   "repository": {
     "type": "git",
