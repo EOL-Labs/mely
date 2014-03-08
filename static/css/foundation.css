@@ -1110,7 +1110,7 @@ meta.foundation-mq-topbar {
     color: white;
     padding: 12px 0 12px 0;
     padding-left: 15px;
-    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    font-family: inherit;
     font-size: 0.8125rem;
     font-weight: normal;
     background: #333333; }
@@ -1398,8 +1398,7 @@ meta.foundation-mq-topbar {
     top: 50%;
     margin-top: -0.6875rem;
     right: 0.25rem;
-    color: #333333;
-    opacity: 0.3; }
+    color: #FFFFFF; }
     .alert-box .close:hover, .alert-box .close:focus {
       opacity: 0.5; }
   .alert-box.radius {
@@ -1448,7 +1447,7 @@ button, .button {
   border-style: solid;
   border-width: 0px;
   cursor: pointer;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: inherit;
   font-weight: normal;
   line-height: normal;
   margin: 0 0 1.25rem;

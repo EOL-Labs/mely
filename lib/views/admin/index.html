@@ -1,0 +1,72 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Sintony' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/foundation.css" />
+    <script src="/js/vendor/modernizr.js"></script>
+  </head>
+  <body>
+    <div class="sticky" data-options="sticky_on: large">
+      <nav class="top-bar" data-topbar>
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="/admin" style="font-family: 'Permanent Marker', cursive;">Mely</a></h1>
+          </li>
+          <li class="toggle-topbar menu-icon"><a href="#">Mely Options</a></li>
+        </ul>
+        <section class="top-bar-section">
+          <!-- Left Nav Section -->
+          <ul class="left">
+            <li class="has-dropdown">
+              <a href="#">Users</a>
+              <ul class="dropdown">
+                <li><a href="#">Register New User</a></li>
+                <li><a href="#">User List</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Pages</a>
+              <ul class="dropdown">
+                <li><a href="#">Add New Page</a></li>
+                <li><a href="#">View Page List</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Themes</a>
+              <ul class="dropdown">
+                <li><a href="#">Add New Theme</a></li>
+                <li><a href="#">View Theme List</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Posts</a>
+              <ul class="dropdown">
+                <li><a href="#">Add New Post</a></li>
+                <li><a href="#">View Post List</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Blog Information</a>
+            </li>
+          </ul>
+        </section>
+      </nav>
+    </div>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script src="js/foundation/foundation.abide.js"></script>
+    <script> $(document).foundation(); </script>
+    <script>
+      $(document).ready(function(){
+        var queryString = $(document).context.location.search.replace("?","");
+        if (queryString != "invalid"){
+          $("#invalid-login").hide()
+        }
+      })
+    </script>
+  </body>
+</html>

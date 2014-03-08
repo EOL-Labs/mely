@@ -1,0 +1,67 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Sintony' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/foundation.css" />
+    <script src="/js/vendor/modernizr.js"></script>
+  </head>
+  <body>
+    <div class="row">
+      <div class="large-12 columns text-center">
+        <h1 style="font-family: 'Permanent Marker', cursive;">Mely</h1>
+        <h4><b>M</b>ake <b>E</b>verything <b>L</b>ook <b>Y</b>ours</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-5 columns large-centered text-center">
+        <div data-alert class="alert-box alert" id="invalid-login">
+          Invalid Login. Please try again.
+          <a href="#" class="close">&times;</a>
+        </div>
+        <hr>
+        <p>Login</p>
+      </div>
+    </div>
+    <form method="post" action="/login" data-abide>
+    <div class="row">
+      <div class="large-5 columns large-centered">
+        <div class="row">
+          <div class="large-12 columns">
+            <label>E-Mail
+              <input type="email" name="mely-email" placeholder="john.smith@example.com" required />
+            </label>
+            <small class="error">E-Mail is required</small>
+          </div>
+          <div class="large-12 columns">
+            <label>Password
+              <input type="password" name="mely-password" required />
+            </label>
+            <small class="error">Password is required</small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large 5 columns">
+            <input type="submit" value="Sign In" class="button expand" />
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script src="js/foundation/foundation.abide.js"></script>
+    <script> $(document).foundation(); </script>
+    <script>
+      $(document).ready(function(){
+        var queryString = $(document).context.location.search.replace("?","");
+        if (queryString != "invalid"){
+          $("#invalid-login").hide()
+        }
+      })
+    </script>
+  </body>
+</html>
