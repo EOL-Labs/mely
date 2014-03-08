@@ -1,0 +1,33 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Sintony' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/foundation.css" />
+    <script src="/js/vendor/modernizr.js"></script>
+  </head>
+  <body>
+    {{> menu}}
+    <div class="large-12 columns">
+      <br>
+      <h5>New Mely User</h5>
+    </div>
+    <form method="POST" action="/admin/user" data-abide>
+      <div class="large-5 columns">
+        <label>E-Mail Address
+          <input type="email" name="mely-email" placeholder="E-Mail Address" required />
+        </label>
+        <small class="error">A valid email is required</small>
+        <label>Password
+          <input type="password" name="mely-password" placeholder="Password" required />
+        </label>
+        <small class="error">A password is required</small>
+        <input type="submit" value="Create" class="button expand" />
+      </div>
+    </form>
+    {{> footer}}
+  </body>
+</html>
