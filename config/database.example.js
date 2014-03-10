@@ -1,5 +1,5 @@
 exports.config = {
-	type: "MySQL",
+	type: "mysql",
 	hostname: "hostname",
 	port: "3306",
 	db: "databasename",
