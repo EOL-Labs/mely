@@ -7,7 +7,7 @@
     version : '5.1.1',
 
     settings : {
-      live_validate : false,
+      live_validate : true,
       focus_on_invalid : true,
       error_labels: true, // labels with a for="inputId" will recieve an `error` class
       timeout : 1000,

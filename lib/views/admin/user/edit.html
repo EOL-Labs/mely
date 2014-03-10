@@ -11,6 +11,20 @@
   </head>
   <body>
     {{> menu}}
+    <div class="large-12 columns">
+      <br>
+      <h5>Edit Mely User</h5>
+    </div>
+    <form method="POST" action="/admin/user/{{user.userid}}">
+      <input type="hidden" name="mely-userid" value="{{user.userid}}" />
+      <div class="large-5 columns">
+        <label>E-Mail Address
+          <input type="text" name="mely-email" value="{{user.email}}" />
+        </label>
+        <br>
+        <input type="submit" value="Update" class="button expand" />
+      </div>
+    </form>
     {{> footer}}
   </body>
 </html>
