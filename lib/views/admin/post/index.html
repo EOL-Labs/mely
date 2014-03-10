@@ -14,7 +14,7 @@
     {{> menu}}
     <div class="large-12 columns">
       <br>
-      <h5>List of Mely Pages</h5>
+      <h5>List of Mely Posts</h5>
       <table class="sortable">
         <thead>
           <tr>
@@ -25,12 +25,12 @@
           </tr>
         </thead>
         <tbody>
-          {{#each pageList}}
+          {{#each postList}}
           <tr>
             <td>{{title}}</td>
             <td>{{content}}</td>
             <td>{{status}}</td>
-            <td><a href="/admin/page/{{pageId}}">EDIT</a></td>
+            <td><a href="/admin/post/{{postId}}">EDIT</a></td>
           </tr>
           {{/each}}
         </tbody>

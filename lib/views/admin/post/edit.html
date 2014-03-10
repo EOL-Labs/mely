@@ -14,31 +14,30 @@
     {{> menu}}
     <div class="large-12 columns">
       <br>
-      <h5>Edit Mely Page</h5>
+      <h5>Edit Mely Post</h5>
     </div>
-    <form method="POST" action="/admin/page/{{page.pageid}}" data-abide>
-    <input type="hidden" name="mely-pageid" value="{{page.pageid}}" />
+    <form method="POST" action="/admin/post/{{post.postid}}" data-abide>
+    <input type="hidden" name="mely-postid" value="{{post.postid}}" />
       <div class="large-8 columns">
-        <label>Page Title
-          <input type="text" name="mely-page-title" value="{{page.title}}" required />
+        <label>Post Title
+          <input type="text" name="mely-post-title" value="{{post.title}}" required />
         </label>
-        <small class="error">A page title is required</small>
-        <label>Page Content
-          <textarea name="mely-page-content" required>{{page.content}}</textarea>
+        <small class="error">A post title is required</small>
+        <label>Post Content
+          <textarea name="mely-post-content" required>{{post.content}}</textarea>
         </label>
-        <small class="error">Page content is required</small>
-        <label>Page Status
-          <select name="mely-page-status" required>
+        <small class="error">Post content is required</small>
+        <label>Post Status
+          <select name="mely-post-status" required>
             {{#each statusList}}
             <option value="{{statusID}}" {{#if selected}} selected {{/if}}>{{statusName}}</option>
             {{/each}}           
           </select>
         </label>
-        <small class="error">Page status is required</small>
-        <input type="submit" value="Edit Page" class="button" />
+        <small class="error">Post status is required</small>
+        <input type="submit" value="Edit Post" class="button" />
       </div>
     </form>
-
     {{> footer}}
   </body>
 </html>
