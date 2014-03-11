@@ -12,27 +12,29 @@
   </head>
   <body>
     {{> menu}}
-    <form method="POST" action="/admin/theme" data-abide>
+    <form method="POST" action="/admin/theme/{{theme.themeID}}" data-abide>
+      <input type="hidden" id="id" name="id" value="{{theme.themeID}}" />
     <div class="row">
       <div class="large-12 columns">
         <br>
-        <h5>New Mely Theme</h5>
+        <h5>Edit Mely Theme</h5>
       </div>
     </div>
     <div class="row">
       <div class="large-12 columns">
         <label>Theme Name
-          <input type="text" id="themename" name="themename" placeholder="Name Of Theme" required />
+          <input type="text" id="themename" name="themename" placeholder="Name Of Theme" required value="{{theme.name}}" />
         </label>
       </div>
     </div>
     <div class="row">
       <div class="large-12 columns">
         <label>Theme Description
-          <textarea id="themedescription" name="themedescription" placeholder="Description Of Theme" required></textarea>
+          <textarea id="themedescription" name="themedescription" placeholder="Description Of Theme" required>{{theme.description}}</textarea>
         </label>
       </div>
     </div>
+
     <div class="row">
       <div class="large-3 columns">
         <div class="row collapse">
@@ -41,7 +43,7 @@
             <span class="prefix">#</span>
           </div>
           <div class="large-10 columns">
-            <input type="text" class="color" id="headerbackcolor" name="headerbackcolor" placeholder="HEX" />
+            <input type="text" class="color" id="headerbackcolor" name="headerbackcolor" placeholder="HEX" value="{{settings.headbackcolor}}" />
           </div>
         </div>
       </div>
@@ -52,13 +54,13 @@
             <span class="prefix">#</span>
           </div>
           <div class="large-10 columns">
-            <input type="text" class="color" id="headerfontcolor" name="headerfontcolor" placeholder="HEX" />
+            <input type="text" class="color" id="headerfontcolor" name="headerfontcolor" placeholder="HEX" value="{{settings.headfontcolor}}" />
           </div>
         </div>
       </div>
       <div class="large-3 columns">
         <label>Header Font Size
-          <input type="number" placeholder="PIXELS" min="1" max="100" name="headerfontsize" id="headerfontsize" required />
+          <input type="number" placeholder="PIXELS" min="1" max="100" name="headerfontsize" id="headerfontsize" value="{{settings.headfontsize}}" required />
         </label>
       </div>
       <div class="large-3 columns">
@@ -74,7 +76,7 @@
             <span class="prefix">#</span>
           </div>
           <div class="large-10 columns">
-            <input type="text" class="color" id="menubackcolor" name="menubackcolor" placeholder="HEX" />
+            <input type="text" class="color" id="menubackcolor" name="menubackcolor" placeholder="HEX" value="{{settings.menubackcolor}}" />
           </div>
         </div>
       </div>
@@ -85,13 +87,13 @@
             <span class="prefix">#</span>
           </div>
           <div class="large-10 columns">
-            <input type="text" class="color" id="menufontcolor" name="menufontcolor" placeholder="HEX" />
+            <input type="text" class="color" id="menufontcolor" name="menufontcolor" placeholder="HEX" value="{{settings.menufontcolor}}" />
           </div>
         </div>
       </div>
       <div class="large-3 columns">
         <label>Menu Font Size
-          <input type="number" placeholder="PIXELS" min="1" max="100" name="menufontsize" id="menufontsize" required />
+          <input type="number" placeholder="PIXELS" min="1" max="100" name="menufontsize" id="menufontsize" value="{{settings.menufontsize}}" required />
         </label>
       </div>
       <div class="large-3 columns"></div>
@@ -104,13 +106,13 @@
             <span class="prefix">#</span>
           </div>
           <div class="large-10 columns">
-            <input type="text" class="color" id="posttitlecolor" name="posttitlecolor" placeholder="HEX" />
+            <input type="text" class="color" id="posttitlecolor" name="posttitlecolor" placeholder="HEX" value="{{settings.posttitlecolor}}" />
           </div>
         </div>
       </div>
       <div class="large-3 columns">
         <label>Post Title Font Size
-          <input type="number" placeholder="PIXELS" min="1" max="100" name="posttitlefontsize" id="postitlefontsize" required />
+          <input type="number" placeholder="PIXELS" min="1" max="100" name="posttitlefontsize" id="postitlefontsize" value="{{settings.posttitlefontsize}}" required />
         </label>
       </div>
       <div class="large-3 columns">
@@ -120,13 +122,13 @@
             <span class="prefix">#</span>
           </div>
           <div class="large-10 columns">
-            <input type="text" class="color" id="postcontentcolor" name="postcontentcolor" placeholder="HEX" />
+            <input type="text" class="color" id="postcontentcolor" name="postcontentcolor" placeholder="HEX" value="{{settings.postcontentcolor}}" />
           </div>
         </div>
       </div>
       <div class="large-3 columns">
         <label>Post Content Font Size
-          <input type="number" placeholder="PIXELS" min="1" max="100" name="postcontentfontsize" id="postcontentfontsize" required />
+          <input type="number" placeholder="PIXELS" min="1" max="100" name="postcontentfontsize" id="postcontentfontsize" value="{{settings.postcontentfontsize}}" required />
         </label>
       </div>
     </div>
@@ -138,13 +140,13 @@
             <span class="prefix">#</span>
           </div>
           <div class="large-10 columns">
-            <input type="text" class="color" id="pagetitlecolor" name="pagetitlecolor" placeholder="HEX" />
+            <input type="text" class="color" id="pagetitlecolor" name="pagetitlecolor" placeholder="HEX" value="{{settings.pagetitlecolor}}" />
           </div>
         </div>
       </div>
       <div class="large-3 columns">
         <label>Page Title Font Size
-          <input type="number" placeholder="PIXELS" min="1" max="100" name="pagetitlefontsize" id="pagetitlefontsize" required />
+          <input type="number" placeholder="PIXELS" min="1" max="100" name="pagetitlefontsize" id="pagetitlefontsize" value="{{settings.pagetitlefontsize}}" required />
         </label>
       </div>
       <div class="large-3 columns">
@@ -154,25 +156,22 @@
             <span class="prefix">#</span>
           </div>
           <div class="large-10 columns">
-            <input type="text" class="color" id="pagecontentcolor" name="pagecontentcolor" placeholder="HEX" />
+            <input type="text" class="color" id="pagecontentcolor" name="pagecontentcolor" placeholder="HEX" value="{{settings.pagecontentcolor}}" />
           </div>
         </div>
       </div>
       <div class="large-3 columns">
         <label>Page Content Font Size
-          <input type="number" placeholder="PIXELS" min="1" max="100" name="pagecontentfontsize" id="pagecontentfontsize" required />
+          <input type="number" placeholder="PIXELS" min="1" max="100" name="pagecontentfontsize" id="pagecontentfontsize" value="{{settings.pagecontentfontsize}}" required />
         </label>
       </div>
     </div>
     <div class="row">
       <div class="large-12 columns">
-        <input type="submit" class="button expand" value="Create Theme" />
+        <input type="submit" class="button expand" value="Edit Theme" />
       </div>
     </div>
-    
     </form>
     {{> footer}}
-
   </body>
-
 </html>
