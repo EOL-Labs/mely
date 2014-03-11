@@ -1,0 +1,44 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Sintony' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/foundation.css" />
+    <script src="/js/vendor/modernizr.js"></script>
+    <script src="/js/sorttable.js"></script>
+  </head>
+  <body>
+    {{> menu}}
+    <div class="large-12 columns">
+      <br>
+      <h5>Edit Mely Page</h5>
+    </div>
+    <form method="POST" action="/admin/page/{{page.pageid}}" data-abide>
+    <input type="hidden" name="mely-pageid" value="{{page.pageid}}" />
+      <div class="large-8 columns">
+        <label>Page Title
+          <input type="text" name="mely-page-title" value="{{page.title}}" required />
+        </label>
+        <small class="error">A page title is required</small>
+        <label>Page Content
+          <textarea name="mely-page-content" required>{{page.content}}</textarea>
+        </label>
+        <small class="error">Page content is required</small>
+        <label>Page Status
+          <select name="mely-page-status" required>
+            {{#each statusList}}
+            <option value="{{statusID}}" {{#if selected}} selected {{/if}}>{{statusName}}</option>
+            {{/each}}           
+          </select>
+        </label>
+        <small class="error">Page status is required</small>
+        <input type="submit" value="Edit Page" class="button" />
+      </div>
+    </form>
+
+    {{> footer}}
+  </body>
+</html>
