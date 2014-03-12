@@ -15,29 +15,29 @@
     <div class="row">
       <div class="large-12 columns">
         <br>
-        <h5>List of Mely Posts</h5>
+        <h5>List of Mely Themes</h5>
         <table class="sortable">
           <thead>
             <tr>
               <th>Title</th>
-              <th class="sorttable_nosort">Content Preview</th>
+              <th class="sorttable_nosort">Description</th>
               <th>Status</th>
               <th class="sorttable_nosort">Options</th>
             </tr>
           </thead>
           <tbody>
-            {{#if postList.length}}
-            {{#each postList}}
+            {{#if themeList.length}}
+            {{#each themeList}}
             <tr>
-              <td>{{title}}</td>
-              <td>{{content}}</td>
+              <td>{{name}}</td>
+              <td>{{description}}</td>
               <td>{{status}}</td>
-              <td><a href="/admin/post/{{postId}}">EDIT</a></td>
+              <td><a href="/admin/theme/{{themeid}}">EDIT</a></td>
             </tr>
             {{/each}}
             {{else}}
             <tr>
-              <td class="text-center" colspan="4">No Posts</td>
+              <td class="text-center" colspan="4">No Themes</td>
             </tr>
             {{/if}}
           </tbody>
