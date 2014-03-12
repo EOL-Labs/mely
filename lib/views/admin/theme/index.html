@@ -12,29 +12,37 @@
   </head>
   <body>
     {{> menu}}
-    <div class="large-12 columns">
-      <br>
-      <h5>List of Mely Themes</h5>
-      <table class="sortable">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th class="sorttable_nosort">Content Preview</th>
-            <th>Status</th>
-            <th class="sorttable_nosort">Options</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each themeList}}
-          <tr>
-            <td>{{name}}</td>
-            <td>{{description}}</td>
-            <td>{{status}}</td>
-            <td><a href="/admin/theme/{{themeid}}">EDIT</a></td>
-          </tr>
-          {{/each}}
-        </tbody>
-      </table>
+    <div class="row">
+      <div class="large-12 columns">
+        <br>
+        <h5>List of Mely Themes</h5>
+        <table class="sortable">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th class="sorttable_nosort">Description</th>
+              <th>Status</th>
+              <th class="sorttable_nosort">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#if themeList.length}}
+            {{#each themeList}}
+            <tr>
+              <td>{{name}}</td>
+              <td>{{description}}</td>
+              <td>{{status}}</td>
+              <td><a href="/admin/theme/{{themeid}}">EDIT</a></td>
+            </tr>
+            {{/each}}
+            {{else}}
+            <tr>
+              <td class="text-center" colspan="4">No Themes</td>
+            </tr>
+            {{/if}}
+          </tbody>
+        </table>
+      </div>
     </div>
     {{> footer}}
   </body>

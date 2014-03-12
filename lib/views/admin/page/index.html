@@ -12,29 +12,37 @@
   </head>
   <body>
     {{> menu}}
-    <div class="large-12 columns">
-      <br>
-      <h5>List of Mely Pages</h5>
-      <table class="sortable">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th class="sorttable_nosort">Content Preview</th>
-            <th>Status</th>
-            <th class="sorttable_nosort">Options</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each pageList}}
-          <tr>
-            <td>{{title}}</td>
-            <td>{{content}}</td>
-            <td>{{status}}</td>
-            <td><a href="/admin/page/{{pageId}}">EDIT</a></td>
-          </tr>
-          {{/each}}
-        </tbody>
-      </table>
+    <div class="row">
+      <div class="large-12 columns">
+        <br>
+        <h5>List of Mely Pages</h5>
+        <table class="sortable">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th class="sorttable_nosort">Content Preview</th>
+              <th>Status</th>
+              <th class="sorttable_nosort">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#if pageList.length}}
+            {{#each pageList}}
+            <tr>
+              <td>{{title}}</td>
+              <td>{{content}}</td>
+              <td>{{status}}</td>
+              <td><a href="/admin/page/{{pageId}}">EDIT</a></td>
+            </tr>
+            {{/each}}
+            {{else}}
+            <tr>
+              <td class="text-center" colspan="4">No Pages</td>
+            </tr>
+            {{/if}}
+          </tbody>
+        </table>
+      </div>
     </div>
     {{> footer}}
   </body>

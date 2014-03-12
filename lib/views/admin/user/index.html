@@ -12,31 +12,33 @@
   </head>
   <body>
     {{> menu}}
-    <div class="large-12 columns">
-      <br>
-      <h5>List of Mely Users</h5>
-      <table class="sortable">
-        <thead>
-          <tr>
-            <th>E-Mail Address</th>
-            <th>User Status</th>
-            <th>Date Created</th>
-            <th>Last Updated</th>
-            <th class="sorttable_nosort">Options</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each userList}}
-          <tr id="user-{{userid}}">
-            <td>{{email}}</td>
-            <td>{{status}}</td>
-            <td>{{createdDate}}</td>
-            <td>{{updatedDate}}</td>
-            <td><a href="/admin/user/{{userid}}">EDIT</a> - <a id="{{userid}}" class="delete">DELETE</a></td>
-          </tr>
-          {{/each}}
-        </tbody>
-      </table>
+    <div class="row">
+      <div class="large-12 columns">
+        <br>
+        <h5>List of Mely Users</h5>
+        <table class="sortable">
+          <thead>
+            <tr>
+              <th>E-Mail Address</th>
+              <th>User Status</th>
+              <th>Date Created</th>
+              <th>Last Updated</th>
+              <th class="sorttable_nosort">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each userList}}
+            <tr id="user-{{userid}}">
+              <td>{{email}}</td>
+              <td>{{status}}</td>
+              <td>{{createdDate}}</td>
+              <td>{{updatedDate}}</td>
+              <td><a href="/admin/user/{{userid}}">EDIT</a> - <a id="{{userid}}" class="delete">DELETE</a></td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
     </div>
     {{> footer}}
   </body>
