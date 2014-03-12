@@ -29,10 +29,10 @@
             {{#if postList.length}}
             {{#each postList}}
             <tr>
-              <td>{{title}}</td>
-              <td>{{content}}</td>
-              <td>{{status}}</td>
-              <td><a href="/admin/post/{{postId}}">EDIT</a></td>
+              <td valign="top">{{title}}</td>
+              <td valign="top">{{{content}}}</td>
+              <td valign="top">{{status}}</td>
+              <td valign="top"><a href="/admin/post/{{postId}}">EDIT</a></td>
             </tr>
             {{/each}}
             {{else}}
