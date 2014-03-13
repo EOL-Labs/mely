@@ -32,7 +32,7 @@
               <td>{{name}}</td>
               <td>{{description}}</td>
               <td>{{status}}</td>
-              <td><a href="/admin/theme/{{themeid}}">EDIT</a></td>
+              <td class="text-center"><a href="/admin/theme/{{themeid}}">EDIT</a>{{#unless active}} - <a href="/admin/theme/activate/{{themeid}}">ACTIVATE</a>{{/unless}}{{#if active}} - ACTIVE{{/if}}</td>
             </tr>
             {{/each}}
             {{else}}
