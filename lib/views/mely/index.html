@@ -1,0 +1,85 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/css/foundation.css" />
+    <link href='http://fonts.googleapis.com/css?family=Armata' rel='stylesheet' type='text/css'>
+    <script src="/js/vendor/modernizr.js"></script>
+    <style type="text/css">
+      .headerBackground{
+        background:#{{pageContent.[2].MelyTheme.themeHeaderBackground}};
+      }
+      .headerText{
+        font-size: {{pageContent.[2].MelyTheme.themeHeaderFontSize}}px;
+        color:#{{pageContent.[2].MelyTheme.themeHeaderFontColor}};
+      }
+      .menuBackground{
+        background:#{{pageContent.[2].MelyTheme.themeMenuBackground}};
+      }
+      .menuText{
+        font-size: {{pageContent.[2].MelyTheme.themeMenuFontSize}}px;
+        color:#{{pageContent.[2].MelyTheme.themeMenuFontColor}};
+      }
+      .postTitle{
+        font-size: {{pageContent.[2].MelyTheme.themePostTitleFontSize}}px;
+        color:#{{pageContent.[2].MelyTheme.themePostTitleFontColor}};
+      }
+      .postContent{
+        font-size: {{pageContent.[2].MelyTheme.themePostContentFontSize}}px;
+        color:#{{pageContent.[2].MelyTheme.themePostContentFontColor}};
+      }
+    </style>
+  </head>
+  <body style="font-family: 'Armata', sans-serif;">
+    <div class="row headerBackground">
+      <div class="large-12 columns text-center">
+        <div class="row">
+          <div class="large-12 columns text-center">Image Would Go Here</div>
+        </div>
+        <br><br>
+        <div class="row">
+          <div class="large-12 columns text-center headerText">{{systemInfo.title}}</div>
+        </div>
+        <br><br>
+        <div class="row">
+          <div class="large-12 columns text-center">{{systemInfo.tag}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="row headerBackground">
+      <div class="large-12 columns text-center"><hr></div>
+    </div>
+    <div class="row menuBackground">
+      <div class="large-12 columns text-center">
+        <ul class="inline-list">
+          {{#each pageContent.[1].MelyPages}}
+          <li><a class="menuText" href="/{{pageTitle}}">{{pageTitle}}</a></li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        {{#each pageContent.[0].MelyPosts}}
+        <br>
+        <div class="row">
+          <div class="large-12 columns"><a class="postTitle" href="/post/{{postID}}">{{postTitle}}</a></div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns"><small><b>Published: {{postLastDate}}</b></small></div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="large-12 columns postContent">{{{postContent}}}</div>
+        </div>
+        <div class="row headerBackground">
+          <div class="large-12 columns text-center"><hr></div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{> footer}}
+  </body>
+</html>
