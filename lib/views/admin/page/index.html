@@ -1,49 +1,34 @@
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{title}}</title>
-    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Sintony' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/css/foundation.css" />
-    <script src="/js/vendor/modernizr.js"></script>
-    <script src="/js/sorttable.js"></script>
-  </head>
-  <body>
-    {{> menu}}
-    <div class="row">
-      <div class="large-12 columns">
-        <br>
-        <h5>List of Mely Pages</h5>
-        <table class="sortable" width="100%">
-          <thead>
-            <tr>
-              <th class="text-center">Title</th>
-              <th class="sorttable_nosort text-center">Content Preview</th>
-              <th class="text-center">Status</th>
-              <th class="sorttable_nosort text-center">Options</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#if pageList.length}}
-            {{#each pageList}}
-            <tr>
-              <td valign="top">{{title}}</td>
-              <td valign="top">{{{content}}}</td>
-              <td valign="top">{{status}}</td>
-              <td valign="top"><a href="/admin/page/{{pageId}}">EDIT</a></td>
-            </tr>
-            {{/each}}
-            {{else}}
-            <tr>
-              <td class="text-center" colspan="4">No Pages</td>
-            </tr>
-            {{/if}}
-          </tbody>
-        </table>
-      </div>
-    </div>
-    {{> footer}}
-  </body>
-</html>
+{{> menu}}
+<div class="row">
+  <div class="large-12 columns">
+    <br>
+    <h5>List of Mely Pages</h5>
+    <table class="sortable" width="100%">
+      <thead>
+        <tr>
+          <th class="text-center">Title</th>
+          <th class="sorttable_nosort text-center">Content Preview</th>
+          <th class="text-center">Status</th>
+          <th class="sorttable_nosort text-center">Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#if pageList.length}}
+        {{#each pageList}}
+        <tr>
+          <td valign="top">{{title}}</td>
+          <td valign="top">{{{content}}}</td>
+          <td valign="top">{{status}}</td>
+          <td valign="top"><a href="/admin/page/{{pageId}}">EDIT</a></td>
+        </tr>
+        {{/each}}
+        {{else}}
+        <tr>
+          <td class="text-center" colspan="4">No Pages</td>
+        </tr>
+        {{/if}}
+      </tbody>
+    </table>
+  </div>
+</div>
+{{> footer}}

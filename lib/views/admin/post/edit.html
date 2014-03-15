@@ -1,61 +1,46 @@
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{title}}</title>
-    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Sintony' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/css/foundation.css" />
-    <script src="/js/vendor/modernizr.js"></script>
-    <script src="/js/sorttable.js"></script>
-  </head>
-  <body>
-    {{> menu}}
-    <div class="row">
-      <div class="large-12 columns">
-        <br>
-        <h5>Edit Mely Post</h5>
-      </div>
-    </div>
-    <div class="row">
-      <div class="large-12 columns">{{> toolbar}}</div>
-    </div>
-    <div class="row">
-      <form method="POST" action="/admin/post/{{post.postid}}" data-abide>
-      <input type="hidden" name="mely-postid" value="{{post.postid}}" />
+{{> menu}}
+<div class="row">
+  <div class="large-12 columns">
+    <br>
+    <h5>Edit Mely Post</h5>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">{{> toolbar}}</div>
+</div>
+<div class="row">
+  <form method="POST" action="/admin/post/{{post.postid}}" data-abide>
+  <input type="hidden" name="mely-postid" value="{{post.postid}}" />
+    <div class="large-12 columns">
+      <label>Post Title
+        <input type="text" name="mely-post-title" value="{{post.title}}" required />
+      </label>
+      <small class="error">A post title is required</small>
+      <label>Post Content - <a id="preview" href="#">Preview</a>
+        <textarea name="mely-post-content" id="content" rows="20" required>{{post.content}}</textarea>
+      </label>
+      <small class="error">Post content is required</small>
+      <div class="row hide" id="preview-panel">
         <div class="large-12 columns">
-          <label>Post Title
-            <input type="text" name="mely-post-title" value="{{post.title}}" required />
-          </label>
-          <small class="error">A post title is required</small>
-          <label>Post Content - <a id="preview" href="#">Preview</a>
-            <textarea name="mely-post-content" id="content" rows="20" required>{{post.content}}</textarea>
-          </label>
-          <small class="error">Post content is required</small>
-          <div class="row hide" id="preview-panel">
-            <div class="large-12 columns">
-              <div class="panel" id="preview-markdown"></div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="large-4 columns">
-              <label>Post Status
-                <select name="mely-post-status" required>
-                  {{#each statusList}}
-                  <option value="{{statusID}}" {{#if selected}} selected {{/if}}>{{statusName}}</option>
-                  {{/each}}           
-                </select>
-              </label>
-            </div>
-          </div>
-          <small class="error">Post status is required</small>
-          <input type="submit" value="Edit Post" class="button" />
+          <div class="panel" id="preview-markdown"></div>
         </div>
-      </form>
+      </div>
+      <div class="row">
+        <div class="large-4 columns">
+          <label>Post Status
+            <select name="mely-post-status" required>
+              {{#each statusList}}
+              <option value="{{statusID}}" {{#if selected}} selected {{/if}}>{{statusName}}</option>
+              {{/each}}           
+            </select>
+          </label>
+        </div>
+      </div>
+      <small class="error">Post status is required</small>
+      <input type="submit" value="Edit Post" class="button" />
     </div>
-    {{> footer}}
-    <script src="/js/rangyinputs-jquery-src.js"></script>
-    <script src="/js/admin.markdown.js"></script>
-  </body>
-</html>
+  </form>
+</div>
+{{> footer}}
+<script src="/js/rangyinputs-jquery-src.js"></script>
+<script src="/js/admin.markdown.js"></script>

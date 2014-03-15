@@ -1,49 +1,34 @@
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{title}}</title>
-    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Sintony' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/css/foundation.css" />
-    <script src="/js/vendor/modernizr.js"></script>
-    <script src="/js/sorttable.js"></script>
-  </head>
-  <body>
-    {{> menu}}
-    <div class="row">
-      <div class="large-12 columns">
-        <br>
-        <h5>List of Mely Themes</h5>
-        <table class="sortable" width="100%">
-          <thead>
-            <tr>
-              <th class="text-center">Title</th>
-              <th class="sorttable_nosort text-center">Description</th>
-              <th class="text-center">Status</th>
-              <th class="sorttable_nosort text-center">Options</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#if themeList.length}}
-            {{#each themeList}}
-            <tr>
-              <td>{{name}}</td>
-              <td>{{description}}</td>
-              <td>{{status}}</td>
-              <td class="text-center"><a href="/admin/theme/{{themeid}}">EDIT</a>{{#unless active}} - <a href="/admin/theme/activate/{{themeid}}">ACTIVATE</a>{{/unless}}{{#if active}} - ACTIVE{{/if}}</td>
-            </tr>
-            {{/each}}
-            {{else}}
-            <tr>
-              <td class="text-center" colspan="4">No Themes</td>
-            </tr>
-            {{/if}}
-          </tbody>
-        </table>
-      </div>
-    </div>
-    {{> footer}}
-  </body>
-</html>
+{{> menu}}
+<div class="row">
+  <div class="large-12 columns">
+    <br>
+    <h5>List of Mely Themes</h5>
+    <table class="sortable" width="100%">
+      <thead>
+        <tr>
+          <th class="text-center">Title</th>
+          <th class="sorttable_nosort text-center">Description</th>
+          <th class="text-center">Status</th>
+          <th class="sorttable_nosort text-center">Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#if themeList.length}}
+        {{#each themeList}}
+        <tr>
+          <td>{{name}}</td>
+          <td>{{description}}</td>
+          <td>{{status}}</td>
+          <td class="text-center"><a href="/admin/theme/{{themeid}}">EDIT</a>{{#unless active}} - <a href="/admin/theme/activate/{{themeid}}">ACTIVATE</a>{{/unless}}{{#if active}} - ACTIVE{{/if}}</td>
+        </tr>
+        {{/each}}
+        {{else}}
+        <tr>
+          <td class="text-center" colspan="4">No Themes</td>
+        </tr>
+        {{/if}}
+      </tbody>
+    </table>
+  </div>
+</div>
+{{> footer}}

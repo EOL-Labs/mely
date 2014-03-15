@@ -1,54 +1,67 @@
-<div class="sticky" data-options="sticky_on: large">
-  <nav class="top-bar" data-topbar>
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="/admin" style="font-family: 'Permanent Marker', cursive;">Mely</a></h1>
-      </li>
-      <li class="toggle-topbar menu-icon"><a href="#">Mely Options</a></li>
-    </ul>
-    <section class="top-bar-section">
-      <!-- Left Nav Section -->
-      <ul class="left">
-        <li class="has-dropdown">
-          <a href="#">Users</a>
-          <ul class="dropdown">
-            <li><a href="/admin/user/new">Register New User</a></li>
-            <li><a href="/admin/user">List Users</a></li>
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Sintony' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/foundation.css" />
+    <script src="/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="/js/jscolor/jscolor.js"></script>
+  </head>
+  <body>
+    <div class="sticky" data-options="sticky_on: large">
+      <nav class="top-bar" data-topbar>
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="/admin" style="font-family: 'Permanent Marker', cursive;">Mely</a></h1>
+          </li>
+          <li class="toggle-topbar menu-icon"><a href="#">Mely Options</a></li>
+        </ul>
+        <section class="top-bar-section">
+          <!-- Left Nav Section -->
+          <ul class="left">
+            <li class="has-dropdown">
+              <a href="#">Users</a>
+              <ul class="dropdown">
+                <li><a href="/admin/user/new">Register New User</a></li>
+                <li><a href="/admin/user">List Users</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Posts</a>
+              <ul class="dropdown">
+                <li><a href="/admin/post/new">Add New Post</a></li>
+                <li><a href="/admin/post">List Posts</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Pages</a>
+              <ul class="dropdown">
+                <li><a href="/admin/page/new">Add New Page</a></li>
+                <li><a href="/admin/page">List Pages</a></li>
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#">Themes</a>
+              <ul class="dropdown">
+                <li><a href="/admin/theme/new">Add New Theme</a></li>
+                <li><a href="/admin/theme">List Themes</a></li>
+              </ul>
+            </li>
+            <!--<li>
+              <a href="#" data-dropdown="blog-info">Blog Information</a>
+            </li>-->
           </ul>
-        </li>
-        <li class="has-dropdown">
-          <a href="#">Posts</a>
-          <ul class="dropdown">
-            <li><a href="/admin/post/new">Add New Post</a></li>
-            <li><a href="/admin/post">List Posts</a></li>
+          <ul class="right">
+            <li>
+              <a href="#">v0.0.1</a>
+            </li>
+            <li>
+              <a href="/logout">Sign Out</a>
+            </li>     
           </ul>
-        </li>
-        <li class="has-dropdown">
-          <a href="#">Pages</a>
-          <ul class="dropdown">
-            <li><a href="/admin/page/new">Add New Page</a></li>
-            <li><a href="/admin/page">List Pages</a></li>
-          </ul>
-        </li>
-        <li class="has-dropdown">
-          <a href="#">Themes</a>
-          <ul class="dropdown">
-            <li><a href="/admin/theme/new">Add New Theme</a></li>
-            <li><a href="/admin/theme">List Themes</a></li>
-          </ul>
-        </li>
-        <!--<li>
-          <a href="#" data-dropdown="blog-info">Blog Information</a>
-        </li>-->
-      </ul>
-      <ul class="right">
-        <li>
-          <a href="#">v0.0.1</a>
-        </li>
-        <li>
-          <a href="/logout">Sign Out</a>
-        </li>     
-      </ul>
-    </section>
-  </nav>
-</div>
+        </section>
+      </nav>
+    </div>
