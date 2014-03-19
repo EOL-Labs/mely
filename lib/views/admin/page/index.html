@@ -6,10 +6,10 @@
     <table class="sortable" width="100%">
       <thead>
         <tr>
-          <th class="text-center">Title</th>
-          <th class="sorttable_nosort text-center">Content Preview</th>
-          <th class="text-center">Status</th>
-          <th class="sorttable_nosort text-center">Options</th>
+          <th width="25%" class="text-center">Title</th>
+          <th width="25%" class="sorttable_nosort text-center">Content Preview</th>
+          <th width="25%" class="text-center">Status</th>
+          <th width="25%" class="sorttable_nosort text-center">Options</th>
         </tr>
       </thead>
       <tbody>
@@ -17,9 +17,9 @@
         {{#each pageList}}
         <tr>
           <td valign="top">{{title}}</td>
-          <td valign="top">{{{content}}}</td>
-          <td valign="top">{{status}}</td>
-          <td valign="top"><a href="/admin/page/{{pageId}}">EDIT</a></td>
+          <td valign="top" class="text-center"><a href="#">Preview</a></td>
+          <td valign="top" class="text-center">{{status}}</td>
+          <td valign="top" class="text-center"><a href="/admin/page/{{pageId}}">EDIT</a></td>
         </tr>
         {{/each}}
         {{else}}
