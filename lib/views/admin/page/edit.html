@@ -1,4 +1,4 @@
-{{> menu}}
+{{> admin/menu}}
 <div class="row">
   <div class="large-12 columns">
     <br>
@@ -6,7 +6,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="large-12 columns">{{> toolbar}}</div>
+  <div class="large-12 columns">{{> admin/toolbar}}</div>
 </div>
 <div class="row">
   <form method="POST" action="/admin/page/{{page.pageid}}" data-abide>
@@ -41,6 +41,6 @@
     </div>
   </form>
 </div>
-{{> footer}}
+{{> admin/footer}}
 <script src="/js/rangyinputs-jquery-src.js"></script>
 <script src="/js/admin.markdown.js"></script>
