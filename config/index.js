@@ -1,5 +1,8 @@
 var db_config_to_use = '';
 switch (process.env.NODE_ENV) {
+	case 'test_travis':
+		db_config_to_use = './database.test_travis';
+		break;
 	case 'test':
 		db_config_to_use = './database.test';
         break;
