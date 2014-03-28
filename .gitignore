@@ -16,3 +16,5 @@ node_modules
 config/database.js
 config/mail.js
 config/server.js
+config/database.test.js
+
