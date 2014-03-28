@@ -1,6 +1,6 @@
 var assert = require("assert")
 //process.env.NODE_ENV = "test"
-var configurationFiles = require("../config")
+var database = require("../config").database
 var models = require('../lib/models')
 
 
