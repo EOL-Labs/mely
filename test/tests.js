@@ -33,34 +33,46 @@ describe("Mely", function(){
 		});
 	})
 	describe("#systems", function(){
-		it("should return system object", function(done){
-			Mely.Administrator.createSystem({
-				name: name,
-				description: description
-			},function(err, system){
-				assert(err == null);
-			 	assert(system !== undefined);
-			 	done()
+		describe("#createSystem()",function(){
+			it("should return system object", function(done){
+				Mely.Administrator.createSystem({
+					name: name,
+					description: description
+				},function(err, system){
+					assert(err == null);
+				 	assert(system !== undefined);
+				 	done()
+				})
+			})
+			it("should return error if name == null", function(done){
+				Mely.Administrator.createSystem({
+					name: null,
+					description: description
+				},function(err, system){
+					assert(err instanceof Error);
+				 	assert(system === undefined);
+				 	done();
+				})
+			})
+			it("should return error if description == null", function(done){
+				Mely.Administrator.createSystem({
+					name: name,
+					description: null
+				},function(err, system){
+					assert(err instanceof Error);
+				 	assert(system === undefined);
+				 	done();
+				})
 			})
 		})
-		it("should return error if name == null", function(done){
-			Mely.Administrator.createSystem({
-				name: null,
-				description: description
-			},function(err, system){
-				assert(err instanceof Error);
-			 	assert(system === undefined);
-			 	done();
-			})
-		})
-		it("should return error if description == null", function(done){
-			Mely.Administrator.createSystem({
-				name: name,
-				description: null
-			},function(err, system){
-				assert(err instanceof Error);
-			 	assert(system === undefined);
-			 	done();
+		describe("#getSystemCount()",function(){
+			it("should return system count", function(done){
+				Mely.Administrator.getSystemCount({
+				}, function(err, count){
+					assert(err == null);
+					assert(count !== undefined);
+					done();
+				})
 			})
 		})
 	})
