@@ -880,6 +880,16 @@ describe("Mely", function(){
 				 	done();
 				})
 			})
-		})	
+		})
+		describe("#getStatus()", function(){
+			it("should return status objects", function(done){
+				Mely.Administrator.getStatus({
+				}, function(err, status){
+					assert(err == null)
+			 		assert(status !== undefined)
+			 		done()
+				})
+			})
+		})
 	})
 })
