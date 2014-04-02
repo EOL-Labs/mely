@@ -75,6 +75,16 @@ describe("Mely", function(){
 				})
 			})
 		})
+		describe("#getSystem()",function(){
+			it("should return system object", function(done){
+				Mely.Administrator.getSystem({
+				}, function(err, system){
+					assert(err == null);
+					assert(system !== undefined);
+					done();
+				})
+			})
+		})
 	})
 	describe("#users", function(){
 		describe("#createUser()", function(){
@@ -719,6 +729,26 @@ describe("Mely", function(){
 			 	})
 			})
 		})
+		describe("#getThemeSetting()",function(){
+			it("should return array w/ 1 theme setting object", function(done){
+				Mely.Administrator.getThemeSetting({
+			 		id: themeid
+			 	}, function(err, themesetting){
+			 		assert(err == null)
+			 		assert(themesetting !== undefined)
+			 		done()
+			 	})
+			})
+			it("should return error when id == null", function(done){
+			 	Mely.Administrator.getThemeSetting({
+			 		id: null
+			 	}, function(err, themesetting){
+			 		assert(err instanceof Error);
+			 		assert(themesetting === undefined);
+			 		done();
+			 	})
+			})
+		})
 		describe("#updateTheme()",function(){
 			it("should update theme", function(done){
 				Mely.Administrator.updateTheme({
@@ -887,6 +917,16 @@ describe("Mely", function(){
 				}, function(err, status){
 					assert(err == null)
 			 		assert(status !== undefined)
+			 		done()
+				})
+			})
+		})
+		describe("#getThemeFiles()", function(){
+			it("should return array of file name objects", function(done){
+				Mely.Administrator.getThemeFiles({
+				}, function(err, files){
+					assert(err == null)
+			 		assert(files !== undefined)
 			 		done()
 				})
 			})
