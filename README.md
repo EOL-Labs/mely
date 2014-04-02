@@ -1,7 +1,7 @@
 ## Mely ##
 <b>M</b>ake <b>E</b>verything <b>L</b>ook <b>Y</b>ours
 
-[![Build Status](https://travis-ci.org/EOL-Labs/Mely.svg?branch=master)](https://travis-ci.org/EOL-Labs/Mely)
+[![Build Status](https://travis-ci.org/EOL-Labs/mely.svg?branch=master)](https://travis-ci.org/EOL-Labs/mely)
 
 Mely is a blogging platform for ***node.js***. It is currently WIP. In order to install and use Mely correctly you will need to follow a few steps.
 
