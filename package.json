@@ -1,5 +1,5 @@
 {
-  "name": "Mely",
+  "name": "mely",
   "version": "0.0.0",
   "description": "Project Mely - Make Everything Look Yours",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/EOL-Labs/Mely.git"
+    "url": "https://github.com/EOL-Labs/mely.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/EOL-Labs/Mely/issues"
+    "url": "https://github.com/EOL-Labs/mely/issues"
   },
-  "homepage": "https://github.com/EOL-Labs/Mely",
+  "homepage": "https://github.com/EOL-Labs/mely",
   "dependencies": {
     "mysql": "2.1.0",
     "sequelize": "1.7.0",
