@@ -10,12 +10,12 @@ switch (process.env.NODE_ENV) {
     case 'production':
     case 'development':
         db_config_to_use = './database';
-        var mailConfiguration = require("./mail")
-        var serverConfiguration = require("./server")
-        exports.mail = mailConfiguration
-        exports.server = serverConfiguration
+        var mailConfiguration = require("./mail");
+        var serverConfiguration = require("./server");
+        exports.mail = mailConfiguration;
+        exports.server = serverConfiguration;
         break;
 }
 
-var databaseConfiguration = require(db_config_to_use)
-exports.database = databaseConfiguration
+var databaseConfiguration = require(db_config_to_use);
+exports.database = databaseConfiguration;

@@ -5,4 +5,4 @@ exports.config = {
 	db: "databasename",
 	username: "username",
 	password: "password"
-}
+};

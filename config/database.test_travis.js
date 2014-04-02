@@ -9,4 +9,4 @@ exports.config = {
 	db: 't_mely',
 	username: 'root',
 	password: ''
-}
+};

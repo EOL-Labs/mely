@@ -1,2 +1,2 @@
 exports.config = {
-}
+};
