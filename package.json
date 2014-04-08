@@ -20,7 +20,7 @@
     "mysql": "2.1.0",
     "sequelize": "1.7.0",
     "mocha": "1.17.1",
-    "hapi": "^2.6.0",
+    "hapi": "^4.0.0",
     "handlebars": "^2.0.0-alpha.1",
     "crypto": "0.0.3",
     "hapi-auth-cookie": "~1.0.1",
