@@ -4,12 +4,11 @@
 	<h5>File Names</h5>
 	<ul class="inline-list">
 		{{#each fileList}}
-		<li><a href="#" id="{{link}}">{{name}}</a></li>
+		<li><a href="#" id="{{name}}" class="files">{{name}}</a></li>
 		{{/each}}
 	</ul>
-	<textarea rows="23">
-
-	</textarea>
-
+	<input id="file" name="file" type="hidden">
+	<textarea rows="23" name="filecontent" id="filecontent"></textarea>
 </div>
 {{> admin/footer}}
+<script src="/js/admin.main.js"></script>
