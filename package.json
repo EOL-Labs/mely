@@ -28,6 +28,6 @@
     "marked": "^0.3.2",
     "async": "^0.2.10",
     "glob": "~3.2.9",
-    "change-case": "~2.0.1"
+    "change-case": "^2.0.1"
   }
 }

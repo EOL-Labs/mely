@@ -358,10 +358,21 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return array w/ 1 page object", function(done){
+			it("should return array w/ 1 page object if id is present", function(done){
 				Mely.Administrator.getPage({
 					systemid: systemid,
 					id: pageid
+				}, function(err, pages){
+					assert(pages.length === 1);
+					assert(err === null);
+					assert(pages !== undefined);
+					done();
+				});
+			});
+			it("should return array w/ 1 page object if title is present", function(done){
+				Mely.Administrator.getPage({
+					systemid: systemid,
+					title: "New Title"
 				}, function(err, pages){
 					assert(pages.length === 1);
 					assert(err === null);
