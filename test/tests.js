@@ -263,7 +263,8 @@ describe("Mely", function(){
 					content: content,
 					status: published,
 					systemid: systemid,
-					userid: userid
+					userid: userid,
+					order: 1
 				},function(err, page){
 					assert(err === null);
 					assert(page !== undefined);
@@ -282,7 +283,8 @@ describe("Mely", function(){
 					content: content,
 					status: published,
 					systemid: systemid,
-					userid: userid
+					userid: userid,
+					order: 1
 				},function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
@@ -295,7 +297,8 @@ describe("Mely", function(){
 					content: null,
 					status: published,
 					systemid: systemid,
-					userid: userid
+					userid: userid,
+					order: 1
 				},function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
@@ -308,7 +311,8 @@ describe("Mely", function(){
 					content: content,
 					status: published,
 					systemid: null,
-					userid: userid
+					userid: userid,
+					order: 1
 				},function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
@@ -321,7 +325,8 @@ describe("Mely", function(){
 					content: content,
 					status: published,
 					systemid: systemid,
-					userid: null
+					userid: null,
+					order: 1
 				},function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
@@ -334,7 +339,8 @@ describe("Mely", function(){
 					content: content,
 					status: null,
 					systemid: systemid,
-					userid: userid
+					userid: userid,
+					order: 1
 				},function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
@@ -379,7 +385,8 @@ describe("Mely", function(){
 					id: pageid,
 					title: title,
 					content: content,
-					status: published
+					status: published,
+					order: 2
 				}, function(err, page){
 					assert(err === null);
 					assert(page !== undefined);
@@ -391,7 +398,8 @@ describe("Mely", function(){
 					id: null,
 					title: title,
 					content: content,
-					status: published
+					status: published,
+					order: 2
 				}, function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
@@ -403,7 +411,8 @@ describe("Mely", function(){
 					id: pageid,
 					title: null,
 					content: content,
-					status: published
+					status: published,
+					order: 2
 				}, function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
@@ -415,7 +424,8 @@ describe("Mely", function(){
 					id: pageid,
 					title: title,
 					content: null,
-					status: published
+					status: published,
+					order: 2
 				}, function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
@@ -427,7 +437,8 @@ describe("Mely", function(){
 					id: pageid,
 					title: title,
 					content: content,
-					status: null
+					status: null,
+					order: 2
 				}, function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
