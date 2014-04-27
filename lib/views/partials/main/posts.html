@@ -1,16 +1,26 @@
 <div class="row">
+	<div class="columns large-12">
 	{{#each MelyPosts}}
+	<article data-src="">
 	<br>
 	<div class="row post-title">
-		<a href="/post/{{postID}}">{{postTitle}}</a>
+		<div class="columns large-12">
+			<a href="/post/{{postID}}">{{postTitle}}</a>
+		</div>
 	</div>
 	<div class="row">
-		<small><b>Published: {{postLastDate}}</b></small>
+		<div class="columns large-12">
+			<small><b>Published: {{postLastDate}}</b></small>
+		</div>
 	</div>
 	<div class="row post-content">
+		<div class="columns large-12">
 		{{{postContent}}}
+		</div>
 	</div>
 	<hr>
 	<br>
+	</article>
 	{{/each}}
+	</div>
 </div>

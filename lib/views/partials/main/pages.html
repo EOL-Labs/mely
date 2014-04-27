@@ -1,12 +1,20 @@
 <div class="row">
+	<div class="columns large-12">
 	{{#each MelyPage}}
 	<br>
-	<div class="row page-title">{{pageTitle}}</div>
+	<div class="row page-title">
+		<div class="columns large-12">
+		{{pageTitle}}
+		</div>
+	</div>
 	<br>
 	<div class="row page-content">
+		<div class="columns large-12">
 		{{{pageContent}}}
+		</div>
 	</div>
 	<hr>
 	<br>
 	{{/each}}
+	</div>
 </div>
