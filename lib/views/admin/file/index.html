@@ -2,9 +2,20 @@
 <div class="row">
 	<br>
 	<h5>File Names</h5>
+	<p>Main Files (The Main Files Melys Views are built on. The Index, Page and Post views)</p>
 	<ul class="inline-list">
 		{{#each fileList}}
+		{{#unless type}}
 		<li><a href="#" id="{{name}}" class="files">{{name}}</a></li>
+		{{/unless}}
+		{{/each}}
+	</ul>
+	<p>Subset Files</p>
+	<ul class="inline-list">
+		{{#each fileList}}
+		{{#if type}}
+		<li><a href="#" id="{{name}}" class="files">{{name}}</a></li>
+		{{/if}}
 		{{/each}}
 	</ul>
 	<input id="file" name="file" type="hidden">
