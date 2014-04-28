@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
 	(function ($, undefined) {
 		$.fn.getCursorPosition = function() {
 			var el = $(this).get(0);
@@ -16,7 +15,6 @@ $(document).ready(function(){
 			return pos;
 		};
 	})(jQuery);
-
 	$("#H1").click(function(){
 		$("#content").surroundSelectedText("# ", "");
 	});
@@ -49,33 +47,16 @@ $(document).ready(function(){
 		$("#content").insertText("---", position, "collapseToEnd");
 	});
 	$("#IMG").click(function(){
-		var position = $("#content").getCursorPosition();
-		var link = prompt("Place Your Link in the Textbox");
-		if (link !== ""){
-			var altText = prompt("Place enter alternate text");
-			var hoverText = prompt("Place enter hover text");
-			$("#content").insertText("![" + altText + "](" + link + " '" + hoverText + "')", position, "collapseToEnd");
-		}
-		else{
-			alert("Link can not be blank");
-		}	
+		$("#imgModal").foundation("reveal", "open");
+		$("#image-link").val("");
+		$("#image-alternative").val("");
+		$("#image-hover").val("");
 	});
 	$("#LINK").click(function(){
-		var position = $("#content").getCursorPosition();
-		var link = prompt("Your Link");
-		if (link !== ""){
-			var text = prompt("Text for Link");
-			if (text !== ""){
-				var hoverText = prompt("Place enter hover text");
-				$("#content").insertText("[" + text + "](" + link + " '" + hoverText + "')", position, "collapseToEnd");
-			}
-			else{
-				alert("Text for Link can not be blank");
-			}
-		}
-		else{
-			alert("Link can not be blank");
-		}	
+		$("#aModal").foundation("reveal", "open");
+		$("#link").val("");
+		$("#link-text").val("");
+		$("#link-hover").val("");
 	});
 	$("#preview").click(function(){
 		var content = $("#content").val();
@@ -98,3 +79,30 @@ $(document).ready(function(){
 		});
 	});
 });
+
+function addImageMarkdown(){
+	var whereToAddIt = $("#content").getCursorPosition();
+	var image_link = $("#image-link").val();
+	var image_alternative = $("#image-alternative").val();
+	var image_hover = $("#image-hover").val();
+	if(image_link == "" || image_alternative == "" || image_hover == ""){
+		alert("All fields are required");
+	}
+	else{
+		$("#content").insertText("![" + image_alternative + "](" + image_link + " '" + image_hover + "')", whereToAddIt, "collapseToEnd");
+		$("#imgModal").foundation("reveal", "close");
+	}
+}
+function addLinkMarkdown(){
+	var whereToAddIt = $("#content").getCursorPosition();
+	var link = $("#link").val();
+	var link_text = $("#link-text").val();
+	var link_hover = $("#link-hover").val();
+	if(link == "" || link_text == "" || link_hover == ""){
+		alert("All fields are required");
+	}
+	else{
+		$("#content").insertText("[" + link_text + "](" + link + " '" + link_hover + "')", whereToAddIt, "collapseToEnd");
+		$("#aModal").foundation("reveal", "close");
+	}
+}

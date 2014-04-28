@@ -15,3 +15,77 @@
   <li><a href="#" class="button tiny secondary" id="BQ"><span data-tooltip class="has-tip" title="Blockquote">BLOCK</span></a></li>
   <!--<li><a href="#" class="button tiny secondary" id="TBL"><span data-tooltip class="has-tip" title="Add Table">TABLE</span></a></li>-->
 </ul>
+<div id="imgModal" class="reveal-modal" data-reveal>
+  <div class="row">
+    <div class="columns large-12">
+      <h2>Inserting a Image</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="columns large-6">
+      <label>
+        Image Link
+      </label>
+      <input type="text" id="image-link" name="image-link">
+    </div>
+  </div>
+  <div class="row">
+    <div class="columns large-6"> 
+      <label>
+        Image Altenative Text
+      </label>
+      <input type="text" id="image-alternative" name="image-alternative">
+    </div>
+  </div>
+  <div class="row">
+    <div class="columns large-6">
+      <label>
+        Image Hover Text
+      </label>
+      <input type="text" id="image-hover" name="image-hover">
+    </div>
+  </div>
+  <div class="row">
+    <div class="columns large-6">
+      <button type="submit" onclick="addImageMarkdown()" class="button small">Insert</button>
+    </div>
+  </div>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+<div id="aModal" class="reveal-modal" data-reveal>
+  <div class="row">
+    <div class="columns large-12">
+      <h2>Inserting a Link</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="columns large-6">
+      <label>
+        Link
+      </label>
+      <input type="text" id="link" name="link">
+    </div>
+  </div>
+  <div class="row">
+    <div class="columns large-6"> 
+      <label>
+        Text to Show
+      </label>
+      <input type="text" id="link-text" name="link-text">
+    </div>
+  </div>
+  <div class="row">
+    <div class="columns large-6">
+      <label>
+        Link Hover Text
+      </label>
+      <input type="text" id="link-hover" name="link-hover">
+    </div>
+  </div>
+  <div class="row">
+    <div class="columns large-6">
+      <button type="submit" onclick="addLinkMarkdown()" class="button small">Insert</button>
+    </div>
+  </div>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
