@@ -9,37 +9,43 @@
   <div class="large-12 columns">{{> admin/toolbar}}</div>
 </div>
 <div class="row">
-  <form method="POST" action="/admin/post/{{post.postid}}" data-abide>
-  <input type="hidden" name="mely-postid" value="{{post.postid}}" />
-    <div class="large-12 columns">
-      <label>Post Title
-        <input type="text" name="mely-post-title" value="{{post.title}}" required />
-      </label>
-      <small class="error">A post title is required</small>
-      <label>Post Content - <a id="preview" href="#">Preview</a>
-        <textarea name="mely-post-content" id="content" rows="20" required>{{post.content}}</textarea>
-      </label>
-      <small class="error">Post content is required</small>
+  <div class="large-12 columns">
+    <form method="POST" action="/admin/post/{{post.postid}}" data-abide>
+      <input type="hidden" name="mely-postid" value="{{post.postid}}" />
+      <div class="post-title-field">
+        <label>Post Title
+          <input type="text" name="mely-post-title" value="{{post.title}}" required />
+        </label>
+        <small class="error">A post title is required</small>
+      </div>
+      <div class="post-content-field">
+        <label>Post Content - <a id="preview" href="#">Preview</a>
+          <textarea name="mely-post-content" id="content" rows="20" required>{{post.content}}</textarea>
+        </label>
+        <small class="error">Post content is required</small>
+      </div>
       <div class="row hide" id="preview-panel">
         <div class="large-12 columns">
           <div class="panel" id="preview-markdown"></div>
         </div>
       </div>
-      <div class="row">
-        <div class="large-4 columns">
-          <label>Post Status
-            <select name="mely-post-status" required>
-              {{#each statusList}}
-              <option value="{{statusID}}" {{#if selected}} selected {{/if}}>{{statusName}}</option>
-              {{/each}}           
-            </select>
-          </label>
+      <div class="post-status-field">
+        <div class="row">
+          <div class="large-4 columns">
+            <label>Post Status
+              <select name="mely-post-status" required>
+                {{#each statusList}}
+                <option value="{{statusID}}" {{#if selected}} selected {{/if}}>{{statusName}}</option>
+                {{/each}}           
+              </select>
+            </label>
+            <small class="error">Post status is required</small>
+          </div>
         </div>
       </div>
-      <small class="error">Post status is required</small>
-      <input type="submit" value="Edit Post" class="button" />
-    </div>
-  </form>
+      <button type="submit" class="button">Edit Post</button>
+    </form>
+  </div>
 </div>
 {{> admin/footer}}
 <script src="/js/rangyinputs-jquery-src.js"></script>
