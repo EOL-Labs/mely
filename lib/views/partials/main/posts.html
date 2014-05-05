@@ -1,24 +1,31 @@
 <div class="row">
-	<div class="columns large-12">
-	{{#each MelyPosts}}
-	<br>
-	<div class="row post-title">
-		<div class="columns large-12">
-			<a href="/post/{{postID}}">{{postTitle}}</a>
-		</div>
+	<div class="columns large-12" id="posts">
+		{{#each MelyPosts}}
+			<div id="post">
+				<br>
+				<div class="row post-title">
+					<div class="columns large-12">
+						<a href="/post/{{postID}}">{{postTitle}}</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="columns large-12">
+						<small><b>Published: {{postLastDate}}</b></small>
+					</div>
+				</div>
+				<div class="row post-content">
+					<div class="columns large-12">
+					{{{postContent}}}
+					</div>
+				</div>
+				<hr>
+				<br>
+			</div>
+		{{/each}}
 	</div>
-	<div class="row">
-		<div class="columns large-12">
-			<small><b>Published: {{postLastDate}}</b></small>
-		</div>
-	</div>
-	<div class="row post-content">
-		<div class="columns large-12">
-		{{{postContent}}}
-		</div>
-	</div>
-	<hr>
-	<br>
-	{{/each}}
+</div>
+<div class="row">
+	<div class="columns large-12 text-center">
+		<button class="buttons small" id="loadPosts">Load More</button>
 	</div>
 </div>

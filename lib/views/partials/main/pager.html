@@ -1,0 +1,30 @@
+<script type="text/javascript">
+$(document).ready(function(){
+	var counter = 0;
+	var size = 2;
+	$("#posts > #post").each(function(){
+		if(counter >= size){
+			$(this).hide();
+		}
+		if(counter < size){
+			counter = counter + 1;
+		}
+	});
+	$("#loadPosts").click(function(){
+		var newSize = counter + 2;
+		var showing = 0;
+		$("#posts > #post").each(function(){
+			if($(this).is(":hidden") && counter <= newSize){
+				counter = counter + 1;
+				$(this).fadeIn();
+			}
+			if($(this).is(":visible")){
+				showing = showing + 1;
+			}
+		});
+		if($("#posts > #post").size() == showing){
+			$("#loadPosts").attr("disabled", "disabled");
+		}
+	});
+});
+</script>
