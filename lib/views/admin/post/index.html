@@ -17,7 +17,7 @@
         {{#each postList}}
         <tr>
           <td valign="top">{{title}}</td>
-          <td valign="top" class="text-center"><a href="#">Preview</a></td>
+          <td valign="top" class="text-center"><a href="/preview/post/{{postId}}" data-reveal-id="previewModal" data-reveal-ajax="true">Preview</a></td>
           <td valign="top" class="text-center">{{status}}</td>
           <td valign="top" class="text-center"><a href="/admin/post/{{postId}}">EDIT</a></td>
         </tr>
@@ -30,5 +30,7 @@
       </tbody>
     </table>
   </div>
+</div>
+<div id="previewModal" class="reveal-modal" data-reveal>
 </div>
 {{> admin/footer}}

@@ -9,7 +9,6 @@
           <th width="20%" class="text-center">Title</th>
           <th width="20%" class="sorttable_nosort text-center">Content Preview</th>
           <th width="20%" class="sorttable_nosort text-center">Order</th>
-
           <th width="20%" class="text-center">Status</th>
           <th width="20%" class="sorttable_nosort text-center">Options</th>
         </tr>
@@ -19,7 +18,7 @@
         {{#each pageList}}
         <tr>
           <td valign="top">{{title}}</td>
-          <td valign="top" class="text-center"><a href="#">Preview</a></td>
+          <td valign="top" class="text-center"><a href="/preview/page/{{pageId}}" data-reveal-id="previewModal" data-reveal-ajax="true">Preview</a></td>
           <td valign="top" class="text-center">{{order}}</td>
           <td valign="top" class="text-center">{{status}}</td>
           <td valign="top" class="text-center"><a href="/admin/page/{{pageId}}">EDIT</a></td>
@@ -33,5 +32,7 @@
       </tbody>
     </table>
   </div>
+</div>
+<div id="previewModal" class="reveal-modal" data-reveal>
 </div>
 {{> admin/footer}}
