@@ -54,8 +54,14 @@ $(document).ready(function(){
 	});
 	$("#LINK").click(function(){
 		$("#aModal").foundation("reveal", "open");
+		var selectedText = $("#content").getSelection().text;
+		if(selectedText == ""){
+			$("#link-text").val("");
+		}
+		else{
+			$("#link-text").val(selectedText);
+		}
 		$("#link").val("");
-		$("#link-text").val("");
 		$("#link-hover").val("");
 	});
 	$("#preview").click(function(){
@@ -102,6 +108,7 @@ function addLinkMarkdown(){
 		alert("All fields are required");
 	}
 	else{
+		$("#content").deleteSelectedText();
 		$("#content").insertText("[" + link_text + "](" + link + " '" + link_hover + "')", whereToAddIt, "collapseToEnd");
 		$("#aModal").foundation("reveal", "close");
 	}
