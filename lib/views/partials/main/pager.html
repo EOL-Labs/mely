@@ -10,6 +10,9 @@ $(document).ready(function(){
 			counter = counter + 1;
 		}
 	});
+	if(counter <= size){
+		$("#loadPosts").attr("disabled", "disabled");
+	}
 	$("#loadPosts").click(function(){
 		var newSize = counter + 2;
 		var showing = 0;
