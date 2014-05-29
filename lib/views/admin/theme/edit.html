@@ -1,5 +1,5 @@
 {{> admin/menu}}
-<form method="POST" action="/admin/theme/{{theme.themeID}}" data-abide>
+<form method="POST" action="/admin/theme/{{theme.themeID}}" data-abide enctype="multipart/form-data">
   <input type="hidden" id="id" name="id" value="{{theme.themeID}}" />
 <div class="row">
   <div class="large-12 columns">
@@ -53,6 +53,7 @@
   <div class="large-3 columns">
     <label>Header Logo</label>
     <input type="file" name="headerimage" id="headerimage" />
+    <img src="data:;base64,{{settings.headerimage}}" />
   </div>
 </div>
 <div class="row">
