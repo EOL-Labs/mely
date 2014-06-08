@@ -264,7 +264,8 @@ describe("Mely", function(){
 					status: published,
 					systemid: systemid,
 					userid: userid,
-					order: 1
+					order: 1,
+					menuview: true
 				},function(err, page){
 					assert(err === null);
 					assert(page !== undefined);
@@ -284,7 +285,8 @@ describe("Mely", function(){
 					status: published,
 					systemid: systemid,
 					userid: userid,
-					order: 1
+					order: 1,
+					menuview: true
 				},function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
@@ -298,7 +300,8 @@ describe("Mely", function(){
 					status: published,
 					systemid: systemid,
 					userid: userid,
-					order: 1
+					order: 1,
+					menuview: true
 				},function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
@@ -312,7 +315,8 @@ describe("Mely", function(){
 					status: published,
 					systemid: null,
 					userid: userid,
-					order: 1
+					order: 1,
+					menuview: true
 				},function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
@@ -326,7 +330,8 @@ describe("Mely", function(){
 					status: published,
 					systemid: systemid,
 					userid: null,
-					order: 1
+					order: 1,
+					menuview: true
 				},function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
@@ -340,7 +345,8 @@ describe("Mely", function(){
 					status: null,
 					systemid: systemid,
 					userid: userid,
-					order: 1
+					order: 1,
+					menuview: true
 				},function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
