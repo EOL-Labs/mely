@@ -41,6 +41,18 @@
       <div class="page-order-field">
         <div class="row">
           <div class="large-4 columns">
+            <label>Page Viewable in Menu
+              <select name="mely-page-menuview">
+                <option value="0">No</option>
+                <option value="1" selected="selected">Yes</option> 
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="page-order-field">
+        <div class="row">
+          <div class="large-4 columns">
             <label>Page Status
               <select name="mely-page-status" required>
                 {{#each statusList}}

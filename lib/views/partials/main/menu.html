@@ -2,7 +2,9 @@
 	<div class="columns large-12">
 		<ul class="inline-list">
 		{{#each MelyPages}}
+			{{#if onmenu}}
 			<li><a class="menuText" href="/{{pageLinkText}}">{{pageTitle}}</a></li>
+			{{/if}}
 		{{/each}}
 		</ul>
 	</div>
