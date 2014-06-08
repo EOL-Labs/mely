@@ -17,17 +17,17 @@
   },
   "homepage": "https://github.com/EOL-Labs/mely",
   "dependencies": {
-    "mysql": "2.1.0",
-    "sequelize": "1.7.0",
-    "mocha": "1.17.1",
-    "hapi": "^4.0.0",
-    "handlebars": "^2.0.0-alpha.1",
+    "mysql": "^2.3.2",
+    "sequelize": "^1.7.8",
+    "mocha": "^1.20.1",
+    "hapi": "^5.1.0",
+    "handlebars": "^2.0.0-alpha.4",
     "crypto": "0.0.3",
-    "hapi-auth-cookie": "~1.0.1",
-    "moment": "~2.5.1",
+    "hapi-auth-cookie": "^1.0.3",
+    "moment": "^2.6.0",
     "marked": "^0.3.2",
-    "async": "^0.2.10",
-    "glob": "~3.2.9",
-    "change-case": "^2.0.1"
+    "async": "^0.9.0",
+    "glob": "^4.0.2",
+    "change-case": "^2.1.1"
   }
 }
