@@ -2,7 +2,7 @@
 <div class="row">
   <div class="large-12 columns">
     <br>
-    <h5>Edit Mely Page</h5>
+    <h5>{{type}} Mely Page</h5>
   </div>
 </div>
 <div class="row">
@@ -10,17 +10,19 @@
 </div>
 <div class="row">
   <div class="large-12 columns">
-    <form method="POST" action="/admin/page/{{page.pageid}}" data-abide>
+    <form method="POST" {{#if page}} action="/admin/page/{{page.pageid}}" {{else}} action="/admin/page" {{/if}} data-abide>
+      {{#if page}}
       <input type="hidden" name="mely-pageid" value="{{page.pageid}}" />
+      {{/if}}
       <div class="page-title-field">
         <label>Page Title
-          <input type="text" name="mely-page-title" value="{{page.title}}" required />
+          <input type="text" name="mely-page-title" placeholder="Title of Page" value="{{page.title}}" required />
         </label>
         <small class="error">A page title is required</small>
       </div>
       <div class="page-content-field">
         <label>Page Content - <a id="preview" href="#">Preview</a>
-          <textarea name="mely-page-content" id="content" rows="20" required>{{page.content}}</textarea>
+          <textarea name="mely-page-content" id="content" rows="20" placeholder="Page Content" required>{{page.content}}</textarea>
         </label>
         <small class="error">Page content is required</small>
       </div>
@@ -44,14 +46,19 @@
           <div class="large-4 columns">
             <label>Page Viewable in Menu
               <select name="mely-page-menuview">
+                {{#if page}}
                 <option value="0" {{#unless page.onmenu}} selected {{/unless}}>No</option>
                 <option value="1" {{#if page.onmenu}} selected {{/if}}>Yes</option> 
+                {{else}}
+                <option value="0">No</option>
+                <option value="1" selected="selected">Yes</option>
+                {{/if}}
               </select>
             </label>
           </div>
         </div>
       </div>
-      <div class="page-status-field">
+      <div class="page-order-field">
         <div class="row">
           <div class="large-4 columns">
             <label>Page Status
@@ -65,7 +72,7 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="button">Edit Page</button>
+      <button type="submit" class="button">{{type}} Page</button>
     </form>
   </div>
 </div>
