@@ -1,0 +1,28 @@
+{{> admin/menu}}
+<div class="row">
+  <div class="large-12 columns">
+    <br>
+    <h5>{{type}} Mely User</h5>
+  </div>
+</div>
+<div class="row">
+  <form method="POST" {{#if user}} action="/admin/user/{{user.userid}}" {{else}} action="/admin/user" {{/if}} data-abide>
+    {{#if user}}
+      <input type="hidden" name="mely-userid" value="{{user.userid}}" />
+    {{/if}}
+    <div class="large-5 columns">
+      <label>E-Mail Address
+        <input type="email" name="mely-email" placeholder="E-Mail Address" value="{{user.email}}" required />
+      </label>
+      <small class="error">A valid email is required</small>
+      {{#unless user}}
+      <label>Password
+        <input type="password" name="mely-password" placeholder="Password" required />
+      </label>
+      <small class="error">A password is required</small>
+      {{/unless}}
+      <input type="submit" value="{{type}}" class="button expand" />
+    </div>
+  </form>
+</div>
+{{> admin/footer}}
