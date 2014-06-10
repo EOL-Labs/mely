@@ -1,10 +1,12 @@
 {{> admin/menu}}
-<form method="POST" action="/admin/theme/{{theme.themeID}}" data-abide enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data" {{#if theme}} action="/admin/theme/{{theme.themeID}}" {{else}} action="/admin/theme" {{/if}} data-abide>
+  {{#if theme}}
   <input type="hidden" id="id" name="id" value="{{theme.themeID}}" />
+  {{/if}}
 <div class="row">
   <div class="large-12 columns">
     <br>
-    <h5>Edit Mely Theme</h5>
+    <h5>{{type}} Mely Theme</h5>
   </div>
 </div>
 <div class="row">
@@ -21,7 +23,6 @@
     </label>
   </div>
 </div>
-
 <div class="row">
   <div class="large-3 columns">
     <div class="row collapse">
@@ -47,13 +48,15 @@
   </div>
   <div class="large-3 columns">
     <label>Header Font Size
-      <input type="number" placeholder="PIXELS" min="1" max="100" name="headerfontsize" id="headerfontsize" value="{{settings.headfontsize}}" required />
+      <input type="number" placeholder="PIXELS" min="1" max="100" name="headerfontsize" id="headerfontsize" required value="{{settings.headfontsize}}" />
     </label>
   </div>
   <div class="large-3 columns">
     <label>Header Logo</label>
     <input type="file" name="headerimage" id="headerimage" />
+    {{#if theme}}
     <img src="data:;base64,{{settings.headerimage}}" />
+    {{/if}}
   </div>
 </div>
 <div class="row">
@@ -100,7 +103,7 @@
   </div>
   <div class="large-3 columns">
     <label>Post Title Font Size
-      <input type="number" placeholder="PIXELS" min="1" max="100" name="posttitlefontsize" id="postitlefontsize" value="{{settings.posttitlefontsize}}" required />
+      <input type="number" placeholder="PIXELS" min="1" max="100" name="posttitlefontsize" id="postitlefontsize"  value="{{settings.posttitlefontsize}}" required />
     </label>
   </div>
   <div class="large-3 columns">
@@ -116,7 +119,7 @@
   </div>
   <div class="large-3 columns">
     <label>Post Content Font Size
-      <input type="number" placeholder="PIXELS" min="1" max="100" name="postcontentfontsize" id="postcontentfontsize" value="{{settings.postcontentfontsize}}" required />
+      <input type="number" placeholder="PIXELS" min="1" max="100" name="postcontentfontsize" id="postcontentfontsize" required value="{{settings.postcontentfontsize}}" />
     </label>
   </div>
 </div>
@@ -134,7 +137,7 @@
   </div>
   <div class="large-3 columns">
     <label>Page Title Font Size
-      <input type="number" placeholder="PIXELS" min="1" max="100" name="pagetitlefontsize" id="pagetitlefontsize" value="{{settings.pagetitlefontsize}}" required />
+      <input type="number" placeholder="PIXELS" min="1" max="100" name="pagetitlefontsize" id="pagetitlefontsize" required value="{{settings.pagetitlefontsize}}" />
     </label>
   </div>
   <div class="large-3 columns">
@@ -150,13 +153,13 @@
   </div>
   <div class="large-3 columns">
     <label>Page Content Font Size
-      <input type="number" placeholder="PIXELS" min="1" max="100" name="pagecontentfontsize" id="pagecontentfontsize" value="{{settings.pagecontentfontsize}}" required />
+      <input type="number" placeholder="PIXELS" min="1" max="100" name="pagecontentfontsize" id="pagecontentfontsize" required value="{{settings.pagecontentfontsize}}"  />
     </label>
   </div>
 </div>
 <div class="row">
   <div class="large-12 columns">
-    <input type="submit" class="button expand" value="Edit Theme" />
+    <input type="submit" class="button expand" value="{{type}} Theme" />
   </div>
 </div>
 </form>
