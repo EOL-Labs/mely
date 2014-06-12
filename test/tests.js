@@ -5,25 +5,24 @@ var administration = require("../lib/administration");
 var Mely = {};
 Mely.Administrator = administration;
 
-var email = "test@test.com";
-var email2 = "test2@test.com";
-var password = "test";
+var email = "test@aol.com";
+var email2 = "test@yahoo.com";
+var password = "Password1234";
 var systemid = 1;
 var userid = 1;
 var pageid = 1;
 var postid = 1;
 var themeid = 1;
-var title = "New Title";
-var content = "New Content";
+var title = "My Title";
+var content = "My Content";
 var published = 1;
 var draft = 2;
 var deleted = 3;
 var markdown = "**b**";
-var markdownHTML = "<p><strong>b</strong></p>";
-var name = "New Theme";
-var description = "New Theme Description";
-var melyname = "Test Mely Name";
-var melydescription = "Test Mely Description";
+var name = "My Theme";
+var description = "My Theme Description";
+var melyname = "My Mely Name";
+var melydescription = "My Mely Description";
 
 describe("Mely", function(){
 	before(function(done){
@@ -44,9 +43,8 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error if name === null", function(done){
+			it("should return error if name is undefined", function(done){
 				Mely.Administrator.createSystem({
-					name: null,
 					description: description
 				},function(err, system){
 					assert(err instanceof Error);
@@ -54,10 +52,9 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error if description === null", function(done){
+			it("should return error if description is undefined", function(done){
 				Mely.Administrator.createSystem({
 					name: name,
-					description: null
 				},function(err, system){
 					assert(err instanceof Error);
 					assert(system === undefined);
@@ -104,9 +101,8 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when email === null", function(done){
+			it("should return error when email is undefined", function(done){
 				Mely.Administrator.createUser({
-					email: null,
 					password: password,
 					systemid: systemid
 				}, function(err, user){
@@ -115,10 +111,9 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when password === null", function(done){
+			it("should return error when is undefined", function(done){
 				Mely.Administrator.createUser({
 					email: email,
-					password: null,
 					systemid: systemid
 				}, function(err, user){
 					assert(err instanceof Error);
@@ -126,11 +121,10 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when systemid === null", function(done){
+			it("should return error when is undefined", function(done){
 				Mely.Administrator.createUser({
 					email: email,
-					password: password,
-					systemid: null
+					password: password
 				}, function(err, user){
 					assert(err instanceof Error);
 					assert(user === undefined);
@@ -159,9 +153,8 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when systemid === null", function(done){
+			it("should return error when systemid is undefined", function(done){
 				Mely.Administrator.getUser({
-					systemid: null
 				}, function(err, users){
 					assert(err instanceof Error);
 					assert(users === undefined);
@@ -180,9 +173,8 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when id === null", function(done){
+			it("should return error when id is undefined", function(done){
 				Mely.Administrator.updateUser({
-					id: null,
 					email: email2
 				},function(err, user){
 					assert(err instanceof Error);
@@ -213,9 +205,8 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when email === null",function(done){
+			it("should return error when email is undefined",function(done){
 				Mely.Administrator.loginUser({
-					email:null,
 					password: password
 				},function(err, user){
 					assert(err instanceof Error);
@@ -223,10 +214,9 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when password === null",function(done){
+			it("should return error when password is undefined",function(done){
 				Mely.Administrator.loginUser({
-					email:email,
-					password: null
+					email:email
 				},function(err, user){
 					assert(err instanceof Error);
 					assert(user === undefined);
@@ -244,9 +234,8 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when id === null", function(done){
+			it("should return error when id is undefined", function(done){
 				Mely.Administrator.deleteUser({
-					id: null
 				},function(err, user){
 					assert(err instanceof Error);
 					assert(user === undefined);
@@ -278,9 +267,8 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error if title === null",function(done){
+			it("should return error if title is undefined",function(done){
 				Mely.Administrator.createPage({
-					title: null,
 					content: content,
 					status: published,
 					systemid: systemid,
@@ -293,10 +281,9 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error if content === null",function(done){
+			it("should return error if content is undefined",function(done){
 				Mely.Administrator.createPage({
 					title: title,
-					content: null,
 					status: published,
 					systemid: systemid,
 					userid: userid,
@@ -308,12 +295,11 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error if systemid === null",function(done){
+			it("should return error if systemid is undefined",function(done){
 				Mely.Administrator.createPage({
 					title: title,
 					content: content,
 					status: published,
-					systemid: null,
 					userid: userid,
 					order: 1,
 					menuview: true
@@ -323,13 +309,12 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error if userid === null",function(done){
+			it("should return error if userid is undefined",function(done){
 				Mely.Administrator.createPage({
 					title: title,
 					content: content,
 					status: published,
 					systemid: systemid,
-					userid: null,
 					order: 1,
 					menuview: true
 				},function(err, page){
@@ -338,15 +323,42 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error if status === null",function(done){
+			it("should return error if order is undefined",function(done){
 				Mely.Administrator.createPage({
 					title: title,
 					content: content,
-					status: null,
 					systemid: systemid,
 					userid: userid,
 					order: 1,
 					menuview: true
+				},function(err, page){
+					assert(err instanceof Error);
+					assert(page === undefined);
+					done();
+				});
+			});
+			it("should return error if status is undefined",function(done){
+				Mely.Administrator.createPage({
+					title: title,
+					content: content,
+					systemid: systemid,
+					userid: userid,
+					order: 1,
+					menuview: true
+				},function(err, page){
+					assert(err instanceof Error);
+					assert(page === undefined);
+					done();
+				});
+			});
+			it("should return error if menuview is undefined",function(done){
+				Mely.Administrator.createPage({
+					title: title,
+					content: content,
+					status: published,
+					systemid: systemid,
+					userid: userid,
+					order: 1
 				},function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
@@ -378,7 +390,7 @@ describe("Mely", function(){
 			it("should return array w/ 1 page object if title is present", function(done){
 				Mely.Administrator.getPage({
 					systemid: systemid,
-					title: "New Title"
+					title: title
 				}, function(err, pages){
 					assert(pages.length === 1);
 					assert(err === null);
@@ -386,9 +398,8 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when systemid === null", function(done){
+			it("should return error when systemid is undefined", function(done){
 				Mely.Administrator.getPage({
-					systemid: null
 				}, function(err, pages){
 					assert(err instanceof Error);
 					assert(pages === undefined);
@@ -403,58 +414,85 @@ describe("Mely", function(){
 					title: title,
 					content: content,
 					status: published,
-					order: 2
+					order: 2,
+					menuview: true
 				}, function(err, page){
 					assert(err === null);
 					assert(page !== undefined);
 					done();
 				});
 			});
-			it("should return error when pageid === null", function(done){
+			it("should return error when pageid is undefined", function(done){
 				Mely.Administrator.updatePage({
-					id: null,
 					title: title,
 					content: content,
 					status: published,
-					order: 2
+					order: 2,
+					menuview: true
 				}, function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
 					done();
 				});
 			});
-			it("should return error when title === null", function(done){
+			it("should return error when title is undefined", function(done){
 				Mely.Administrator.updatePage({
 					id: pageid,
-					title: null,
 					content: content,
 					status: published,
-					order: 2
+					order: 2,
+					menuview: true
 				}, function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
 					done();
 				});
 			});
-			it("should return error when content === null", function(done){
+			it("should return error when content is undefined", function(done){
 				Mely.Administrator.updatePage({
 					id: pageid,
 					title: title,
-					content: null,
 					status: published,
-					order: 2
+					order: 2,
+					menuview: true
 				}, function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
 					done();
 				});
 			});
-			it("should return error when status === null", function(done){
+			it("should return error when status is undefined", function(done){
 				Mely.Administrator.updatePage({
 					id: pageid,
 					title: title,
 					content: content,
-					status: null,
+					order: 2,
+					menuview: true
+				}, function(err, page){
+					assert(err instanceof Error);
+					assert(page === undefined);
+					done();
+				});
+			});
+			it("should return error when order is undefined", function(done){
+				Mely.Administrator.updatePage({
+					id: pageid,
+					title: title,
+					content: content,
+					status: published,
+					menuview: true
+				}, function(err, page){
+					assert(err instanceof Error);
+					assert(page === undefined);
+					done();
+				});
+			});
+			it("should return error when menuview is undefined", function(done){
+				Mely.Administrator.updatePage({
+					id: pageid,
+					title: title,
+					content: content,
+					status: published,
 					order: 2
 				}, function(err, page){
 					assert(err instanceof Error);
@@ -485,9 +523,8 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error if title === null",function(done){
+			it("should return error if title is undefined",function(done){
 				Mely.Administrator.createPost({
-					title: null,
 					content: content,
 					status: published,
 					systemid: systemid,
@@ -498,10 +535,9 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error if content === null",function(done){
+			it("should return error if content is undefined",function(done){
 				Mely.Administrator.createPost({
 					title: title,
-					content: null,
 					status: published,
 					systemid: systemid,
 					userid: userid
@@ -511,12 +547,11 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error if systemid === null",function(done){
+			it("should return error if systemid is undefined",function(done){
 				Mely.Administrator.createPost({
 					title: title,
 					content: content,
 					status: published,
-					systemid: null,
 					userid: userid
 				},function(err, post){
 					assert(err instanceof Error);
@@ -524,24 +559,22 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error if userid === null",function(done){
+			it("should return error if userid is undefined",function(done){
 				Mely.Administrator.createPost({
 					title: title,
 					content: content,
 					status: published,
-					systemid: systemid,
-					userid: null
+					systemid: systemid
 				},function(err, post){
 					assert(err instanceof Error);
 					assert(post === undefined);
 					done();
 				});
 			});
-			it("should return error if status === null",function(done){
+			it("should return error if status is undefined",function(done){
 				Mely.Administrator.createPost({
 					title: title,
 					content: content,
-					status: null,
 					systemid: systemid,
 					userid: userid
 				},function(err, post){
@@ -572,9 +605,8 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when systemid === null", function(done){
+			it("should return error when systemid is undefined", function(done){
 				Mely.Administrator.getPost({
-					systemid: null
 				}, function(err, posts){
 					assert(err instanceof Error);
 					assert(posts === undefined);
@@ -595,9 +627,8 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when postid === null", function(done){
+			it("should return error when postid is undefined", function(done){
 				Mely.Administrator.updatePost({
-					id: null,
 					title: title,
 					content: content,
 					status: published
@@ -607,10 +638,9 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when title === null", function(done){
+			it("should return error when title is undefined", function(done){
 				Mely.Administrator.updatePost({
 					id: postid,
-					title: null,
 					content: content,
 					status: published
 				}, function(err, post){
@@ -619,11 +649,10 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when content === null", function(done){
+			it("should return error when content is undefined", function(done){
 				Mely.Administrator.updatePost({
 					id: postid,
 					title: title,
-					content: null,
 					status: published
 				}, function(err, post){
 					assert(err instanceof Error);
@@ -631,12 +660,11 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when status === null", function(done){
+			it("should return error when status is undefined", function(done){
 				Mely.Administrator.updatePost({
 					id: postid,
 					title: title,
-					content: content,
-					status: null
+					content: content
 				}, function(err, post){
 					assert(err instanceof Error);
 					assert(post === undefined);
@@ -673,9 +701,8 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when name === null", function(done){
+			it("should return error when name is undefined", function(done){
 				Mely.Administrator.createTheme({
-					name: null,
 					description: description,
 					systemid: systemid,
 					logo: "c:/file.png",
@@ -699,10 +726,9 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when description === null", function(done){
+			it("should return error when description is undefined", function(done){
 				Mely.Administrator.createTheme({
 					name: name,
-					description: null,
 					systemid: systemid,
 					logo: "c:/file.png",
 					headback:"FFFFFF",
@@ -719,6 +745,381 @@ describe("Mely", function(){
 					pagetitlesize:"12",
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when systemid is undefined", function(done){
+				Mely.Administrator.createTheme({
+					name: name,
+					description: description,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when headback is undefined", function(done){
+				Mely.Administrator.createTheme({
+					name: name,
+					description: description,
+					systemid: systemid,
+					logo: "c:/file.png",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when headfontcolor is undefined", function(done){
+				Mely.Administrator.createTheme({
+					name: name,
+					description: description,
+					systemid: systemid,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when headfontsize is undefined", function(done){
+				Mely.Administrator.createTheme({
+					name: name,
+					description: description,
+					systemid: systemid,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when menuback is undefined", function(done){
+				Mely.Administrator.createTheme({
+					name: name,
+					description: description,
+					systemid: systemid,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when menufontcolor is undefined", function(done){
+				Mely.Administrator.createTheme({
+					name: name,
+					description: description,
+					systemid: systemid,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when menufontsize is undefined", function(done){
+				Mely.Administrator.createTheme({
+					name: name,
+					description: description,
+					systemid: systemid,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when posttitlecolor is undefined", function(done){
+				Mely.Administrator.createTheme({
+					name: name,
+					description: description,
+					systemid: systemid,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when posttitlesize is undefined", function(done){
+				Mely.Administrator.createTheme({
+					name: name,
+					description: description,
+					systemid: systemid,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when postcontentcolor is undefined", function(done){
+				Mely.Administrator.createTheme({
+					name: name,
+					description: description,
+					systemid: systemid,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when postcontentsize is undefined", function(done){
+				Mely.Administrator.createTheme({
+					name: name,
+					description: description,
+					systemid: systemid,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when pagetitlecolor is undefined", function(done){
+				Mely.Administrator.createTheme({
+					name: name,
+					description: description,
+					systemid: systemid,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when pagetitlesize is undefined", function(done){
+				Mely.Administrator.createTheme({
+					name: name,
+					description: description,
+					systemid: systemid,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when pagecontentcolor is undefined", function(done){
+				Mely.Administrator.createTheme({
+					name: name,
+					description: description,
+					systemid: systemid,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when pagecontentsize is undefined", function(done){
+				Mely.Administrator.createTheme({
+					name: name,
+					description: description,
+					systemid: systemid,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
 				}, function(err, theme){
 					assert(err instanceof Error);
 					assert(theme === undefined);
@@ -747,9 +1148,8 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when systemid === null", function(done){
+			it("should return error when systemid is undefined", function(done){
 				Mely.Administrator.getUser({
-					systemid: null
 				}, function(err, themes){
 					assert(err instanceof Error);
 					assert(themes === undefined);
@@ -767,9 +1167,8 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when id === null", function(done){
+			it("should return error when id is undefined", function(done){
 				Mely.Administrator.getThemeSetting({
-					id: null
 				}, function(err, themesetting){
 					assert(err instanceof Error);
 					assert(themesetting === undefined);
@@ -804,10 +1203,9 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when name === null", function(done){
+			it("should return error when name is undefined", function(done){
 				Mely.Administrator.updateTheme({
 					id: themeid,
-					name: null,
 					description: description,
 					logo: "c:/file.png",
 					headback:"FFFFFF",
@@ -830,11 +1228,10 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when description === null", function(done){
+			it("should return error when description is undefined", function(done){
 				Mely.Administrator.updateTheme({
 					id: themeid,
 					name: name,
-					description: null,
 					logo: "c:/file.png",
 					headback:"FFFFFF",
 					headfontcolor:"000000",
@@ -856,9 +1253,8 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when themeid === null", function(done){
+			it("should return error when id is undefined", function(done){
 				Mely.Administrator.updateTheme({
-					id: null,
 					name: name,
 					description: description,
 					logo: "c:/file.png",
@@ -876,6 +1272,356 @@ describe("Mely", function(){
 					pagetitlesize:"12",
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when headback is undefined", function(done){
+				Mely.Administrator.updateTheme({
+					id: themeid,
+					name: name,
+					description: description,
+					logo: "c:/file.png",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when headfontcolor is undefined", function(done){
+				Mely.Administrator.updateTheme({
+					id: themeid,
+					name: name,
+					description: description,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when headfontsize is undefined", function(done){
+				Mely.Administrator.updateTheme({
+					id: themeid,
+					name: name,
+					description: description,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when menuback is undefined", function(done){
+				Mely.Administrator.updateTheme({
+					id: themeid,
+					name: name,
+					description: description,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when menufontcolor is undefined", function(done){
+				Mely.Administrator.updateTheme({
+					id: themeid,
+					name: name,
+					description: description,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when menufontsize is undefined", function(done){
+				Mely.Administrator.updateTheme({
+					id: themeid,
+					name: name,
+					description: description,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when posttitlecolor is undefined", function(done){
+				Mely.Administrator.updateTheme({
+					id: themeid,
+					name: name,
+					description: description,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when posttitlesize is undefined", function(done){
+				Mely.Administrator.updateTheme({
+					id: themeid,
+					name: name,
+					description: description,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when postcontentcolor is undefined", function(done){
+				Mely.Administrator.updateTheme({
+					id: themeid,
+					name: name,
+					description: description,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when postcontentsize is undefined", function(done){
+				Mely.Administrator.updateTheme({
+					id: themeid,
+					name: name,
+					description: description,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when pagetitlecolor is undefined", function(done){
+				Mely.Administrator.updateTheme({
+					id: themeid,
+					name: name,
+					description: description,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when pagetitlesize is undefined", function(done){
+				Mely.Administrator.updateTheme({
+					id: themeid,
+					name: name,
+					description: description,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagecontentcolor:"000000",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when pagecontentcolor is undefined", function(done){
+				Mely.Administrator.updateTheme({
+					id: themeid,
+					name: name,
+					description: description,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentsize:"12",
+				}, function(err, theme){
+					assert(err instanceof Error);
+					assert(theme === undefined);
+					done();
+				});
+			});
+			it("should return error when pagecontentsize is undefined", function(done){
+				Mely.Administrator.updateTheme({
+					id: themeid,
+					name: name,
+					description: description,
+					logo: "c:/file.png",
+					headback:"FFFFFF",
+					headfontcolor:"000000",
+					headfontsize:"12",
+					menuback:"FFFFFF",
+					menufontcolor:"000000",
+					menufontsize:"12",
+					posttitlecolor:"000000",
+					posttitlesize:"12",
+					postcontentcolor:"000000",
+					postcontentsize:"12",
+					pagetitlecolor:"000000",
+					pagetitlesize:"12",
+					pagecontentcolor:"000000"
 				}, function(err, theme){
 					assert(err instanceof Error);
 					assert(theme === undefined);
@@ -894,9 +1640,8 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when systemid === null", function(done){
+			it("should return error when systemid is undefined", function(done){
 				Mely.Administrator.activateTheme({
-					systemid: null,
 					id: themeid
 				}, function(err, theme){
 					assert(err instanceof Error);
@@ -904,10 +1649,9 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when id === null", function(done){
+			it("should return error when id is undefined", function(done){
 				Mely.Administrator.activateTheme({
-					systemid: systemid,
-					id: null
+					systemid: systemid
 				}, function(err, theme){
 					assert(err instanceof Error);
 					assert(theme === undefined);
@@ -925,13 +1669,11 @@ describe("Mely", function(){
 					assert(err === null);
 					assert(HTML !== undefined);
 					assert(HTML !== markdown);
-					//assert(HTML === markdownHTML);
 					done();
 				});
 			});
-			it("should return error when markdown = null", function(done){
+			it("should return error when markdown is undefined", function(done){
 				Mely.Administrator.parseMarkdown({
-					content: null
 				},function(err, HTML){
 					assert(err instanceof Error);
 					assert(HTML === undefined);
