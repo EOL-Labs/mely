@@ -9,5 +9,5 @@ $(document).ready(function(){
 				$("#file").val(data[1]);
 			}
 		});
-	})
+	});
 });

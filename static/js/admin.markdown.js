@@ -55,7 +55,7 @@ $(document).ready(function(){
 	$("#LINK").click(function(){
 		$("#aModal").foundation("reveal", "open");
 		var selectedText = $("#content").getSelection().text;
-		if(selectedText == ""){
+		if(selectedText === ""){
 			$("#link-text").val("");
 		}
 		else{
@@ -91,7 +91,7 @@ function addImageMarkdown(){
 	var image_link = $("#image-link").val();
 	var image_alternative = $("#image-alternative").val();
 	var image_hover = $("#image-hover").val();
-	if(image_link == "" || image_alternative == "" || image_hover == ""){
+	if(image_link === "" || image_alternative === "" || image_hover === ""){
 		alert("All fields are required");
 	}
 	else{
@@ -104,7 +104,7 @@ function addLinkMarkdown(){
 	var link = $("#link").val();
 	var link_text = $("#link-text").val();
 	var link_hover = $("#link-hover").val();
-	if(link == "" || link_text == "" || link_hover == ""){
+	if(link === "" || link_text === "" || link_hover === ""){
 		alert("All fields are required");
 	}
 	else{
