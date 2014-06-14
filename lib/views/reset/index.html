@@ -25,34 +25,23 @@
         <hr>
       </div>
     </div>
-    <form method="post" action="/login" data-abide>
     <div class="row">
       <div class="large-5 columns large-centered">
-        <div class="row">
-          <div class="large-12 columns">
-            <label>E-Mail
-              <input type="email" name="mely-email" placeholder="john.smith@example.com" required />
-            </label>
+        <h4 class="text-center">Reset Password</h4>
+      </div>
+    </div>
+    <form method="post" action="/reset" data-abide>
+    <div class="row">
+      <div class="large-5 columns large-centered">
+        <div class="row collapse">
+          <div class="large-10 columns">
+            <input type="text" placeholder="john.smith@example.com" name="mely-email" type="email"required />
             <small class="error">E-Mail is required</small>
           </div>
-          <div class="large-12 columns">
-            <label>Password
-              <input type="password" name="mely-password" required />
-            </label>
-            <small class="error">Password is required</small>
+          <div class="large-2 columns">
+            <input type="submit" value="Reset" class="button postfix" />
           </div>
         </div>
-        <div class="row">
-          <div class="large 5 columns">
-            <input type="submit" value="Sign In" class="button expand" />
-          </div>
-        </div>
-        <div class="row">
-          <div class="large 5 columns text-center">
-            <a href="/reset">Reset Password</a>
-          </div>
-        </div>
-        <br>
       </div>
     </div>
     </form>
