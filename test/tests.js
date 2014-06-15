@@ -223,6 +223,45 @@ describe("Mely", function(){
 					done();
 				});
 			});
+		});		
+		describe("#resetPassword()",function(){
+			it("should reset the users password", function(done) {
+				Mely.Administrator.resetPassword({
+					email: email2,
+					password: "ABCDEF1234"
+				},function(err, user){
+					assert(err === null);
+					assert(user !== undefined);
+					done();
+				});
+			});
+			it("should return error when email is undefined", function(done){
+				Mely.Administrator.resetPassword({
+					email: email2
+				},function(err, user){
+					assert(err instanceof Error);
+					assert(user === undefined);
+					done();
+				});
+			});
+			it("should return error when password is undefined", function(done){
+				Mely.Administrator.resetPassword({
+					password: "ABCDEF1234"
+				},function(err, user){
+					assert(err instanceof Error);
+					assert(user === undefined);
+					done();
+				});
+			});
+			it("should return error when email is not found", function(done){
+				Mely.Administrator.resetPassword({
+					email: "noemail@test.com",
+					password: "ABCDEF1234"
+				},function(err, user){
+					assert(err === "No Email");
+					done();
+				});
+			});
 		});
 		describe("#deleteUser()",function(){
 			it("should delete user", function(done) {

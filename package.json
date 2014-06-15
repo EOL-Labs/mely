@@ -28,6 +28,7 @@
     "marked": "^0.3.2",
     "async": "^0.9.0",
     "glob": "^4.0.2",
-    "change-case": "^2.1.1"
+    "change-case": "^2.1.1",
+    "chance": "^0.5.6"
   }
 }

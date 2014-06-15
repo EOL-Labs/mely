@@ -17,40 +17,50 @@
       </div>
     </div>
     <div class="row">
-      <div class="large-5 columns large-centered text-center">
-        <div data-alert class="alert-box alert" id="invalid-login">
-          Invalid Login. Please try again.
-          <a href="#" class="close">&times;</a>
-        </div>
-        <hr>
-      </div>
-    </div>
-    <div class="row">
       <div class="large-5 columns large-centered">
         <h4 class="text-center">Reset Password</h4>
       </div>
     </div>
     <form method="post" action="/reset" data-abide>
-    <div class="row">
-      <div class="large-5 columns large-centered">
-        <div class="row collapse">
-          <div class="large-10 columns">
-            <input type="text" placeholder="john.smith@example.com" name="mely-email" type="email"required />
-            <small class="error">E-Mail is required</small>
-          </div>
-          <div class="large-2 columns">
-            <input type="submit" value="Reset" class="button postfix" />
+      <div class="row">
+        <div class="large-5 columns large-centered">
+          <div class="row collapse">
+            <div class="large-10 columns">
+              <input type="text" placeholder="john.smith@example.com" name="mely-email" type="email"required />
+              <small class="error">E-Mail is required</small>
+            </div>
+            <div class="large-2 columns">
+              <input type="submit" value="Reset" class="button postfix" />
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </form>
+    <div class="row">
+      <div class="large-5 columns large-centered">
+        <div data-alert class="alert-box success radius" id="success">
+          Your password has been reset and emailed to you!<br><br><a href="/login" style="color:white;text-decoration:underline;">Sign In</a>
+          <a href="#" class="close">&times;</a>
+        </div>
+        <div data-alert class="alert-box alert radius" id="error">
+          Email Address not found!
+          <a href="#" class="close">&times;</a>
+        </div>
+      </div>
+    </div>
     {{> admin/footer}}
     <script>
       $(document).ready(function(){
-        var queryString = $(document).context.location.search.replace("?","");
-        if (queryString != "invalid"){
-          $("#invalid-login").hide()
+        var message = $(document).context.location.search.replace("?","");
+        if(message === "success"){
+          $("#error").hide();
+        }
+        else if(message === "errorr"){
+          $("#success").hide();
+        }
+        else{
+          $("#success").hide();
+          $("#error").hide();
         }
       })
     </script>
