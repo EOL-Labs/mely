@@ -18,8 +18,11 @@
 		{{/if}}
 		{{/each}}
 	</ul>
-	<input id="file" name="file" type="hidden">
+	<form>
+	<input id="filename" name="filename" type="hidden">
 	<textarea rows="23" name="filecontent" id="filecontent"></textarea>
+	</form>
+	<a href="#" id="save" class="button radius success small">Save</a>
 </div>
 {{> admin/footer}}
 <script src="/js/admin.main.js"></script>
