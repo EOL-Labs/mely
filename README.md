@@ -53,13 +53,23 @@ exports.config = {
 }
 ```
 
+```javascript
+//mail config file
+exports.mailconfig = {
+  method: "yourMethod",
+  sendmail:{
+    bin: 'BIN FOR METHOD',
+    from: '"Your Blog Name" <no-reply@yourdomain.com>'
+  }
+};
+```
+
 Start by:
 ```bash
 node .
 ```
 
-Go to http://localhost:80/welcome
-
+Go to http://yourhost:yourport/welcome
 
 **v.0.1.0**
 

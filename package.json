@@ -1,6 +1,6 @@
 {
   "name": "mely",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Project Mely - Make Everything Look Yours",
   "main": "index.js",
   "scripts": {
