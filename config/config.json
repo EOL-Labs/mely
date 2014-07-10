@@ -1,0 +1,10 @@
+{
+  "production": {
+    "username": "username",
+    "password": "password",
+    "database": "databasename",
+    "host": "host",
+    "dialect": "mysql"
+  }
+}
+//replace above values with current database.js values

@@ -54,8 +54,8 @@
   <div class="large-3 columns">
     <label>Header Logo</label>
     <input type="file" name="headerimage" id="headerimage" />
-    {{#if theme}}
-    <img src="data:;base64,{{settings.headerimage}}" />
+    {{#if settings.headerimage}}
+    <img src="/img/{{settings.headerimage}}" />
     {{/if}}
   </div>
 </div>
