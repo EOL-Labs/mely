@@ -4,6 +4,7 @@
 [![Build Status](https://travis-ci.org/EOL-Labs/mely.svg?branch=master)](https://travis-ci.org/EOL-Labs/mely)
 [![Dependency Status](https://david-dm.org/eol-labs/mely.png?theme=shields.io)](https://david-dm.org/eol-labs/mely)
 [![Code Climate](https://codeclimate.com/github/EOL-Labs/mely.png)](https://codeclimate.com/github/EOL-Labs/mely)
+[![Coverage Status](https://coveralls.io/repos/EOL-Labs/mely/badge.png)](https://coveralls.io/r/EOL-Labs/mely)
 
 Mely is a blogging platform for ***node.js***. It is currently WIP. In order to install and use Mely correctly you will need to follow a few steps.
 
