@@ -1,10 +1,11 @@
 <div class="row">
 	{{#if MelyTheme.themeLogo}}
-	<div class="row text-center"><img src="/img/{{MelyTheme.themeLogo}}" /></div>
 	<br><br>
-	{{/if}}
+	<div class="row text-center"><a href="/"><img src="/img/{{MelyTheme.themeLogo}}" /></a></div>
+	<br><br>
+	{{else}}
+	<br><br>
 	<div class="row text-center headBack headText">{{system.title}}</div>
 	<br><br>
-	<div class="row text-center headBack headText">{{system.tag}}</div>
-	<br><br>
+	{{/if}}
 </div>

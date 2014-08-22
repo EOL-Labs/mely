@@ -7,6 +7,7 @@
     <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Sintony' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/foundation.css" />
+    <link rel="stylesheet" href="/css/foundation-icons.css" />
     <script src="/js/vendor/modernizr.js"></script>
     <script type="text/javascript" src="/js/jscolor/jscolor.js"></script>
   </head>
@@ -17,49 +18,48 @@
           <li class="name">
             <h1><a href="/admin" style="font-family: 'Permanent Marker', cursive;">Mely</a></h1>
           </li>
-          <li class="toggle-topbar menu-icon"><a href="#">Mely Options</a></li>
+          <li class="toggle-topbar menu-icon"><a href="#">Admin</a></li>
         </ul>
         <section class="top-bar-section">
           <ul class="left">
             <li class="has-dropdown">
-              <a href="#">Users</a>
+              <a href="#"><i class="fi-torsos-all"></i> | Users</a>
               <ul class="dropdown">
-                <li><a href="/admin/user/new">Register New User</a></li>
-                <li><a href="/admin/user">List Users</a></li>
+                <li><a href="/admin/user/new"><i class="fi-torso"></i> | Add</a></li>
+                <li><a href="/admin/user"><i class="fi-torsos-all"></i> | View All</a></li>
               </ul>
             </li>
             <li class="has-dropdown">
-              <a href="#">Posts</a>
+              <a href="#"><i class="fi-page"></i> | Posts</a>
               <ul class="dropdown">
-                <li><a href="/admin/post/new">Add New Post</a></li>
-                <li><a href="/admin/post">List Posts</a></li>
+                <li><a href="/admin/post/new"><i class="fi-page-add"></i> | Add</a></li>
+                <li><a href="/admin/post"><i class="fi-page-multiple"></i> | View All Posts</a></li>
+                <li><a href="/admin/post/comment"><i class="fi-comment-quotes"></i> | View All Comments</a></li>
               </ul>
             </li>
             <li class="has-dropdown">
-              <a href="#">Pages</a>
+              <a href="#"><i class="fi-page"></i> | Pages</a>
               <ul class="dropdown">
-                <li><a href="/admin/page/new">Add New Page</a></li>
-                <li><a href="/admin/page">List Pages</a></li>
+                <li><a href="/admin/page/new"><i class="fi-page-add"></i> | Add</a></li>
+                <li><a href="/admin/page"><i class="fi-page-multiple"></i> | View All</a></li>
               </ul>
             </li>
             <li class="has-dropdown">
-              <a href="#">Themes</a>
+              <a href="#"><i class="fi-paint-bucket"></i> | Themes</a>
               <ul class="dropdown">
-                <li><a href="/admin/theme/new">Add New Theme</a></li>
-                <li><a href="/admin/theme">List Themes</a></li>
-                <li><a href="/admin/file">Theme Files</a></li>
+                <li><a href="/admin/theme/new"><i class="fi-paint-bucket"></i> | Add</a></li>
+                <li><a href="/admin/theme"><i class="fi-paint-bucket"></i> | View All Themes</a></li>
+                <li><a href="/admin/file"><i class="fi-folder"></i> | Files</a></li>
               </ul>
             </li>
-            <li>
-              <a href="/" target="_blank">View Blog</a>
-            </li>
+            <li><a href="/" target="_blank"><i class="fi-web"></i> | Blog</a></li>
           </ul>
           <ul class="right">
             <li>
-              <a href="https://github.com/EOL-Labs/mely" target="_blank">v0.1.0</a>
+              <a href="https://github.com/EOL-Labs/mely" target="_blank"><i class="fi-monitor"></i> | 0.2.0</a>
             </li>
             <li>
-              <a href="/logout">Sign Out</a>
+              <a href="/logout"><i class="fi-power"></i></a>
             </li>     
           </ul>
         </section>

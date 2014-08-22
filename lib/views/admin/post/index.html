@@ -2,23 +2,31 @@
 <div class="row">
   <div class="large-12 columns">
     <br>
-    <h5>List of Mely Posts</h5>
+    <h5>Posts</h5>
     <table class="sortable" width="100%">
       <thead>
         <tr>
-          <th width="25%" class="text-center">Title</th>
-          <th width="25%" class="sorttable_nosort text-center">Content Preview</th>
-          <th width="25%" class="text-center">Status</th>
-          <th width="25%" class="sorttable_nosort text-center">Options</th>
+          <th width="25%" class="text-center">Post Title</th>
+          <th width="25%" class="sorttable_nosort text-center">Post Content</th>
+          <th width="25%" class="text-center">Post Status</th>
+          <th width="25%" class="text-center">Comments Allowed</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         {{#if postList.length}}
         {{#each postList}}
         <tr>
-          <td valign="top">{{title}}</td>
+          <td valign="top" class="text-center">{{title}}</td>
           <td valign="top" class="text-center"><a href="/preview/post/{{postId}}" data-reveal-id="previewModal" data-reveal-ajax="true">Preview</a></td>
           <td valign="top" class="text-center">{{status}}</td>
+          <td valign="top" class="text-center">
+          {{#if comments_allowed}}
+          <a href="/admin/post/comment/{{postId}}">YES</a>
+          {{else}}
+          NO
+          {{/if}}
+          </td>
           <td valign="top" class="text-center"><a href="/admin/post/{{postId}}">EDIT</a></td>
         </tr>
         {{/each}}

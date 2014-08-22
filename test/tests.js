@@ -12,7 +12,9 @@ var systemid = 1;
 var userid = 1;
 var pageid = 1;
 var postid = 1;
+var commentid = 1;
 var themeid = 1;
+var directionOfApproval = true;
 var title = "My Title";
 var content = "My Content";
 var published = 1;
@@ -1736,6 +1738,171 @@ describe("Mely", function(){
 				}, function(err, files){
 					assert(err === null);
 					assert(files !== undefined);
+					done();
+				});
+			});
+		});
+	});
+	describe("#comments",function(){
+		describe("#createComment()",function(){
+			it("should return comment object",function(done){
+				Mely.Administrator.createComment({
+					systemid: systemid,
+					email: email,
+					content: content,
+					postid: postid
+				},function(err, comment){
+					assert(err === null);
+					assert(comment !== undefined);
+					assert(comment.id !== undefined);
+					assert(comment.email !== undefined && comment.email === email);
+					assert(comment.content !== undefined && comment.content === content);
+					assert(comment.PostId !== undefined && comment.PostId === postid);
+					done();
+				});
+			});
+			it("should return error if email is undefined",function(done){
+				Mely.Administrator.createComment({
+					systemid: systemid,
+					content: content,
+					postid: postid
+				},function(err, comment){
+					assert(err instanceof Error);
+					assert(comment === undefined);
+					done();
+				});
+			});
+			it("should return error if content is undefined",function(done){
+				Mely.Administrator.createComment({
+					systemid: systemid,
+					email: email,
+					postid: postid
+				},function(err, comment){
+					assert(err instanceof Error);
+					assert(comment === undefined);
+					done();
+				});
+			});
+			it("should return error if postid is undefined",function(done){
+				Mely.Administrator.createComment({
+					systemid: systemid,
+					email: email,
+					content: content
+				},function(err, comment){
+					assert(err instanceof Error);
+					assert(comment === undefined);
+					done();
+				});
+			});
+			it("should return error if systemid is undefined",function(done){
+				Mely.Administrator.createComment({
+					email: email,
+					content: content,
+					postid: postid
+				},function(err, comment){
+					assert(err instanceof Error);
+					assert(comment === undefined);
+					done();
+				});
+			});
+		});
+		describe("#getComment()",function(){
+			it("should return array w/ ALL comment objects", function(done){
+				Mely.Administrator.getComment({
+					systemid: systemid
+				}, function(err, comments){
+					assert(err === null);
+					assert(comments !== undefined);
+					done();
+				});
+			});
+			it("should return array w/ approved comment objects ONLY of postid", function(done){
+				Mely.Administrator.getComment({
+					systemid: systemid,
+					postid: postid,
+					approved: true
+				}, function(err, comments){
+					for(var item in comments){
+						assert(comments[item].postid === postid);
+					}
+					assert(err === null);
+					assert(comments !== undefined);
+					done();
+				});
+			});
+			it("should return error when systemid is undefined", function(done){
+				Mely.Administrator.getComment({
+				}, function(err, comments){
+					assert(err instanceof Error);
+					assert(comments === undefined);
+					done();
+				});
+			});
+		});
+		describe("#approveComment()",function(){
+			it("should approve comment", function(done){
+				Mely.Administrator.approveComment({
+					commentid: commentid,
+					direction: directionOfApproval
+				}, function(err, comment){
+					assert(err === null);
+					assert(comment !== undefined);
+					done();
+				});
+			});
+			it("should return error when commentid is undefined", function(done){
+				Mely.Administrator.approveComment({
+					direction: directionOfApproval
+				}, function(err, comment){
+					assert(err instanceof Error);
+					assert(comment === undefined);
+					done();
+				});
+			});
+			it("should return error when direction is undefined", function(done){
+				Mely.Administrator.approveComment({
+					commentid: commentid
+				}, function(err, comment){
+					assert(err instanceof Error);
+					assert(comment === undefined);
+					done();
+				});
+			});
+		});
+		describe("#upComment()",function(){
+			it("should upvote comment", function(done){
+				Mely.Administrator.upComment({
+					commentid: commentid,
+				}, function(err, comment){
+					assert(err === null);
+					assert(comment !== undefined);
+					done();
+				});
+			});
+			it("should return error when commentid is undefined", function(done){
+				Mely.Administrator.upComment({
+				}, function(err, comment){
+					assert(err instanceof Error);
+					assert(comment === undefined);
+					done();
+				});
+			});
+		});
+		describe("#downComment()",function(){
+			it("should upvote comment", function(done){
+				Mely.Administrator.downComment({
+					commentid: commentid,
+				}, function(err, comment){
+					assert(err === null);
+					assert(comment !== undefined);
+					done();
+				});
+			});
+			it("should return error when commentid is undefined", function(done){
+				Mely.Administrator.downComment({
+				}, function(err, comment){
+					assert(err instanceof Error);
+					assert(comment === undefined);
 					done();
 				});
 			});

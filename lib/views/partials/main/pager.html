@@ -2,9 +2,10 @@
 $(document).ready(function(){
 	var counter = 0;
 	var size = 2;
-	$("#posts > #post").each(function(){
+	$("#posts > #post").each(function(i){
 		if(counter >= size){
 			$(this).hide();
+			counter = counter + 1;
 		}
 		if(counter < size){
 			counter = counter + 1;
@@ -14,6 +15,7 @@ $(document).ready(function(){
 		$("#loadPosts").attr("disabled", "disabled");
 	}
 	$("#loadPosts").click(function(){
+
 		var newSize = counter + 2;
 		var showing = 0;
 		$("#posts > #post").each(function(){

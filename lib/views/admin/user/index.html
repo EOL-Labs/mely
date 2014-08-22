@@ -2,15 +2,15 @@
 <div class="row">
   <div class="large-12 columns">
     <br>
-    <h5>List of Mely Users</h5>
+    <h5>Users</h5>
     <table class="sortable" width="100%">
       <thead>
         <tr>
-          <th>E-Mail Address</th>
-          <th>User Status</th>
-          <th>Date Created</th>
+          <th>E-Mail</th>
+          <th>Account Status</th>
+          <th>Account Added</th>
           <th>Last Updated</th>
-          <th class="sorttable_nosort">Options</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -20,7 +20,7 @@
           <td>{{status}}</td>
           <td>{{createdDate}}</td>
           <td>{{updatedDate}}</td>
-          <td><a href="/admin/user/{{userid}}">EDIT</a> - <a id="{{userid}}" class="delete">DELETE</a></td>
+          <td class="text-center"><a href="/admin/user/{{userid}}">EDIT</a> - <a id="{{userid}}" class="delete">DELETE</a></td>
         </tr>
         {{/each}}
       </tbody>

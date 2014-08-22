@@ -2,17 +2,17 @@
 <div class="row">
   <div class="large-12 columns">
     <br>
-    <h5>List of Mely Pages</h5>
+    <h5>Pages</h5>
     <table class="sortable" width="100%">
       <thead>
         <tr>
-          <th width="14%" class="text-center">Title</th>
-          <th width="14%" class="sorttable_nosort text-center">Content Preview</th>
-          <th width="14%" class="sorttable_nosort text-center">Order</th>
-          <th width="14%" class="sorttable_nosort text-center">Viewable in Menu</th>
-          <th width="15%" class="sorttable_nosort text-center">Page Direct Link</th>
-          <th width="15%" class="text-center">Status</th>
-          <th width="14%" class="sorttable_nosort text-center">Options</th>
+          <th class="text-center">Page Title</th>
+          <th class="sorttable_nosort text-center">Page Content</th>
+          <th class="text-center">Page Menu Order</th>
+          <th class="text-center">Page In Menu</th>
+          <th class="text-center">Page Direct Link</th>
+          <th class="text-center">Page Status</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -22,15 +22,15 @@
           <td valign="top">{{title}}</td>
           <td valign="top" class="text-center"><a href="/preview/page/{{pageId}}" data-reveal-id="previewModal" data-reveal-ajax="true">Preview</a></td>
           <td valign="top" class="text-center">{{order}}</td>
-          <td valign="top" class="text-center">{{status}}</td>
           <td valign="top" class="text-center">
-          {{#if onmenu}}
-          YES
-          {{else}}
-          NO
-          {{/if}}
+            {{#if onmenu}}
+            YES
+            {{else}}
+            NO
+            {{/if}}
           </td>
           <td valign="top" class="text-center"><a href="/{{link}}">/{{link}}</td>
+          <td valign="top" class="text-center">{{status}}</td>
           <td valign="top" class="text-center"><a href="/admin/page/{{pageId}}">EDIT</a></td>
         </tr>
         {{/each}}

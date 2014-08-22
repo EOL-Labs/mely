@@ -45,6 +45,18 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="large-4 columns">
+          <div class="post-comment-field">
+            <label>Commenting Allowed?
+              <select name="mely-post-comments">
+                <option value="0">No</option>
+                <option value="1" {{#if post.comments_allowed}} selected {{/if}}>Yes</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
       <button type="submit" class="button">{{type}} Post</button>
     </form>
   </div>

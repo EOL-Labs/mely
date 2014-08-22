@@ -1,0 +1,42 @@
+{{> admin/menu}}
+<div class="row">
+  <div class="large-12 columns">
+    <br>
+    <h5>Comments</h5>
+    <table class="sortable" width="100%">
+      <thead>
+        <tr>
+          <th width="25%" class="text-center">Link to Comment</th>
+          <th width="25%" class="text-center">Author</th>
+          <th width="25%" class="sorttable_nosort text-center">Comment</th>
+          <th width="25%" class="text-center">Approve / Un-Approve</th>          
+        </tr>
+      </thead>
+      <tbody>
+        {{#if comments.length}}
+        {{#each comments}}
+        <tr>
+          <td valign="top" class="text-center"><a href="/post/{{postid}}#comment-{{commentid}}">Follow</a></td>
+          <td valign="top" class="text-left">{{commentemail}}</td>
+          <td valign="top" class="text-left">{{commentcontent}}</td>          
+          <td valign="top" class="text-center">
+            {{#if approved}}
+              <a href="/admin/post/comment/{{commentid}}/false">Un-Approve</a>
+            {{else}}
+              <a href="/admin/post/comment/{{commentid}}/true">Approve</a>
+            {{/if}}
+          </td>
+        </tr>
+        {{/each}}
+        {{else}}
+        <tr>
+          <td class="text-center" colspan="4">No Comments</td>
+        </tr>
+        {{/if}}
+      </tbody>
+    </table>
+  </div>
+</div>
+<div id="previewModal" class="reveal-modal" data-reveal>
+</div>
+{{> admin/footer}}
