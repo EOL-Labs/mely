@@ -1889,7 +1889,7 @@ describe("Mely", function(){
 			});
 		});
 		describe("#downComment()",function(){
-			it("should upvote comment", function(done){
+			it("should downvote comment", function(done){
 				Mely.Administrator.downComment({
 					commentid: commentid,
 				}, function(err, comment){
