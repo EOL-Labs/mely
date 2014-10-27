@@ -1,65 +1,93 @@
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{title}}</title>
-    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Sintony' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/css/foundation.css" />
-    <script src="/js/vendor/modernizr.js"></script>
-  </head>
-  <body>
-    <div class="row">
-      <div class="large-12 columns text-center">
-        <h1 style="font-family: 'Permanent Marker', cursive;">Mely</h1>
-        <h4><b>M</b>ake <b>E</b>verything <b>L</b>ook <b>Y</b>ours</h4>
-        <p class="text-left">
-          Welcome! Thanks for choosing Mely! Mely is one of the best blogging engines out there. It looks like you have got past the database/server setup.
-          Before we can get going though we need a few things from you to get started. Follow the box below for instructions and you will have your new Mely blog up in no time!
-        </p>
-      </div>
-    </div>
-    <br>
-    <form method="post" action="/welcome" data-abide>
-    <div class="row">
-      <div class="large-12 columns">
-        <div class="row">
-          <div class="large-4 columns">
-            <label>Mely Blog Name
-              <input type="text" name="mely-name" placeholder="Ex: Crabshack Lagoon" required />
-            </label>
-            <small class="error">A blog name is required</small>
-          </div>
-          <div class="large-4 columns">
-            <label>Email Address
-              <input type="email" name="mely-email" placeholder="This will be your login username" required />
-            </label>
-            <small class="error">A valid email is required</small>
-          </div>
-          <div class="large-4 columns">
-            <label>Password
-              <input type="password" name="mely-password" placeholder="Make sure this is private" required />
-            </label>
-            <small class="error">First character must be a letter. Must be at least 4 charcters long but no more then 15. Letters, numbers and underscores are valid.</small>
-          </div>
-        </div>
-        <div class="row">
-          <div class="large-12 columns">
-            <label>Mely Blog Description
-              <textarea name="mely-description" placeholder="Ex: Where all the crabs come to be crabby! (This could be a tag line as well)" required></textarea>
-            </label>
-            <small class="error">We need to know more about the blog!</small>
-          </div>
-        </div>
-        <div class="row">
-          <div class="large 12 columns">
-            <input type="submit" value="Make It!" class="button expand" />
-          </div>
-        </div>
-      </div>
-    </div>
-    </form>
-    {{> admin/footer}}
-  </body>
-</html>
+{{>admin/header}}
+<form method="post" action="/welcome" id="CreateSystem">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="text-center" style="font-family: 'Permanent Marker', cursive;">Mely</h1>
+			<h4 class="text-center"><b>M</b>ake <b>E</b>verything <b>L</b>ook <b>Y</b>ours</h4>
+			<h3 class="text-center"><span class="label label-success">Welcome</span></h3>
+			<p class="text-info text-center">Thanks for choosing Mely!<br>You have completed the installation of the database/server.<br>Before we can get started fill in the boxes below!</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-4">
+			<div class="form-group">
+				<label>Mely Blog Name <small>(required)</small></label>
+				<input type="text" name="mely-name" class="form-control" placeholder="Crabby Patty" />
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="form-group">
+				<label>Email Address <small>(required)</small></label>
+				<input type="email" name="mely-email" class="form-control" placeholder="E-Mail" />
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="form-group">
+				<label>Password <small>(required)</small></label>
+				<input type="password" name="mely-password" class="form-control" placeholder="Password" required />
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="form-group">
+				<label>Mely Blog Description</label>
+				<textarea name="mely-description" class="form-control" placeholder="A description..."></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<input type="submit" value="Make It!" class="btn btn-success" />
+		</div>
+	</div>
+</div>
+</form>
+{{> admin/footer}}
+<script>
+$(document).ready(function() {
+	$("#CreateSystem").bootstrapValidator({
+		feedbackIcons: {
+			valid: "glyphicon glyphicon-ok",
+			invalid: "glyphicon glyphicon-remove",
+			validating: "glyphicon glyphicon-refresh"
+		},
+		fields: {
+			"mely-name": {
+				validators: {
+					notEmpty: {
+						message: "Blog Name must not be empty"
+					}
+				}
+			},
+			"mely-email": {
+				validators: {
+					notEmpty: {
+						message: "The email address is required and cannot be empty"
+					},
+					emailAddress: {
+						message: "The email address is not a valid email"
+					}
+				}
+			},
+			"mely-password": {
+				validators: {
+					notEmpty: {
+						message: "The password is required and cannot be empty"
+					},
+					stringLength: {
+						min: 8,
+						message: "The password must have at least 6 characters"
+					}
+				}
+			}
+		}
+	}).on("success.form.bv", function(e) {
+		var $form = $(e.target);
+		validator = $form.data('bootstrapValidator');
+		submitButton = validator.getSubmitButton();
+	});
+});
+</script>
+

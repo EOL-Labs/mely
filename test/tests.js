@@ -54,15 +54,6 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error if description is undefined", function(done){
-				Mely.Administrator.createSystem({
-					name: name,
-				},function(err, system){
-					assert(err instanceof Error);
-					assert(system === undefined);
-					done();
-				});
-			});
 		});
 		describe("#getSystemCount()",function(){
 			it("should return system count", function(done){

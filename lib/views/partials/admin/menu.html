@@ -1,67 +1,28 @@
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{title}}</title>
-    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Sintony' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/css/foundation.css" />
-    <link rel="stylesheet" href="/css/foundation-icons.css" />
-    <script src="/js/vendor/modernizr.js"></script>
-    <script type="text/javascript" src="/js/jscolor/jscolor.js"></script>
-  </head>
-  <body>
-    <div class="sticky">
-      <nav class="top-bar" data-topbar data-options="sticky_on: large">
-        <ul class="title-area">
-          <li class="name">
-            <h1><a href="/admin" style="font-family: 'Permanent Marker', cursive;">Mely</a></h1>
-          </li>
-          <li class="toggle-topbar menu-icon"><a href="#">Admin</a></li>
-        </ul>
-        <section class="top-bar-section">
-          <ul class="left">
-            <li class="has-dropdown">
-              <a href="#"><i class="fi-torsos-all"></i> | Users</a>
-              <ul class="dropdown">
-                <li><a href="/admin/user/new"><i class="fi-torso"></i> | Add</a></li>
-                <li><a href="/admin/user"><i class="fi-torsos-all"></i> | View All</a></li>
-              </ul>
-            </li>
-            <li class="has-dropdown">
-              <a href="#"><i class="fi-page"></i> | Posts</a>
-              <ul class="dropdown">
-                <li><a href="/admin/post/new"><i class="fi-page-add"></i> | Add</a></li>
-                <li><a href="/admin/post"><i class="fi-page-multiple"></i> | View All Posts</a></li>
-                <li><a href="/admin/post/comment"><i class="fi-comment-quotes"></i> | View All Comments</a></li>
-              </ul>
-            </li>
-            <li class="has-dropdown">
-              <a href="#"><i class="fi-page"></i> | Pages</a>
-              <ul class="dropdown">
-                <li><a href="/admin/page/new"><i class="fi-page-add"></i> | Add</a></li>
-                <li><a href="/admin/page"><i class="fi-page-multiple"></i> | View All</a></li>
-              </ul>
-            </li>
-            <li class="has-dropdown">
-              <a href="#"><i class="fi-paint-bucket"></i> | Themes</a>
-              <ul class="dropdown">
-                <li><a href="/admin/theme/new"><i class="fi-paint-bucket"></i> | Add</a></li>
-                <li><a href="/admin/theme"><i class="fi-paint-bucket"></i> | View All Themes</a></li>
-                <li><a href="/admin/file"><i class="fi-folder"></i> | Files</a></li>
-              </ul>
-            </li>
-            <li><a href="/" target="_blank"><i class="fi-web"></i> | Blog</a></li>
-          </ul>
-          <ul class="right">
-            <li>
-              <a href="https://github.com/EOL-Labs/mely" target="_blank"><i class="fi-monitor"></i> | 0.2.0</a>
-            </li>
-            <li>
-              <a href="/logout"><i class="fi-power"></i></a>
-            </li>     
-          </ul>
-        </section>
-      </nav>
-    </div>
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" style="font-family: 'Permanent Marker', cursive;" href="/admin">Mely</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/admin/file">Theme Files</a></li>
+						</ul>
+				</li>
+				<li><a href="/" target="_blank">Blog</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="https://github.com/EOL-Labs/mely" target="_blank">0.2.0</a></li>
+				<li><a href="/logout"><span class="glyphicon glyphicon-off"></span></a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+</nav>
