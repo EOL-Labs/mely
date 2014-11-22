@@ -1,0 +1,33 @@
+<div class="tab-pane" id="Comments" ng-controller="CommentCtrl">
+	<br>
+	<div class="row">
+		<div class="col-lg-12">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th class="text-center" width="25%">Comment Link</th>
+						<th class="text-center" width="25%">Author</th>
+						<th class="text-center" width="25%">Comment</th>
+						<th class="text-center" width="25%">Approve / Un-Approve</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="comment in comments">
+						<td class="text-center"><a href="#comment">Preview</a></td>
+						<td class="text-center" ng-bind="comment.commentemail"></td>
+						<td class="text-center" ng-bind="comment.commentcontent"></td>
+						<td class="text-center">
+							<ANY ng-switch="comment.approved">
+								<ANY ng-switch-when="false"><a ng-click="updateStatus(comment.commentid,true)" href="#">Click to Approve</a></ANY>
+								<ANY ng-switch-when="true"><a  ng-click="updateStatus(comment.commentid,false)" href="#">Click to Un-Approve</a></ANY>
+							</ANY>
+						</td>
+					</tr>
+					<tr ng-if="comments.length === 0">
+						<td colspan="4" class="text-center">No Comments</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

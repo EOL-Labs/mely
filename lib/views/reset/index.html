@@ -1,68 +1,32 @@
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{title}}</title>
-    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Sintony' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/css/foundation.css" />
-    <script src="/js/vendor/modernizr.js"></script>
-  </head>
-  <body>
-    <div class="row">
-      <div class="large-12 columns text-center">
-        <h1 style="font-family: 'Permanent Marker', cursive;">Mely</h1>
-        <h4><b>M</b>ake <b>E</b>verything <b>L</b>ook <b>Y</b>ours</h4>
-      </div>
+{{>header}}
+<div class="container" ng-controller="Reset">
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <h1>Mely</h1>
     </div>
-    <div class="row">
-      <div class="large-5 columns large-centered">
-        <h4 class="text-center">Reset Password</h4>
-      </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <br>
+      <b>M</b>ake | <b>E</b>verything | <b>L</b>ook <b> | Y</b>ours
+      <br>
     </div>
-    <form method="post" action="/reset" data-abide>
-      <div class="row">
-        <div class="large-5 columns large-centered">
-          <div class="row collapse">
-            <div class="large-10 columns">
-              <input type="text" placeholder="john.smith@example.com" name="mely-email" type="email"required />
-              <small class="error">E-Mail is required</small>
-            </div>
-            <div class="large-2 columns">
-              <input type="submit" value="Reset" class="button postfix" />
-            </div>
-          </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-10 col-sm-offset-1 col-xs-12">
+    <div class="alert alert-success hide" id="resetAlert" role="alert">Your new password has been emailed if it is on file!</div>
+      <form role="form" id="ResetForm" method="POST" action="/reset">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="text" name="mely-email" class="form-control"  type="email" />
         </div>
-      </div>
-    </form>
-    <div class="row">
-      <div class="large-5 columns large-centered">
-        <div data-alert class="alert-box success radius" id="success">
-          Your password has been reset and emailed to you!<br><br><a href="/login" style="color:white;text-decoration:underline;">Sign In</a>
-          <a href="#" class="close">&times;</a>
-        </div>
-        <div data-alert class="alert-box alert radius" id="error">
-          Email Address not found!
-          <a href="#" class="close">&times;</a>
-        </div>
-      </div>
+        <button type="submit" class="btn btn-primary btn-md btn-block" />Reset Password</button>
+      </form>
     </div>
-    {{> admin/footer}}
-    <script>
-      $(document).ready(function(){
-        var message = $(document).context.location.search.replace("?","");
-        if(message === "success"){
-          $("#error").hide();
-        }
-        else if(message === "errorr"){
-          $("#success").hide();
-        }
-        else{
-          $("#success").hide();
-          $("#error").hide();
-        }
-      })
-    </script>
-  </body>
-</html>
+  </div>
+</div>
+{{>footer}}
+<script src="/js/angular/angular.js"></script>
+<script src="/js/app/app.mely.js"></script>
+<script src="/js/app/app.mely.reset.js"></script>

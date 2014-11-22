@@ -1,0 +1,101 @@
+<div class="tab-pane" id="Posts" ng-controller="PostCtrl">
+	<br>
+	<div class="row">
+		<div class="col-lg-12">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th class="text-center" width="22%">Title</th>
+						<th class="text-center" width="22%">Content</th>
+						<th class="text-center" width="22%">Status</th>
+						<th class="text-center" width="22%">Comments Allowed?</th>
+						<th class="text-center"><a class="btn btn-success btn-xs" data-toggle="modal" data-target="#PostModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New</a></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="article in posts">
+						<td class="text-center" ng-bind="article.title"></td>
+						<td class="text-center"><a href="/post/\{{article.postId}}">Preview</a></td>
+						<td class="text-center">
+							<ANY ng-switch="article.status">
+								<ANY ng-switch-when="1">Draft</ANY>
+								<ANY ng-switch-when="2">Published</ANY>
+							</ANY>
+						</td>
+						<td class="text-center">
+							<ANY ng-switch="article.comments_allowed">
+								<ANY ng-switch-when="0">NO</ANY>
+								<ANY ng-switch-when="1"><a href="#comments">YES</a></ANY>
+							</ANY>
+						</td>
+						<td class="text-center">
+							<a class="btn btn-default btn-xs" ng-click="getPost(article.postId)">Edit</a>&nbsp;<a class="btn btn-danger btn-xs" ng-click="delete(article.postId)">Delete</a>
+						</td>
+					</tr>
+					<tr ng-if="posts.length === 0">
+						<td colspan="5" class="text-center">No Posts</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="modal fade" id="PostModal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-body">
+					<form role="form" ng-submit="process()" id="PostForm">
+						<input type="hidden" name="postid" id="postid" />
+						<div class="container-fluid">
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Title</label>
+										<input class="form-control" type="text" name="posttitle" id="posttitle" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Content</label>
+										<textarea class="form-control postcontent" name="postcontent" id="postcontent" rows="20"></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Status</label>
+										<select class="form-control" name="poststatus" id="poststatus">
+											<option value="">--- Choose ---</option>
+											<option value="1">Draft</option>
+											<option value="2">Published</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Comments</label>
+										<select class="form-control" name="postcomments" id="postcomments">
+											<option value="">--- Choose ---</option>
+											<option value="0">Disabled</option>
+											<option value="1">Enabled</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<input type="submit" class="btn btn-success btn-sm" />
+									<button type="button" class="btn btn-success btn-sm" class="close" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

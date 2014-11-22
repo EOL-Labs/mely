@@ -1,0 +1,224 @@
+<div class="tab-pane" id="Themes" ng-controller="ThemeCtrl">
+	<br>
+	<div class="row">
+		<div class="col-lg-12">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th class="text-center" width="30%">Title</th>
+						<th class="text-center" width="30%">Description</th>
+						<th class="text-center" width="30%">Active?</th>
+						<th class="text-center"><a class="btn btn-success btn-xs" data-toggle="modal" data-target="#ThemeModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New</a></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="theme in themes">
+						<td class="text-center" ng-bind="theme.name"></td>
+						<td class="text-center" ng-bind="theme.description"></td>
+						<td class="text-center">
+							<ANY ng-switch="theme.status">
+								<ANY ng-switch-when="false"><a class="btn btn-warning btn-xs" ng-click="activateTheme(theme.themeid)">ACTIVATE</a></ANY>
+								<ANY ng-switch-when="true">Active</ANY>
+							</ANY>
+						</td>
+						<td class="text-center">
+							<a class="btn btn-default btn-xs" ng-click="getTheme(theme.themeid)">Edit</a>
+						</td>
+					</tr>
+					<tr ng-if="themes.length === 0">
+						<td colspan="4" class="text-center">No Comments</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<button ng-repeat="file in files" type="button" class="btn btn-link" id="\{{file.name}}" ng-click="getThemeFile(file.name)">\{{file.name}}</button>
+			<textarea class="form-control" name="themefile" id="themefile" ng-model="themefile" rows="10"></textarea>
+			<br>
+			<button type="button" class="btn btn-success btn-xs" ng-click="saveFile()">Save</button>
+		</div>
+	</div>
+	<div class="modal fade" id="ThemeModal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-body">
+					<form role="form" ng-submit="process()" id="ThemeForm">
+						<input type="hidden" name="themeid" id="themeid" />
+						<div class="container-fluid">
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Name</label>
+										<input class="form-control" type="text" name="themename" id="themename" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Description</label>
+										<input class="form-control" type="text" name="themedescription" id="themedescription" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Title Background Color</label>
+										<div class="input-group">
+											<div class="input-group-addon">#</div>
+											<input class="form-control color" type="text" name="headerbackcolor" id="headerbackcolor" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Title Font Color</label>
+										<div class="input-group">
+											<div class="input-group-addon">#</div>
+											<input class="form-control color" type="text" name="headerfontcolor" id="headerfontcolor" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Title Font Size</label>
+										<input class="form-control" type="number" name="headerfontsize" id="headerfontsize" min="1" max="100" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Menu Background Color</label>
+										<div class="input-group">
+											<div class="input-group-addon">#</div>
+											<input class="form-control color" type="text" name="menubackcolor" id="menubackcolor" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Menu Font Color</label>
+										<div class="input-group">
+											<div class="input-group-addon">#</div>
+											<input class="form-control color" type="text" name="menufontcolor" id="menufontcolor" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Menu Font Size</label>
+										<input class="form-control" type="number" name="menufontsize" id="menufontsize" min="1" max="100" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Post Title Font Color</label>
+										<div class="input-group">
+											<div class="input-group-addon">#</div>
+											<input class="form-control color" type="text" name="posttitlecolor" id="posttitlecolor" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Post Title Font Size</label>
+										<input class="form-control" type="number" name="posttitlefontsize" id="posttitlefontsize" min="1" max="100" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Post Content Font Color</label>
+										<div class="input-group">
+											<div class="input-group-addon">#</div>
+											<input class="form-control color" type="text" name="postcontentcolor" id="postcontentcolor" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Post Content Font Size</label>
+										<input class="form-control" type="number" name="postcontentfontsize" id="postcontentfontsize" min="1" max="100" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Page Title Font Color</label>
+										<div class="input-group">
+											<div class="input-group-addon">#</div>
+											<input class="form-control color" type="text" name="pagetitlecolor" id="pagetitlecolor" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Page Title Font Size</label>
+										<input class="form-control" type="number" name="pagetitlefontsize" id="pagetitlefontsize" min="1" max="100" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Page Content Font Color</label>
+										<div class="input-group">
+											<div class="input-group-addon">#</div>
+											<input class="form-control color" type="text" name="pagecontentcolor" id="pagecontentcolor" />
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Page Content Font Size</label>
+										<input class="form-control" type="number" name="pagecontentfontsize" id="pagecontentfontsize" min="1" max="100" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Title Logo</label>
+										<input class="form-control" type="file" name="headerimage" id="headerimage" />
+										<br>
+										<img class="hide" name="image" id="image" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<input type="submit" class="btn btn-success btn-sm" />
+									<button type="button" class="btn btn-success btn-sm" class="close" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

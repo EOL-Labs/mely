@@ -1,20 +1,13 @@
-app.controller("Welcome", function($scope, $http){
+app.controller("Reset", function($scope, $http){
 });
 $(document).ready(function(){
-	$("#Mely").bootstrapValidator({
+	$("#ResetForm").bootstrapValidator({
 		feedbackIcons:{
 			valid: "glyphicon glyphicon-ok",
 			invalid: "glyphicon glyphicon-remove",
 			validating: "glyphicon glyphicon-refresh"
 		},
 		fields:{
-			"mely-name":{
-				validators:{
-					notEmpty:{
-						message: "Blog Name is required"
-					}
-				}
-			},
 			"mely-email":{
 				validators:{
 					notEmpty:{
@@ -24,15 +17,12 @@ $(document).ready(function(){
 						message: "Must be a valid Email Address"
 					}
 				}
-			},
-			"mely-password":{
-				validators:{
-					notEmpty:{
-						message: "Password is required"
-					},
-				}
 			}
 		}
 	}).on("success.form.bv", function(e){
 	});
+	var message = $(document).context.location.search.replace("?","");
+	if(message === "success" || message === "error"){
+		$("#resetAlert").removeClass("hide");
+	}
 });

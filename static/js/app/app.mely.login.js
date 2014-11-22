@@ -1,20 +1,13 @@
-app.controller("Welcome", function($scope, $http){
+app.controller("Login", function($scope, $http){
 });
 $(document).ready(function(){
-	$("#Mely").bootstrapValidator({
+	$("#LoginForm").bootstrapValidator({
 		feedbackIcons:{
 			valid: "glyphicon glyphicon-ok",
 			invalid: "glyphicon glyphicon-remove",
 			validating: "glyphicon glyphicon-refresh"
 		},
 		fields:{
-			"mely-name":{
-				validators:{
-					notEmpty:{
-						message: "Blog Name is required"
-					}
-				}
-			},
 			"mely-email":{
 				validators:{
 					notEmpty:{
@@ -35,4 +28,9 @@ $(document).ready(function(){
 		}
 	}).on("success.form.bv", function(e){
 	});
+	switch($(document).context.location.search){
+		case "?invalid":
+			$("#loginAlert").removeClass("hide");
+		break;
+	}
 });

@@ -1,0 +1,111 @@
+<div class="tab-pane" id="Pages" ng-controller="PageCtrl">
+	<br>
+	<div class="row">
+		<div class="col-lg-12">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th class="text-center" width="17%">Title</th>
+						<th class="text-center" width="17%">Content</th>
+						<th class="text-center" width="17%">Order</th>
+						<th class="text-center" width="17%">Visible?</th>
+						<th class="text-center" width="17%">Status</th>
+						<th class="text-center"><a class="btn btn-success btn-xs" data-toggle="modal" data-target="#PostModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New</a></a></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="article in pages">
+						<td class="text-center"  ng-bind="article.title"></td>
+						<td class="text-center" ><a href="#page">Preview</a></td>
+						<td class="text-center"  ng-bind="article.order"></td>
+						<td class="text-center" >
+							<ANY ng-switch="article.onmenu">
+								<ANY ng-switch-when="0">NO</ANY>
+								<ANY ng-switch-when="1">YES</ANY>
+							</ANY>
+						</td>
+						<td class="text-center" >
+							<ANY ng-switch="article.status">
+								<ANY ng-switch-when="1">Draft</ANY>
+								<ANY ng-switch-when="2">Published</ANY>
+							</ANY>
+						</td>
+						<td class="text-center">
+							<a class="btn btn-default btn-xs" ng-click="getPage(article.pageId)">Edit</a>&nbsp;<a class="btn btn-danger btn-xs" ng-click="delete(article.pageId)">Delete</a>
+						</td>
+					</tr>
+					<tr ng-if="pages.length === 0">
+						<td colspan="6" class="text-center">No Pages</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>	
+	<div class="modal fade" id="PageModal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-body">
+					<form role="form" ng-submit="process()" id="PageForm">
+						<input type="hidden" name="pageid" id="pageid" />
+						<div class="container-fluid">
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Title</label>
+										<input class="form-control" type="text" name="pagetitle" id="pagetitle" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Content</label>
+										<textarea class="form-control pagecontent" name="pagecontent" id="pagecontent" rows="20"></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Order</label>
+										<input class="form-control" name="pageorder" id="pageorder" type="number" min="1" max="999">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+									<label>Visible on Menu</label>
+									<select class="form-control" name="pageview" id="pageview">
+										<option value="">--- Choose ---</option>
+										<option value="0">No</option>
+										<option value="1">Yes</option>
+									</select>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<div class="form-group">
+										<label>Status</label>
+										<select class="form-control" name="pagestatus" id="pagestatus">
+											<option value="">--- Choose ---</option>
+											<option value="1">Draft</option>
+											<option value="2">Published</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="lg-col-12">
+									<input type="submit" class="btn btn-success btn-sm" />
+									<button type="button" class="btn btn-success btn-sm" class="close" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

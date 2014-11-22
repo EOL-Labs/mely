@@ -1,38 +1,32 @@
 {{>header}}
-<form method="post" action="/login" id="Login">
+<div class="container" ng-controller="Login">
 	<div class="row">
 		<div class="col-lg-12 text-center">
-			<h1 style="font-family: 'Permanent Marker', cursive;">Mely</h1>
-			<h4><b>M</b>ake <b>E</b>verything <b>L</b>ook <b>Y</b>ours</h4>
+			<h1>Mely</h1>
 		</div>
 	</div>
-	<br>
 	<div class="row">
-		<div class="col-lg-4"></div>
-		<div class="col-lg-4 text-center">
-  			<div class="form-group">
-				<label>E-Mail</label>
-				<input type="email" class="form-control" name="mely-email" />
-			</div>
+		<div class="col-lg-12 text-center">
+			<br>
+			<b>M</b>ake | <b>E</b>verything | <b>L</b>ook <b> | Y</b>ours
+			<br><br>
 		</div>
-		<div class="col-lg-4"></div>
 	</div>
 	<div class="row">
-		<div class="col-lg-4"></div>
-		<div class="col-lg-4 text-center">
-			<div class="form-group">
-				<label>Password</label>
-				<input type="password" class="form-control" name="mely-password" />
-			</div>
+		<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12">
+			<div class="alert alert-danger hide" id="loginAlert" role="alert">Invalid Login!</div>
+			<form role="form" id="LoginForm" method="POST" action="/login">
+				<div class="form-group">
+					<label>Email Address</label>
+					<input type="email" class="form-control" name="mely-email" />
+				</div>
+				<div class="form-group">
+					<label>Password</label>
+					<input type="password" class="form-control" name="mely-password" />
+				</div>
+				<button type="submit" class="btn btn-primary btn-md btn-block" />Sign In</button>
+			</form>
 		</div>
-		<div class="col-lg-4"></div>
-	</div>
-	<div class="row">
-		<div class="col-lg-4"></div>
-		<div class="col-lg-4 text-center">
-			<input type="submit" value="Log In" class="btn btn-primary" />
-		</div>
-		<div class="col-lg-4"></div>
 	</div>
 	<br>
 	<div class="row">
@@ -40,52 +34,8 @@
 			<a href="/reset">Reset Password</a>
 		</div>
 	</div>
-	<br>
-	<div class="row">
-		<div class="col-lg-4"></div>
-		<div class="col-lg-4 text-center">
-			<div class="alert alert-danger hide" id="loginAlert" role="alert">Invalid Login. Please try again.</div>
-		</div>
-		<div class="col-lg-4"></div>
-	</div>
-</form>
+</div>
 {{>footer}}
-<script>
-$(document).ready(function() {
-	$("#Login").bootstrapValidator({
-		feedbackIcons: {
-			valid: "glyphicon glyphicon-ok",
-			invalid: "glyphicon glyphicon-remove",
-			validating: "glyphicon glyphicon-refresh"
-		},
-		fields: {
-			"mely-email": {
-				validators: {
-					notEmpty: {
-						message: "The email address is required and cannot be empty"
-					},
-					emailAddress: {
-						message: "The email address is not a valid email"
-					}
-				}
-			},
-			"mely-password": {
-				validators: {
-					notEmpty: {
-						message: "The password is required and cannot be empty"
-					}
-				}
-			}
-		}
-	}).on("success.form.bv", function(e) {
-		var $form = $(e.target);
-		validator = $form.data('bootstrapValidator');
-		submitButton = validator.getSubmitButton();
-	});
-	switch($(document).context.location.search){
-		case "?invalid":
-			$("#loginAlert").removeClass("hide");
-			break;
-	}
-});
-</script>
+<script src="/js/angular/angular.js"></script>
+<script src="/js/app/app.mely.js"></script>
+<script src="/js/app/app.mely.login.js"></script>
