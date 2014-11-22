@@ -135,17 +135,6 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return array w/ 1 user object", function(done){
-				Mely.Administrator.getUser({
-					systemid: systemid,
-					id: userid
-				}, function(err, users){
-					assert(users.length === 1);
-					assert(err === null);
-					assert(users !== undefined);
-					done();
-				});
-			});
 			it("should return error when systemid is undefined", function(done){
 				Mely.Administrator.getUser({
 				}, function(err, users){
@@ -155,42 +144,21 @@ describe("Mely", function(){
 				});
 			});
 		});
-		describe("#updateUser()",function(){
-			it("should update user", function(done) {
-				Mely.Administrator.updateUser({
-					id: userid,
-					email: email2
-				},function(err, user){
-					assert(err === null);
-					assert(user !== undefined);
-					done();
-				});
-			});
-			it("should return error when id is undefined", function(done){
-				Mely.Administrator.updateUser({
-					email: email2
-				},function(err, user){
-					assert(err instanceof Error);
-					assert(user === undefined);
-					done();
-				});
-			});
-		});
 		describe("#loginUser()",function(){
 			it("should return user object",function(done){
 				Mely.Administrator.loginUser({
-					email:email2,
+					email:email,
 					password: password
 				},function(err, user){
 					assert(err === null);
 					assert(user !== null);
-					assert(user.email_address !== undefined && user.email_address === email2);
+					assert(user.email_address !== undefined && user.email_address === email);
 					done();
 				});
 			});
 			it("should return user === null",function(done){
 				Mely.Administrator.loginUser({
-					email:email,
+					email:email2,
 					password: password
 				},function(err, user){
 					assert(err === null);
@@ -220,7 +188,7 @@ describe("Mely", function(){
 		describe("#resetPassword()",function(){
 			it("should reset the users password", function(done) {
 				Mely.Administrator.resetPassword({
-					email: email2,
+					email: email,
 					password: "ABCDEF1234"
 				},function(err, user){
 					assert(err === null);
@@ -286,14 +254,14 @@ describe("Mely", function(){
 					systemid: systemid,
 					userid: userid,
 					order: 1,
-					menuview: true
+					menuview: 1
 				},function(err, page){
 					assert(err === null);
 					assert(page !== undefined);
 					assert(page.id !== undefined);
 					assert(page.title !== undefined && page.title === title);
 					assert(page.content !== undefined && page.content === content);
-					assert(page.StatuId !== undefined && page.StatuId === published);
+					assert(page.status !== undefined && page.status === published);
 					assert(page.SystemId !== undefined && page.SystemId === systemid);
 					assert(page.UserId !== undefined && page.UserId === userid);
 					done();
@@ -306,7 +274,7 @@ describe("Mely", function(){
 					systemid: systemid,
 					userid: userid,
 					order: 1,
-					menuview: true
+					menuview: 1
 				},function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
@@ -320,7 +288,7 @@ describe("Mely", function(){
 					systemid: systemid,
 					userid: userid,
 					order: 1,
-					menuview: true
+					menuview: 1
 				},function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
@@ -334,7 +302,7 @@ describe("Mely", function(){
 					status: published,
 					userid: userid,
 					order: 1,
-					menuview: true
+					menuview: 1
 				},function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
@@ -348,7 +316,7 @@ describe("Mely", function(){
 					status: published,
 					systemid: systemid,
 					order: 1,
-					menuview: true
+					menuview: 1
 				},function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
@@ -362,7 +330,7 @@ describe("Mely", function(){
 					systemid: systemid,
 					userid: userid,
 					order: 1,
-					menuview: true
+					menuview: 1
 				},function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
@@ -376,21 +344,7 @@ describe("Mely", function(){
 					systemid: systemid,
 					userid: userid,
 					order: 1,
-					menuview: true
-				},function(err, page){
-					assert(err instanceof Error);
-					assert(page === undefined);
-					done();
-				});
-			});
-			it("should return error if menuview is undefined",function(done){
-				Mely.Administrator.createPage({
-					title: title,
-					content: content,
-					status: published,
-					systemid: systemid,
-					userid: userid,
-					order: 1
+					menuview: 1
 				},function(err, page){
 					assert(err instanceof Error);
 					assert(page === undefined);
@@ -519,19 +473,6 @@ describe("Mely", function(){
 					done();
 				});
 			});
-			it("should return error when menuview is undefined", function(done){
-				Mely.Administrator.updatePage({
-					id: pageid,
-					title: title,
-					content: content,
-					status: published,
-					order: 2
-				}, function(err, page){
-					assert(err instanceof Error);
-					assert(page === undefined);
-					done();
-				});
-			});
 		});
 	});
 	describe("#posts",function(){
@@ -549,7 +490,7 @@ describe("Mely", function(){
 					assert(post.id !== undefined);
 					assert(post.title !== undefined && post.title === title);
 					assert(post.content !== undefined && post.content === content);
-					assert(post.StatuId !== undefined && post.StatuId === published);
+					assert(post.status !== undefined && post.status === published);
 					assert(post.SystemId !== undefined && post.SystemId === systemid);
 					assert(post.UserId !== undefined && post.UserId === userid);
 					done();
@@ -1693,36 +1634,6 @@ describe("Mely", function(){
 		});
 	});
 	describe("#functions", function(){
-		describe("#parseMarkdown()",function(){
-			it("should return HTML from markdown", function(done){
-				Mely.Administrator.parseMarkdown({
-					content: markdown
-				},function(err, HTML){
-					assert(err === null);
-					assert(HTML !== undefined);
-					assert(HTML !== markdown);
-					done();
-				});
-			});
-			it("should return error when markdown is undefined", function(done){
-				Mely.Administrator.parseMarkdown({
-				},function(err, HTML){
-					assert(err instanceof Error);
-					assert(HTML === undefined);
-					done();
-				});
-			});
-		});
-		describe("#getStatus()", function(){
-			it("should return status objects", function(done){
-				Mely.Administrator.getStatus({
-				}, function(err, status){
-					assert(err === null);
-					assert(status !== undefined);
-					done();
-				});
-			});
-		});
 		describe("#getThemeFiles()", function(){
 			it("should return array of file name objects", function(done){
 				Mely.Administrator.getThemeFiles({

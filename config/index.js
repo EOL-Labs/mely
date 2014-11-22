@@ -12,5 +12,6 @@ switch (process.env.NODE_ENV) {
         db_config_to_use = './database';
         break;
 }
+console.log(db_config_to_use);
 var databaseConfiguration = require(db_config_to_use);
 exports.database = databaseConfiguration;

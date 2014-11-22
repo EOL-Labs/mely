@@ -1,17 +1,17 @@
-{{> admin/header}}
+{{> header}}
 {{> admin/menu}}
 <div class="container-fluid" ng-app="MelyAdmin">
 	<!-- Nav tabs -->
 	<ul class="nav nav-pills nav-justified" role="tablist">
-		<li><a href="#Users" role="tab" data-toggle="tab">Users</a></li>
+		<li class="active"><a href="#Users" role="tab" data-toggle="tab">Users</a></li>
 		<li><a href="#Posts" role="tab" data-toggle="tab">Posts</a></li>
 		<li><a href="#Comments" role="tab" data-toggle="tab">Comments</a></li>
 		<li><a href="#Pages" role="tab" data-toggle="tab">Pages</a></li>
-		<li class="active"><a href="#Themes" role="tab" data-toggle="tab">Themes</a></li>
+		<li><a href="#Themes" role="tab" data-toggle="tab">Themes</a></li>
 	</ul>
 	<!-- Tab panes -->
 	<div class="tab-content">
-		<div class="tab-pane" id="Users" ng-controller="UserCtrl">
+		<div class="tab-pane active" id="Users" ng-controller="UserCtrl">
 			<br>
 			<a class="btn btn-success btn-sm" data-toggle="modal" data-target="#UserModal">Add User</a>
 			<br><br>
@@ -317,12 +317,13 @@
 				</div>
 			</div>
 		</div>
-		<div class="tab-pane active" ng-controller="ThemeCtrl">
+		<div class="tab-pane" id="Themes" ng-controller="ThemeCtrl">
 			<br>
 			<a class="btn btn-success btn-sm" data-toggle="modal" data-target="#ThemeModal">Add Theme</a>
 			<br><br>
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-lg-12">
+					<h3>Themes</h3>
 					<table class="table table-bordered table-striped table-condensed">
 						<thead>
 							<tr>
@@ -351,6 +352,15 @@
 							</tr>
 						</tbody>
 					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<h3>Theme Files</h3>
+					<button ng-repeat="file in files" type="button" class="btn btn-link" id="\{{file.name}}" ng-click="getThemeFile(file.name)">\{{file.name}}</button>
+					<textarea class="form-control" name="themefile" id="themefile" ng-model="themefile" rows="10"></textarea>
+					<br>
+					<button type="button" class="btn btn-success btn-sm" ng-click="saveFile()">Save</button>
 				</div>
 			</div>
 			<!-- THEME MODAL -->
@@ -518,7 +528,8 @@
 											<div class="form-group">
 												<label>Title Logo</label>
 												<input class="form-control" type="file" name="headerimage" id="headerimage" />
-												<!--<img class="hide" src="/img/{{settings.headerimage}}" />-->
+												<br>
+												<img class="hide" name="image" id="image" />
 											</div>
 										</div>
 									</div>
@@ -537,7 +548,7 @@
 		</div>
 	</div>
 </div>
-{{> admin/footer}}
+{{> footer}}
 <script src="/js/angular.js"></script>
 <script src="/js/underscore-min.js"></script>
 <script src="/js/rangyinputs-jquery-src.js"></script>

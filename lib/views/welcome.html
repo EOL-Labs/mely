@@ -1,93 +1,42 @@
-{{>admin/header}}
-<form method="post" action="/welcome" id="CreateSystem">
-<div class="container-fluid">
+{{>header}}
+<div class="container" ng-controller="Welcome">
 	<div class="row">
-		<div class="col-lg-12">
-			<h1 class="text-center" style="font-family: 'Permanent Marker', cursive;">Mely</h1>
-			<h4 class="text-center"><b>M</b>ake <b>E</b>verything <b>L</b>ook <b>Y</b>ours</h4>
-			<h3 class="text-center"><span class="label label-success">Welcome</span></h3>
-			<p class="text-info text-center">Thanks for choosing Mely!<br>You have completed the installation of the database/server.<br>Before we can get started fill in the boxes below!</p>
+		<div class="col-lg-12 text-center">
+			<h1>Mely</h1>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-lg-4">
-			<div class="form-group">
-				<label>Mely Blog Name <small>(required)</small></label>
-				<input type="text" name="mely-name" class="form-control" placeholder="Crabby Patty" />
-			</div>
-		</div>
-		<div class="col-lg-4">
-			<div class="form-group">
-				<label>Email Address <small>(required)</small></label>
-				<input type="email" name="mely-email" class="form-control" placeholder="E-Mail" />
-			</div>
-		</div>
-		<div class="col-lg-4">
-			<div class="form-group">
-				<label>Password <small>(required)</small></label>
-				<input type="password" name="mely-password" class="form-control" placeholder="Password" required />
-			</div>
+		<div class="col-lg-12 text-center">
+			<br>
+			<b>M</b>ake | <b>E</b>verything | <b>L</b>ook <b> | Y</b>ours
+			<br><br>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-lg-12">
-			<div class="form-group">
-				<label>Mely Blog Description</label>
-				<textarea name="mely-description" class="form-control" placeholder="A description..."></textarea>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-lg-12">
-			<input type="submit" value="Make It!" class="btn btn-success" />
+		<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12">
+			<form role="form" id="Mely" ng-submit-"create()">
+				<div class="form-group">
+					<label>Email Address</label>
+					<input type="email" name="mely-email" class="form-control" />
+				</div>
+				<div class="form-group">
+					<label>Password</label>
+					<input type="password" name="mely-password" class="form-control" required />
+				</div>
+				<div class="form-group">
+					<label>Blog Name</label>
+					<input type="text" name="mely-name" class="form-control" />
+				</div>
+				<div class="form-group">
+					<label>Blog Description</label>
+					<textarea name="mely-description" class="form-control" placeholder="A description..."></textarea>
+				</div>
+				<button type="submit" class="btn btn-success btn-md btn-block" />Create</button>
+			</form>
 		</div>
 	</div>
 </div>
-</form>
-{{> admin/footer}}
-<script>
-$(document).ready(function() {
-	$("#CreateSystem").bootstrapValidator({
-		feedbackIcons: {
-			valid: "glyphicon glyphicon-ok",
-			invalid: "glyphicon glyphicon-remove",
-			validating: "glyphicon glyphicon-refresh"
-		},
-		fields: {
-			"mely-name": {
-				validators: {
-					notEmpty: {
-						message: "Blog Name must not be empty"
-					}
-				}
-			},
-			"mely-email": {
-				validators: {
-					notEmpty: {
-						message: "The email address is required and cannot be empty"
-					},
-					emailAddress: {
-						message: "The email address is not a valid email"
-					}
-				}
-			},
-			"mely-password": {
-				validators: {
-					notEmpty: {
-						message: "The password is required and cannot be empty"
-					},
-					stringLength: {
-						min: 8,
-						message: "The password must have at least 6 characters"
-					}
-				}
-			}
-		}
-	}).on("success.form.bv", function(e) {
-		var $form = $(e.target);
-		validator = $form.data('bootstrapValidator');
-		submitButton = validator.getSubmitButton();
-	});
-});
-</script>
-
+{{>footer}}
+<script src="/js/angular/angular.js"></script>
+<script src="/js/app/app.mely.js"></script>
+<script src="/js/app/app.mely.welcome.js"></script>
