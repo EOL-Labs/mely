@@ -1,7 +1,17 @@
 app.controller("BlogMain", function($scope, $http){
 	$http.get("/api/post",{
 	}).success(function(data){
+		for(var item in data){
+			$.ajax({
+				url: "/api/author/" + data[item].userid, 
+				async: false,
+				success: function(result) {
+					data[item].author = result;
+				}
+			});
+		}
 		$scope.posts = data;
+
 	}).error(function(data){
 		console.log("Error on Post API");
 	});

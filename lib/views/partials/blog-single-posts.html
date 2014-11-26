@@ -4,7 +4,8 @@
 		<ANY ng-repeat="article in posts">
 			<div class="row">
 				<div class="col-lg-12">
-					<a ng-href="/post/\{{article.id}}" ng-bind="article.title"></a> | \{{article.createdAt}}
+					<a ng-href="/post/\{{article.id}}" ng-bind="article.title"></a> | \{{article.author}}
+					<br>\{{article.createdAt}}
 				</div>
 			</div>
 			<hr>

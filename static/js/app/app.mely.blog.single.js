@@ -3,6 +3,15 @@ app.controller("BlogSinglePost", function($scope, $http, $location){
 	$http.get("/api/post/" + linkArray[4],{
 	}).success(function(data){
 		$scope.posts = data;
+		for(var item in data){
+			$.ajax({
+				url: "/api/author/" + data[item].userid, 
+				async: false,
+				success: function(result) {
+					data[item].author = result;
+				}
+			});
+		}
 	}).error(function(data){
 		console.log("Error on Post API");
 	});
