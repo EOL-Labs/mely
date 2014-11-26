@@ -1,0 +1,75 @@
+<br>
+<div class="row">
+	<div class="col-lg-8 col-lg-offset-2">
+		<ANY ng-repeat="article in posts">
+			<div class="row">
+				<div class="col-lg-12">
+					<a ng-href="/post/\{{article.id}}" ng-bind="article.title"></a> | \{{article.createdAt}}
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-lg-12" ng-bind-html="article.content">
+				</div>
+			</div>
+			<ANY ng-switch="article.comments_allowed">
+				<ANY ng-switch-when="1">
+					<a name="comments"></a>
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="page-header">
+								<h4>Comments</h4>
+							</div>
+							<ANY ng-switch="comments.length">
+								<ANY ng-switch-when="0">
+									No comments
+								</ANY>
+								<ANY ng-switch-default>
+									<ANY ng-repeat="comment in comments">
+										<a name="comment-\{{comment.commentid}}"></a>
+										<h5><i>\{{comment.commentemail}} | \{{comment.commentcreatedate}}</i></h5>
+										<div class="well well-sm">
+											\{{comment.commentcontent}}
+										</div>
+										<div class="btn-group" role="group" aria-label="...">
+											<button type="button" class="btn btn-success btn-sm" ng-click="up(comment.commentid)">
+												<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> \{{comment.upvote}} Votes
+											</button>
+											<button type="button" class="btn btn-danger btn-sm" ng-click="down(comment.commentid)">
+												<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> \{{comment.downvote}} Votes
+											</button>
+											<button type="button" class="btn btn-primary btn-sm" ng-click="share(article.id,comment.commentid)">
+												Share
+											</button>
+										</div>
+										<br><br>
+									</ANY>
+								</ANY>
+							</ANY>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="page-header">
+								<h4>Add Comment <small>Pending Approval</small></h4>
+							</div>
+							<form role="form" action="/comment" method="POST" id="CommentForm">
+								<input type="hidden" name="postid" value="\{{article.id}}" />
+								<div class="form-group">
+									<label>Email address</label>
+									<input type="email" name="email" id="email" class="form-control" />
+								</div>
+								<div class="form-group">
+									<label>Content</label>
+									<textarea name="content" id="content" rows="3" class="form-control"></textarea>
+								</div>
+								<button type="submit" class="btn btn-success btn-sm">Add Comment</button>
+							</form>
+						</div>
+					</div>
+				</ANY>
+			</ANY>
+		</ANY>
+	</div>
+</div>
+<br>

@@ -1,80 +1,30 @@
 <br>
 <div class="row">
-	<div class="col-lg-8 col-lg-offset-2" id="posts">
-		{{#each MelyPosts}}
-			<div id="post">
+	<div class="col-lg-8 col-lg-offset-2">
+		<ANY ng-repeat="article in posts" on-finish-render>
+			<div data-sr>
 				<div class="row">
 					<div class="col-lg-12">
-						<a href="/post/{{postID}}"><b>{{postTitle}}</b></a>
+						<a ng-href="/post/\{{article.id}}" ng-bind="article.title"></a> | \{{article.createdAt}}
 					</div>
 				</div>
+				<hr>
 				<div class="row">
-					<div class="col-lg-12">
-						<small><b>{{postLastDate}}</b></small>
+					<div class="col-lg-12" ng-bind-html="article.content">
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-lg-12">
-						{{{postContent}}}
-					</div>
-				</div>
-				{{#unless ../SinglePost}}
-					{{#if comments_allowed}}
+				<br>
+				<ANY ng-switch="article.comments_allowed">
+					<ANY ng-switch-when="1">
 						<div class="row">
 							<div class="col-lg-12">
-								<a href="/post/{{postID}}#comments"><b>Comments</b></a>
+								<a href="/post/\{{article.id}}#comments"><b>Comments</b></a>
 							</div>
 						</div>
-					{{/if}}
-				{{else}}
-					{{#if comments_allowed}}
-						<a name="comments"></a>
-						<div class="row">
-							<div class="col-lg-12">
-								<h6><b>Comments</b></h6>
-								{{#each comments}}
-									<a name="comment-{{id}}"></a>
-									<div class="commentdate">{{email}} @ {{date}}</div>
-									<div class="commentcontent">{{content}}</div>
-										<div class="btn-group" role="group" aria-label="...">
-											<a href="/comment/{{id}}/up" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"> ({{upvote}})</span></a>
-											<a href="/comment/{{id}}/down" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"> ({{downvote}})</span></a>
-											<a href="/post/12#comment-{{id}}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"> Share</span></a>
-										</div>
-								{{/each}}
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="label secondary">New Comment</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-lg-12">
-								<form role="form" action="/comment" method="POST">
-									<input type="hidden" name="postid" value="{{postID}}" />
-									<div class="form-group">
-										<label>Email address</label>
-										<input type="email" name="email" class="form-control" />
-									</div>
-									<div class="form-group" action="/comment" method="POST">
-										<label>Content</label>
-										<textarea name="content" rows="3" class="form-control"></textarea>
-									</div>
-									<button type="submit" class="btn btn-success btn-sm">Add Comment</button>
-								</form>
-							</div>
-						</div>
-					{{/if}}
-				{{/unless}}
+					</ANY>
+				</ANY>
+				<br><br>
 			</div>
-		{{/each}}
+		</ANY>
 	</div>
 </div>
-{{#unless SinglePost}}
-<div class="row">
-	<div class="col-lg-8 col-lg-offset-2 text-center">
-		<button class="btn btn-success btn-sm" id="loadPosts">Load More</button>
-	</div>
-</div>
-{{/unless}}

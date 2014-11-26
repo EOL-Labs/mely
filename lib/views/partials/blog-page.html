@@ -1,7 +1,17 @@
 <div class="row">
 	<div class="col-lg-8 col-lg-offset-2">
-		{{#each MelyPage}}
-			{{{pageContent}}}
-		{{/each}}
+		<ANY ng-repeat="article in page">
+			<div class="row">
+				<div class="col-lg-12" >
+					<div class="page-header">
+						<h4 ng-bind="article.pageTitle"></h4>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12" ng-bind-html="article.pageContent">
+				</div>
+			</div>
+		</ANY>
 	</div>
 </div>
