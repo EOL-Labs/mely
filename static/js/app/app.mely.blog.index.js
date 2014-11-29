@@ -1,4 +1,9 @@
-app.controller("BlogMain", function($scope, $http){
+app.controller("BlogMain", function($scope, $http, styles){
+	$scope.headerStyle = styles.getHeaderClass();
+	$scope.menuStyle = styles.getMenuClass();
+	$scope.postTitleStyle = styles.getPostTitleClass();
+	$scope.postContentStyle = styles.getPostContentClass();
+	console.log($scope);
 	$http.get("/api/post",{
 	}).success(function(data){
 		for(var item in data){
@@ -11,7 +16,6 @@ app.controller("BlogMain", function($scope, $http){
 			});
 		}
 		$scope.posts = data;
-
 	}).error(function(data){
 		console.log("Error on Post API");
 	});

@@ -4,14 +4,14 @@
 		<ANY ng-repeat="article in posts" on-finish-render>
 			<div data-sr>
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-lg-12" ng-style="\{{postTitleStyle}}">
 						<a ng-href="/post/\{{article.id}}" ng-bind="article.title"></a> | \{{article.author}}
 						<br>\{{article.createdAt}}
 					</div>
 				</div>
 				<hr>
 				<div class="row">
-					<div class="col-lg-12" ng-bind-html="article.content">
+				<div class="col-lg-12" ng-bind-html="article.content" ng-style="\{{postContentStyle}}">
 					</div>
 				</div>
 				<br>

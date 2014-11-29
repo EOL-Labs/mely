@@ -1,4 +1,8 @@
-app.controller("BlogSinglePost", function($scope, $http, $location){
+app.controller("BlogSinglePost", function($scope, $http, $location, styles){
+	$scope.headerStyle = styles.getHeaderClass();
+	$scope.menuStyle = styles.getMenuClass();
+	$scope.postTitleStyle = styles.getPostTitleClass();
+	$scope.postContentStyle = styles.getPostContentClass();
 	var linkArray = $location.absUrl().split("/");
 	$http.get("/api/post/" + linkArray[4],{
 	}).success(function(data){
@@ -81,9 +85,6 @@ app.controller("BlogSinglePost", function($scope, $http, $location){
 	};
 	$scope.share = function(postid, commentid){
 		location.href = "/post/" + postid + "#comment-" + commentid;
-	}
-	$scope.try = function(){
-		$("#CommentForm").data("bootstrapValidator").validate();
-	}
+	};
 });
 	

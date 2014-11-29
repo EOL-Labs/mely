@@ -25,7 +25,7 @@
 						<td class="text-center">
 							<ANY ng-switch="article.comments_allowed">
 								<ANY ng-switch-when="0">NO</ANY>
-								<ANY ng-switch-when="1"><a href="#comments">YES</a></ANY>
+								<ANY ng-switch-when="1"><a href="/post/\{{article.postId}}#comments">YES</a></ANY>
 							</ANY>
 						</td>
 						<td class="text-center">

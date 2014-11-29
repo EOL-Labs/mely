@@ -13,7 +13,7 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="comment in comments">
-						<td class="text-center"><a href="#comment">Preview</a></td>
+						<td class="text-center"><a href="/post/\{{comment.postid}}#comment">Preview</a></td>
 						<td class="text-center" ng-bind="comment.commentemail"></td>
 						<td class="text-center" ng-bind="comment.commentcontent"></td>
 						<td class="text-center">

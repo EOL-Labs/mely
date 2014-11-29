@@ -15,10 +15,10 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="article in pages">
-						<td class="text-center"  ng-bind="article.title"></td>
-						<td class="text-center" ><a href="#page">Preview</a></td>
-						<td class="text-center"  ng-bind="article.order"></td>
-						<td class="text-center" >
+						<td class="text-center" ng-bind="article.title"></td>
+						<td class="text-center"><a href="\{{article.title}}">Preview</a></td>
+						<td class="text-center" ng-bind="article.order"></td>
+						<td class="text-center">
 							<ANY ng-switch="article.onmenu">
 								<ANY ng-switch-when="0">NO</ANY>
 								<ANY ng-switch-when="1">YES</ANY>
