@@ -1,35 +1,27 @@
-## Mely ##
+# Mely #
 <b>M</b>ake <b>E</b>verything <b>L</b>ook <b>Y</b>ours
 
 [![Build Status](https://travis-ci.org/EOL-Labs/mely.svg?branch=master)](https://travis-ci.org/EOL-Labs/mely)
 [![Dependency Status](https://david-dm.org/eol-labs/mely.png?theme=shields.io)](https://david-dm.org/eol-labs/mely)
 [![Code Climate](https://codeclimate.com/github/EOL-Labs/mely.png)](https://codeclimate.com/github/EOL-Labs/mely)
 
-Mely is a blogging platform for ***node.js***. It is currently WIP. In order to install and use Mely correctly you will need to follow a few steps.
+Mely is a blog platform built on hapi.js/node.js
 
-Clone Mely
+### Install Instructions ###
+
+Create MYSQL db for Blog
+
+Clone Mely > Go To Mely Folder > Copy/Edit Config Files > NPM Install
 ```bash
 git clone git@github.com:EOL-Labs/Mely.git
-```
-
-Go to Mely Folder and Copy Example Config files (located in /config)
-```bash
 cd Mely
 cp config/database.example.js config/database.js
 cp config/server.example.js config/server.js
 cp config/mail.example.js config/mail.js
 ```
 
-Install NPM Dependencies
-```bash
-npm install .
-```
-
-Create Database in a MySQL Server for use in your config file.
-
-Edit and Save config files using templates below
+Edit config files
 ```javascript
-//database config file
 exports.config = {
   type: "mysql",
   hostname: "localhost",
@@ -41,46 +33,36 @@ exports.config = {
 ```
 
 ```javascript
-//server config file
 exports.config = {
   hostname: "localhost",
-  port: 80,
-  https: false,
-  options: {
-    cors: true //defauls to false,
-    location: "http://www.example.com" //change this to current hosting address if not using localhost if not comment out line
-  }
-}
+  port: 8080,
+};
 ```
 
 ```javascript
 exports.mailconfig = {
-  // list of method types below
-  method: "sendmail",
-  // custom transport methods
-  // https://github.com/andris9/Nodemailer#custom-transport-methods
-  sendmail:{
-    bin: '/usr/sbin/sendmail',
-    from: '"Server Name" <no-reply@yourdomain.com>'
-  }
+    host: "mailserver_host",
+    port: 25,
+    from: "Server Name <no-reply@address.com>"
 };
-
-// - SMTP
-// - SES = Amazon SES
-// - Sendmail
-// - Pickup = Email Storage in a directory on your machine
-// - Direct = Sending Emails directly to recipients MTA servers
 ```
 
-Start by:
+NPM Install
+```bash
+npm install .
+```
+
+Start Mely
 ```bash
 node .
 ```
 
-Go to http://yourhost:yourport/welcome
+**Admin Interface**
 
-**v.0.1.0**
+http://localhost:8080/admin
 
-MIT
+**Blog Interface**
+
+http://localhost:8080
 
 &copy; EOL Labs
