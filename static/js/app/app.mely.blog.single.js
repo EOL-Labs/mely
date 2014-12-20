@@ -22,6 +22,7 @@ app.controller("BlogSinglePost", function($scope, $http, $location, styles){
 	$http.get("/api/comment/" + linkArray[4],{
 	}).success(function(data){
 		$scope.comments = data;
+		$scope.predicate = "-commentcreatedate";
 		$("#CommentForm").bootstrapValidator({
 			feedbackIcons:{
 				valid: "glyphicon glyphicon-ok",

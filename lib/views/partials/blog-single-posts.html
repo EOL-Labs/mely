@@ -20,13 +20,22 @@
 						<div class="col-lg-12">
 							<div class="page-header">
 								<h4>Comments</h4>
+								<small>
+									<a href="#" ng-click="predicate = 'upvote'; reverse=!reverse">Upvotes</a>
+									&nbsp;|&nbsp;
+									<a href="#" ng-click="predicate = 'downvote'; reverse=!reverse">Downvotes</a>
+									&nbsp;|&nbsp;
+									<a href="#" ng-click="predicate = '-commentcreatedate'; reverse=false">Newest</a>
+									&nbsp;|&nbsp;
+									<a href="#" ng-click="predicate = 'commentcreatedate'; reverse=false">Oldest</a>
+								</small>
 							</div>
 							<ANY ng-switch="comments.length">
 								<ANY ng-switch-when="0">
 									No comments
 								</ANY>
 								<ANY ng-switch-default>
-									<ANY ng-repeat="comment in comments">
+									<ANY ng-repeat="comment in comments | orderBy:predicate:reverse">
 										<a name="comment-\{{comment.commentid}}"></a>
 										<h5><i>\{{comment.commentemail}} | \{{comment.commentcreatedate}}</i></h5>
 										<div class="well well-sm">
