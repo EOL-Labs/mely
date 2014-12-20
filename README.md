@@ -22,6 +22,7 @@ cp config/mail.example.js config/mail.js
 
 Edit config files
 ```javascript
+// DB Config
 exports.config = {
   type: "mysql",
   hostname: "localhost",
@@ -33,6 +34,7 @@ exports.config = {
 ```
 
 ```javascript
+// Server Config
 exports.config = {
   hostname: "localhost",
   port: 8080,
@@ -40,6 +42,7 @@ exports.config = {
 ```
 
 ```javascript
+// Mail Config
 exports.mailconfig = {
     host: "mailserver_host",
     port: 25,
