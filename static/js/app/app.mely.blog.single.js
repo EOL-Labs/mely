@@ -87,5 +87,5 @@ app.controller("BlogSinglePost", function($scope, $http, $location, styles){
 	$scope.share = function(postid, commentid){
 		location.href = "/post/" + postid + "#comment-" + commentid;
 	};
+
 });
-	
