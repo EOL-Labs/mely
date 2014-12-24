@@ -3,7 +3,6 @@ app.controller("BlogMain", function($scope, $http, styles){
 	$scope.menuStyle = styles.getMenuClass();
 	$scope.postTitleStyle = styles.getPostTitleClass();
 	$scope.postContentStyle = styles.getPostContentClass();
-	console.log($scope);
 	$http.get("/api/post",{
 	}).success(function(data){
 		for(var item in data){

@@ -1,252 +1,228 @@
-var assert = require("assert");
-var database = require("../config").database;
-var models = require('../lib/models');
-var administration = require("../lib/administration");
+var Code = require("code");
+var Lab = require("lab");
+var models = require("../lib/models");
+var database = require("../config");
 var Mely = {};
-Mely.Administrator = administration;
+Mely.Administrator = require("../lib/administration");
+var lab = exports.lab = Lab.script();
 
+//set values
 var email = "test@aol.com";
-var email2 = "test@yahoo.com";
 var password = "Password1234";
 var systemid = 1;
+var email2 = "test@yahoo.com";
 var userid = 1;
-var pageid = 1;
-var postid = 1;
-var commentid = 1;
-var themeid = 1;
-var directionOfApproval = true;
 var title = "My Title";
 var content = "My Content";
 var published = 1;
-var draft = 2;
-var deleted = 3;
-var markdown = "**b**";
+var pageid = 1;
+var postid = 1;
 var name = "My Theme";
 var description = "My Theme Description";
-var melyname = "My Mely Name";
-var melydescription = "My Mely Description";
+var themeid = 1;
+var commentid = 1;
+var directionOfApproval = true;
 
-describe("Mely", function(){
-	before(function(done){
+lab.experiment("Mely Tests", function(){
+	lab.before(function(done){
 		var virt_modules = [];
 		models.init(virt_modules, function() {
 			done();
 		});
-	});
-	describe("#systems", function(){
-		describe("#createSystem()",function(){
-			it("should return system object", function(done){
+    });
+    lab.experiment("Systems", function(){
+    	lab.experiment("CreateSystem()", function(){
+	    	lab.test("CreateSystem() w/ valid information", function(done){
 				Mely.Administrator.createSystem({
-					name: name,
-					description: description
+					name: "Tests",
+					description: "Tests"
 				},function(err, system){
-					assert(err === null);
-					assert(system !== undefined);
+					Code.expect(err).to.be.null();
+					Code.expect(system).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return error if name is undefined", function(done){
-				Mely.Administrator.createSystem({
-					description: description
+			lab.test("CreateSystem() w/ missing name", function(done){
+	    		Mely.Administrator.createSystem({
+					description: "Tests"
 				},function(err, system){
-					assert(err instanceof Error);
-					assert(system === undefined);
-					done();
-				});
-			});
-		});
-		describe("#getSystemCount()",function(){
-			it("should return system count", function(done){
-				Mely.Administrator.getSystemCount({
-				}, function(err, count){
-					assert(err === null);
-					assert(count !== undefined);
-					done();
-				});
-			});
-		});
-		describe("#getSystem()",function(){
-			it("should return system object", function(done){
-				Mely.Administrator.getSystem({
-				}, function(err, system){
-					assert(err === null);
-					assert(system !== undefined);
+					Code.expect(system).to.be.undefined();
+					Code.expect(err).to.be.an.instanceof(Error);
 					done();
 				});
 			});
 		});
 	});
-	describe("#users", function(){
-		describe("#createUser()", function(){
-			it("should return user object", function(done){
-				Mely.Administrator.createUser({
+	lab.experiment("Users", function(){
+		lab.experiment("CreateUser()", function(){
+	    	lab.test("should return user object", function(done){
+	    		Mely.Administrator.createUser({
 					email: email,
 					password: password,
 					systemid: systemid
 				}, function(err, user){
-					assert(err === null);
-					assert(user !== undefined);
-					assert(user.id !== undefined);
-					assert(user.email_address !== undefined && user.email_address === email);
-					assert(user.password !== undefined && user.password === password);
-					assert(user.SystemId !== undefined && user.SystemId === systemid);
-					assert(user.status !== undefined && user.status === true);
+					Code.expect(err).to.be.null();
+					Code.expect(user).to.not.equal(undefined);
+					Code.expect(user.email_address).to.equal(email);
+					Code.expect(user.password).to.equal(password);
+					Code.expect(user.SystemId).to.equal(systemid);
+					Code.expect(user.status).to.equal(true);
 					done();
 				});
 			});
-			it("should return error when email is undefined", function(done){
-				Mely.Administrator.createUser({
+			lab.test("should return error when email is undefined", function(done){
+	    		Mely.Administrator.createUser({
 					password: password,
 					systemid: systemid
 				}, function(err, user){
-					assert(err instanceof Error);
-					assert(user === undefined);
+					Code.expect(user).to.be.undefined();
+					Code.expect(err).to.be.an.instanceof(Error);
 					done();
 				});
 			});
-			it("should return error when is undefined", function(done){
-				Mely.Administrator.createUser({
+			lab.test("should return error when password is undefined", function(done){
+	    		Mely.Administrator.createUser({
 					email: email,
 					systemid: systemid
 				}, function(err, user){
-					assert(err instanceof Error);
-					assert(user === undefined);
+					Code.expect(user).to.be.undefined();
+					Code.expect(err).to.be.an.instanceof(Error);
 					done();
 				});
 			});
-			it("should return error when is undefined", function(done){
-				Mely.Administrator.createUser({
-					email: email,
+			lab.test("should return error when email is undefined", function(done){
+	    		Mely.Administrator.createUser({
+	    			email: email,
 					password: password
 				}, function(err, user){
-					assert(err instanceof Error);
-					assert(user === undefined);
+					Code.expect(user).to.be.undefined();
+					Code.expect(err).to.be.an.instanceof(Error);
 					done();
 				});
 			});
 		});
-		describe("#getUser()",function(){
-			it("should return array w/ user objects", function(done){
+		lab.experiment("GetUser()", function(){
+			lab.test("should return array w/ user objects", function(done){
 				Mely.Administrator.getUser({
 					systemid: systemid
 				}, function(err, users){
-					assert(err === null);
-					assert(users !== undefined);
+					Code.expect(err).to.be.null();
+					Code.expect(users).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return error when systemid is undefined", function(done){
+			lab.test("should return error when systemid is undefined", function(done){
 				Mely.Administrator.getUser({
 				}, function(err, users){
-					assert(err instanceof Error);
-					assert(users === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(users).to.be.undefined();
 					done();
 				});
 			});
 		});
-		describe("#loginUser()",function(){
-			it("should return user object",function(done){
+		lab.experiment("LoginUser()", function(){
+			lab.test("should return user object", function(done){
 				Mely.Administrator.loginUser({
 					email:email,
 					password: password
 				},function(err, user){
-					assert(err === null);
-					assert(user !== null);
-					assert(user.email_address !== undefined && user.email_address === email);
+					Code.expect(err).to.be.null();
+					Code.expect(user).to.not.equal(undefined);
+					Code.expect(user.email_address).to.equal(email);
 					done();
 				});
 			});
-			it("should return user === null",function(done){
+			lab.test("should return user === null", function(done){
 				Mely.Administrator.loginUser({
 					email:email2,
 					password: password
 				},function(err, user){
-					assert(err === null);
-					assert(user === null);
+					Code.expect(err).to.be.null();
+					Code.expect(user).to.be.null();
 					done();
 				});
 			});
-			it("should return error when email is undefined",function(done){
+			lab.test("should return error when email is undefined", function(done){
 				Mely.Administrator.loginUser({
 					password: password
 				},function(err, user){
-					assert(err instanceof Error);
-					assert(user === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(user).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when password is undefined",function(done){
+			lab.test("should return error when password is undefined", function(done){
 				Mely.Administrator.loginUser({
 					email:email
 				},function(err, user){
-					assert(err instanceof Error);
-					assert(user === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(user).to.be.undefined();
 					done();
 				});
 			});
-		});		
-		describe("#resetPassword()",function(){
-			it("should reset the users password", function(done) {
+		});
+		lab.experiment("ResetPassword()", function(){
+			lab.test("should reset the users password", function(done){
 				Mely.Administrator.resetPassword({
 					email: email,
 					password: "ABCDEF1234"
 				},function(err, user){
-					assert(err === null);
-					assert(user !== undefined);
+					Code.expect(err).to.be.null();
+					Code.expect(user).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return error when email is undefined", function(done){
+			lab.test("should return error when email is undefined", function(done){
 				Mely.Administrator.resetPassword({
 					email: email2
 				},function(err, user){
-					assert(err instanceof Error);
-					assert(user === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(user).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when password is undefined", function(done){
+			lab.test("should return error when password is undefined", function(done){
 				Mely.Administrator.resetPassword({
 					password: "ABCDEF1234"
 				},function(err, user){
-					assert(err instanceof Error);
-					assert(user === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(user).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when email is not found", function(done){
+			lab.test("should return error when email is not found", function(done){
 				Mely.Administrator.resetPassword({
 					email: "noemail@test.com",
 					password: "ABCDEF1234"
 				},function(err, user){
-					assert(err === "No Email");
+					Code.expect(err).to.equal("No Email");
 					done();
 				});
 			});
 		});
-		describe("#deleteUser()",function(){
-			it("should delete user", function(done) {
+		lab.experiment("DeleteUser()", function(){
+			lab.test("should delete user", function(done){
 				Mely.Administrator.deleteUser({
 					id: userid,
 				},function(err, user){
-					assert(err === null);
-					assert(user !== undefined);
+					Code.expect(err).to.be.null();
+					Code.expect(user).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return error when id is undefined", function(done){
+			lab.test("should return error when id is undefined", function(done){
 				Mely.Administrator.deleteUser({
 				},function(err, user){
-					assert(err instanceof Error);
-					assert(user === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(user).to.be.undefined();
 					done();
 				});
 			});
 		});
 	});
-	describe("#pages",function(){
-		describe("#createPage()",function(){
-			it("should return page object",function(done){
+	lab.experiment("Pages", function(){
+		lab.experiment("CreatePage()", function(){
+			lab.test("should return page object", function(done){
 				Mely.Administrator.createPage({
 					title: title,
 					content: content,
@@ -256,18 +232,17 @@ describe("Mely", function(){
 					order: 1,
 					menuview: 1
 				},function(err, page){
-					assert(err === null);
-					assert(page !== undefined);
-					assert(page.id !== undefined);
-					assert(page.title !== undefined && page.title === title);
-					assert(page.content !== undefined && page.content === content);
-					assert(page.status !== undefined && page.status === published);
-					assert(page.SystemId !== undefined && page.SystemId === systemid);
-					assert(page.UserId !== undefined && page.UserId === userid);
+					Code.expect(err).to.be.null();
+					Code.expect(page).to.not.equal(undefined);
+					Code.expect(page.title).to.equal(title);
+					Code.expect(page.content).to.equal(content);
+					Code.expect(page.status).to.equal(published);
+					Code.expect(page.SystemId).to.equal(systemid);
+					Code.expect(page.UserId).to.equal(userid);
 					done();
 				});
 			});
-			it("should return error if title is undefined",function(done){
+			lab.test("should return error if title is undefined", function(done){
 				Mely.Administrator.createPage({
 					content: content,
 					status: published,
@@ -276,12 +251,12 @@ describe("Mely", function(){
 					order: 1,
 					menuview: 1
 				},function(err, page){
-					assert(err instanceof Error);
-					assert(page === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(page).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error if content is undefined",function(done){
+			lab.test("should return error if content is undefined", function(done){
 				Mely.Administrator.createPage({
 					title: title,
 					status: published,
@@ -290,12 +265,12 @@ describe("Mely", function(){
 					order: 1,
 					menuview: 1
 				},function(err, page){
-					assert(err instanceof Error);
-					assert(page === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(page).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error if systemid is undefined",function(done){
+			lab.test("should return error if systemid is undefined", function(done){
 				Mely.Administrator.createPage({
 					title: title,
 					content: content,
@@ -304,12 +279,12 @@ describe("Mely", function(){
 					order: 1,
 					menuview: 1
 				},function(err, page){
-					assert(err instanceof Error);
-					assert(page === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(page).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error if userid is undefined",function(done){
+			lab.test("should return error if userid is undefined", function(done){
 				Mely.Administrator.createPage({
 					title: title,
 					content: content,
@@ -318,12 +293,12 @@ describe("Mely", function(){
 					order: 1,
 					menuview: 1
 				},function(err, page){
-					assert(err instanceof Error);
-					assert(page === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(page).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error if order is undefined",function(done){
+			lab.test("should return error if order is undefined", function(done){
 				Mely.Administrator.createPage({
 					title: title,
 					content: content,
@@ -332,12 +307,12 @@ describe("Mely", function(){
 					order: 1,
 					menuview: 1
 				},function(err, page){
-					assert(err instanceof Error);
-					assert(page === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(page).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error if status is undefined",function(done){
+			lab.test("should return error if status is undefined", function(done){
 				Mely.Administrator.createPage({
 					title: title,
 					content: content,
@@ -346,55 +321,54 @@ describe("Mely", function(){
 					order: 1,
 					menuview: 1
 				},function(err, page){
-					assert(err instanceof Error);
-					assert(page === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(page).to.be.undefined();
 					done();
 				});
 			});
 		});
-		describe("#getPage()",function(){
-			it("should return array w/ page objects", function(done){
+		lab.experiment("GetPage()", function(){
+			lab.test("should return array w/ page objects", function(done){
 				Mely.Administrator.getPage({
 					systemid: systemid
 				}, function(err, pages){
-					assert(err === null);
-					assert(pages !== undefined);
+					Code.expect(err).to.be.null();
+					Code.expect(pages).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return array w/ 1 page object if id is present", function(done){
+			lab.test("should return array w/ 1 page object if id is present", function(done){
 				Mely.Administrator.getPage({
 					systemid: systemid,
 					id: pageid
 				}, function(err, pages){
-					assert(pages.length === 1);
-					assert(err === null);
-					assert(pages !== undefined);
+					Code.expect(pages).to.be.an.array();
+					Code.expect(err).to.be.null();
+					Code.expect(pages).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return array w/ 1 page object if title is present", function(done){
+			lab.test("should return array w/ 1 page object if title is present", function(done){
 				Mely.Administrator.getPage({
 					systemid: systemid,
 					title: title
 				}, function(err, pages){
-					assert(pages.length === 1);
-					assert(err === null);
-					assert(pages !== undefined);
+					Code.expect(pages).to.be.an.array();
+					Code.expect(err).to.be.null();
 					done();
 				});
 			});
-			it("should return error when systemid is undefined", function(done){
+			lab.test("should return error when systemid is undefined", function(done){
 				Mely.Administrator.getPage({
 				}, function(err, pages){
-					assert(err instanceof Error);
-					assert(pages === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(pages).to.be.undefined();
 					done();
 				});
 			});
 		});
-		describe("#updatePage()",function(){
-			it("should update page", function(done){
+		lab.experiment("UpdatePage()", function(){
+			lab.test("should update page", function(done){
 				Mely.Administrator.updatePage({
 					id: pageid,
 					title: title,
@@ -403,12 +377,12 @@ describe("Mely", function(){
 					order: 2,
 					menuview: true
 				}, function(err, page){
-					assert(err === null);
-					assert(page !== undefined);
+					Code.expect(err).to.be.null();
+					Code.expect(page).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return error when pageid is undefined", function(done){
+			lab.test("should return error when pageid is undefined", function(done){
 				Mely.Administrator.updatePage({
 					title: title,
 					content: content,
@@ -416,12 +390,12 @@ describe("Mely", function(){
 					order: 2,
 					menuview: true
 				}, function(err, page){
-					assert(err instanceof Error);
-					assert(page === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(page).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when title is undefined", function(done){
+			lab.test("should return error when title is undefined", function(done){
 				Mely.Administrator.updatePage({
 					id: pageid,
 					content: content,
@@ -429,12 +403,12 @@ describe("Mely", function(){
 					order: 2,
 					menuview: true
 				}, function(err, page){
-					assert(err instanceof Error);
-					assert(page === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(page).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when content is undefined", function(done){
+			lab.test("should return error when content is undefined", function(done){
 				Mely.Administrator.updatePage({
 					id: pageid,
 					title: title,
@@ -442,12 +416,12 @@ describe("Mely", function(){
 					order: 2,
 					menuview: true
 				}, function(err, page){
-					assert(err instanceof Error);
-					assert(page === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(page).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when status is undefined", function(done){
+			lab.test("should return error when status is undefined", function(done){
 				Mely.Administrator.updatePage({
 					id: pageid,
 					title: title,
@@ -455,12 +429,12 @@ describe("Mely", function(){
 					order: 2,
 					menuview: true
 				}, function(err, page){
-					assert(err instanceof Error);
-					assert(page === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(page).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when order is undefined", function(done){
+			lab.test("should return error when order is undefined", function(done){
 				Mely.Administrator.updatePage({
 					id: pageid,
 					title: title,
@@ -468,16 +442,16 @@ describe("Mely", function(){
 					status: published,
 					menuview: true
 				}, function(err, page){
-					assert(err instanceof Error);
-					assert(page === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(page).to.be.undefined();
 					done();
 				});
 			});
 		});
 	});
-	describe("#posts",function(){
-		describe("#createPost()",function(){
-			it("should return post object",function(done){
+	lab.experiment("Posts", function(){
+		lab.experiment("CreatePost()", function(){
+			lab.test("should return post object", function(done){
 				Mely.Administrator.createPost({
 					title: title,
 					content: content,
@@ -485,170 +459,169 @@ describe("Mely", function(){
 					systemid: systemid,
 					userid: userid
 				},function(err, post){
-					assert(err === null);
-					assert(post !== undefined);
-					assert(post.id !== undefined);
-					assert(post.title !== undefined && post.title === title);
-					assert(post.content !== undefined && post.content === content);
-					assert(post.status !== undefined && post.status === published);
-					assert(post.SystemId !== undefined && post.SystemId === systemid);
-					assert(post.UserId !== undefined && post.UserId === userid);
+					Code.expect(err).to.be.null();
+					Code.expect(post).to.not.equal(undefined);
+					Code.expect(post.title).to.equal(title);
+					Code.expect(post.content).to.equal(content);
+					Code.expect(post.status).to.equal(published);
+					Code.expect(post.SystemId).to.equal(systemid);
+					Code.expect(post.UserId).to.equal(userid);
 					done();
 				});
 			});
-			it("should return error if title is undefined",function(done){
+			lab.test("should return error if title is undefined", function(done){
 				Mely.Administrator.createPost({
 					content: content,
 					status: published,
 					systemid: systemid,
 					userid: userid
 				},function(err, post){
-					assert(err instanceof Error);
-					assert(post === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(post).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error if content is undefined",function(done){
+			lab.test("should return error if content is undefined", function(done){
 				Mely.Administrator.createPost({
 					title: title,
 					status: published,
 					systemid: systemid,
 					userid: userid
 				},function(err, post){
-					assert(err instanceof Error);
-					assert(post === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(post).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error if systemid is undefined",function(done){
+			lab.test("should return error if systemid is undefined", function(done){
 				Mely.Administrator.createPost({
 					title: title,
 					content: content,
 					status: published,
 					userid: userid
 				},function(err, post){
-					assert(err instanceof Error);
-					assert(post === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(post).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error if userid is undefined",function(done){
+			lab.test("should return error if userid is undefined", function(done){
 				Mely.Administrator.createPost({
 					title: title,
 					content: content,
 					status: published,
 					systemid: systemid
 				},function(err, post){
-					assert(err instanceof Error);
-					assert(post === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(post).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error if status is undefined",function(done){
+			lab.test("should return error if status is undefined", function(done){
 				Mely.Administrator.createPost({
 					title: title,
 					content: content,
 					systemid: systemid,
 					userid: userid
 				},function(err, post){
-					assert(err instanceof Error);
-					assert(post === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(post).to.be.undefined();
 					done();
 				});
 			});
 		});
-		describe("#getPost()",function(){
-			it("should return array w/ post objects", function(done){
+		lab.experiment("GetPost()", function(){
+			lab.test("should return array w/ post objects", function(done){
 				Mely.Administrator.getPost({
 					systemid: systemid
 				}, function(err, posts){
-					assert(err === null);
-					assert(posts !== undefined);
+					Code.expect(err).to.be.null();
+					Code.expect(posts).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return array w/ 1 post object", function(done){
+			lab.test("should return array w/ 1 post object", function(done){
 				Mely.Administrator.getPost({
 					systemid: systemid,
 					id: postid
 				}, function(err, posts){
-					assert(posts.length === 1);
-					assert(err === null);
-					assert(posts !== undefined);
+					Code.expect(posts).to.be.an.array();
+					Code.expect(err).to.be.null();
+					Code.expect(posts).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return error when systemid is undefined", function(done){
+			lab.test("should return error when systemid is undefined", function(done){
 				Mely.Administrator.getPost({
 				}, function(err, posts){
-					assert(err instanceof Error);
-					assert(posts === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(posts).to.be.undefined();
 					done();
 				});
 			});
 		});
-		describe("#updatePost()",function(){
-			it("should update post", function(done){
+		lab.experiment("UpdatePost()", function(){
+			lab.test("should update post", function(done){
 				Mely.Administrator.updatePost({
 					id: postid,
 					title: title,
 					content: content,
 					status: published
 				}, function(err, post){
-					assert(err === null);
-					assert(post !== undefined);
+					Code.expect(err).to.be.null();
+					Code.expect(post).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return error when postid is undefined", function(done){
+			lab.test("should return error when postid is undefined", function(done){
 				Mely.Administrator.updatePost({
 					title: title,
 					content: content,
 					status: published
 				}, function(err, post){
-					assert(err instanceof Error);
-					assert(post === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(post).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when title is undefined", function(done){
+			lab.test("should return error when title is undefined", function(done){
 				Mely.Administrator.updatePost({
 					id: postid,
 					content: content,
 					status: published
 				}, function(err, post){
-					assert(err instanceof Error);
-					assert(post === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(post).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when content is undefined", function(done){
+			lab.test("should return error when content is undefined", function(done){
 				Mely.Administrator.updatePost({
 					id: postid,
 					title: title,
 					status: published
 				}, function(err, post){
-					assert(err instanceof Error);
-					assert(post === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(post).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when status is undefined", function(done){
+			lab.test("should return error when status is undefined", function(done){
 				Mely.Administrator.updatePost({
 					id: postid,
 					title: title,
 					content: content
 				}, function(err, post){
-					assert(err instanceof Error);
-					assert(post === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(post).to.be.undefined();
 					done();
 				});
 			});
 		});
 	});
-	describe("#themes",function(){
-		describe("#createTheme()",function(){
-			it("should return theme object", function(done){
+	lab.experiment("Themes", function(){
+		lab.experiment("CreateTheme()", function(){
+			lab.test("should return theme object", function(done){
 				Mely.Administrator.createTheme({
 					name: name,
 					description: description,
@@ -669,12 +642,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err === null);
-					assert(theme !== undefined);
+					Code.expect(err).to.be.null();
+					Code.expect(theme).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return error when name is undefined", function(done){
+			lab.test("should return error when name is undefined", function(done){
 				Mely.Administrator.createTheme({
 					description: description,
 					systemid: systemid,
@@ -694,12 +667,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when description is undefined", function(done){
+			lab.test("should return error when description is undefined", function(done){
 				Mely.Administrator.createTheme({
 					name: name,
 					systemid: systemid,
@@ -719,12 +692,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when systemid is undefined", function(done){
+			lab.test("should return error when systemid is undefined", function(done){
 				Mely.Administrator.createTheme({
 					name: name,
 					description: description,
@@ -744,12 +717,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when headback is undefined", function(done){
+			lab.test("should return error when headback is undefined", function(done){
 				Mely.Administrator.createTheme({
 					name: name,
 					description: description,
@@ -769,12 +742,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when headfontcolor is undefined", function(done){
+			lab.test("should return error when headfontcolor is undefined", function(done){
 				Mely.Administrator.createTheme({
 					name: name,
 					description: description,
@@ -794,12 +767,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when headfontsize is undefined", function(done){
+			lab.test("should return error when headfontsize is undefined", function(done){
 				Mely.Administrator.createTheme({
 					name: name,
 					description: description,
@@ -819,12 +792,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when menuback is undefined", function(done){
+			lab.test("should return error when menuback is undefined", function(done){
 				Mely.Administrator.createTheme({
 					name: name,
 					description: description,
@@ -844,12 +817,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when menufontcolor is undefined", function(done){
+			lab.test("should return error when menufontcolor is undefined", function(done){
 				Mely.Administrator.createTheme({
 					name: name,
 					description: description,
@@ -869,12 +842,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when menufontsize is undefined", function(done){
+			lab.test("should return error when menufontsize is undefined", function(done){
 				Mely.Administrator.createTheme({
 					name: name,
 					description: description,
@@ -894,12 +867,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when posttitlecolor is undefined", function(done){
+			lab.test("should return error when posttitlecolor is undefined", function(done){
 				Mely.Administrator.createTheme({
 					name: name,
 					description: description,
@@ -919,12 +892,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when posttitlesize is undefined", function(done){
+			lab.test("should return error when posttitlesize is undefined", function(done){
 				Mely.Administrator.createTheme({
 					name: name,
 					description: description,
@@ -944,12 +917,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when postcontentcolor is undefined", function(done){
+			lab.test("should return error when postcontentcolor is undefined", function(done){
 				Mely.Administrator.createTheme({
 					name: name,
 					description: description,
@@ -969,12 +942,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when postcontentsize is undefined", function(done){
+			lab.test("should return error when postcontentsize is undefined", function(done){
 				Mely.Administrator.createTheme({
 					name: name,
 					description: description,
@@ -994,12 +967,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when pagetitlecolor is undefined", function(done){
+			lab.test("should return error when pagetitlecolor is undefined", function(done){
 				Mely.Administrator.createTheme({
 					name: name,
 					description: description,
@@ -1019,12 +992,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when pagetitlesize is undefined", function(done){
+			lab.test("should return error when pagetitlesize is undefined", function(done){
 				Mely.Administrator.createTheme({
 					name: name,
 					description: description,
@@ -1044,12 +1017,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when pagecontentcolor is undefined", function(done){
+			lab.test("should return error when pagecontentcolor is undefined", function(done){
 				Mely.Administrator.createTheme({
 					name: name,
 					description: description,
@@ -1069,12 +1042,12 @@ describe("Mely", function(){
 					pagetitlesize:"12",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when pagecontentsize is undefined", function(done){
+			lab.test("should return error when pagecontentsize is undefined", function(done){
 				Mely.Administrator.createTheme({
 					name: name,
 					description: description,
@@ -1094,63 +1067,63 @@ describe("Mely", function(){
 					pagetitlesize:"12",
 					pagecontentcolor:"000000",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
 		});
-		describe("#getTheme()",function(){
-			it("should return array w/ theme objects", function(done){
+		lab.experiment("GetTheme()", function(){
+			lab.test("should return array w/ theme objects", function(done){
 				Mely.Administrator.getTheme({
 					systemid: systemid
 				}, function(err, themes){
-					assert(err === null);
-					assert(themes !== undefined);
+					Code.expect(err).to.be.null();
+					Code.expect(themes).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return array w/ 1 theme object", function(done){
+			lab.test("should return array w/ 1 theme object", function(done){
 				Mely.Administrator.getTheme({
 					systemid: systemid,
 					id: themeid
 				}, function(err, themes){
-					assert(themes.length === 1);
-					assert(err === null);
-					assert(themes !== undefined);
+					Code.expect(themes).to.be.an.array();
+					Code.expect(err).to.be.null();
+					Code.expect(themes).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return error when systemid is undefined", function(done){
+			lab.test("should return error when systemid is undefined", function(done){
 				Mely.Administrator.getUser({
 				}, function(err, themes){
-					assert(err instanceof Error);
-					assert(themes === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(themes).to.be.undefined();
 					done();
 				});
 			});
 		});
-		describe("#getThemeSetting()",function(){
-			it("should return array w/ 1 theme setting object", function(done){
+		lab.experiment("GetThemeSetting()", function(){
+			lab.test("should return array w/ 1 theme setting object", function(done){
 				Mely.Administrator.getThemeSetting({
 					id: themeid
 				}, function(err, themesetting){
-					assert(err === null);
-					assert(themesetting !== undefined);
+					Code.expect(err).to.be.null();
+					Code.expect(themesetting).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return error when id is undefined", function(done){
+			lab.test("should return error when id is undefined", function(done){
 				Mely.Administrator.getThemeSetting({
 				}, function(err, themesetting){
-					assert(err instanceof Error);
-					assert(themesetting === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(themesetting).to.be.undefined();
 					done();
 				});
 			});
 		});
-		describe("#updateTheme()",function(){
-			it("should update theme", function(done){
+		lab.experiment("UpdateTheme()", function(){
+			lab.test("should update theme", function(done){
 				Mely.Administrator.updateTheme({
 					id: themeid,
 					name: name,
@@ -1171,12 +1144,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err === null);
-					assert(theme !== undefined);
+					Code.expect(err).to.be.null();
+					Code.expect(theme).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return error when name is undefined", function(done){
+			lab.test("should return error when name is undefined", function(done){
 				Mely.Administrator.updateTheme({
 					id: themeid,
 					description: description,
@@ -1196,12 +1169,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when description is undefined", function(done){
+			lab.test("should return error when description is undefined", function(done){
 				Mely.Administrator.updateTheme({
 					id: themeid,
 					name: name,
@@ -1221,12 +1194,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when id is undefined", function(done){
+			lab.test("should return error when id is undefined", function(done){
 				Mely.Administrator.updateTheme({
 					name: name,
 					description: description,
@@ -1246,12 +1219,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when headback is undefined", function(done){
+			lab.test("should return error when headback is undefined", function(done){
 				Mely.Administrator.updateTheme({
 					id: themeid,
 					name: name,
@@ -1271,12 +1244,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when headfontcolor is undefined", function(done){
+			lab.test("should return error when headfontcolor is undefined", function(done){
 				Mely.Administrator.updateTheme({
 					id: themeid,
 					name: name,
@@ -1296,12 +1269,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when headfontsize is undefined", function(done){
+			lab.test("should return error when headfontsize is undefined", function(done){
 				Mely.Administrator.updateTheme({
 					id: themeid,
 					name: name,
@@ -1321,12 +1294,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when menuback is undefined", function(done){
+			lab.test("should return error when menuback is undefined", function(done){
 				Mely.Administrator.updateTheme({
 					id: themeid,
 					name: name,
@@ -1346,12 +1319,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when menufontcolor is undefined", function(done){
+			lab.test("should return error when menufontcolor is undefined", function(done){
 				Mely.Administrator.updateTheme({
 					id: themeid,
 					name: name,
@@ -1371,12 +1344,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when menufontsize is undefined", function(done){
+			lab.test("should return error when menufontsize is undefined", function(done){
 				Mely.Administrator.updateTheme({
 					id: themeid,
 					name: name,
@@ -1396,12 +1369,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when posttitlecolor is undefined", function(done){
+			lab.test("should return error when posttitlecolor is undefined", function(done){
 				Mely.Administrator.updateTheme({
 					id: themeid,
 					name: name,
@@ -1421,12 +1394,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when posttitlesize is undefined", function(done){
+			lab.test("should return error when posttitlesize is undefined", function(done){
 				Mely.Administrator.updateTheme({
 					id: themeid,
 					name: name,
@@ -1446,12 +1419,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when postcontentcolor is undefined", function(done){
+			lab.test("should return error when postcontentcolor is undefined", function(done){
 				Mely.Administrator.updateTheme({
 					id: themeid,
 					name: name,
@@ -1471,12 +1444,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when postcontentsize is undefined", function(done){
+			lab.test("should return error when postcontentsize is undefined", function(done){
 				Mely.Administrator.updateTheme({
 					id: themeid,
 					name: name,
@@ -1496,12 +1469,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when pagetitlecolor is undefined", function(done){
+			lab.test("should return error when pagetitlecolor is undefined", function(done){
 				Mely.Administrator.updateTheme({
 					id: themeid,
 					name: name,
@@ -1521,12 +1494,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when pagetitlesize is undefined", function(done){
+			lab.test("should return error when pagetitlesize is undefined", function(done){
 				Mely.Administrator.updateTheme({
 					id: themeid,
 					name: name,
@@ -1546,12 +1519,12 @@ describe("Mely", function(){
 					pagecontentcolor:"000000",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when pagecontentcolor is undefined", function(done){
+			lab.test("should return error when pagecontentcolor is undefined", function(done){
 				Mely.Administrator.updateTheme({
 					id: themeid,
 					name: name,
@@ -1571,12 +1544,12 @@ describe("Mely", function(){
 					pagetitlesize:"12",
 					pagecontentsize:"12",
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when pagecontentsize is undefined", function(done){
+			lab.test("should return error when pagecontentsize is undefined", function(done){
 				Mely.Administrator.updateTheme({
 					id: themeid,
 					name: name,
@@ -1596,215 +1569,214 @@ describe("Mely", function(){
 					pagetitlesize:"12",
 					pagecontentcolor:"000000"
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
 		});
-		describe("#activateTheme()",function(){
-			it("should activate theme", function(done){
+		lab.experiment("ActivateTheme()", function(){
+			lab.test("should activate theme", function(done){
 				Mely.Administrator.activateTheme({
 					systemid: systemid,
 					id: themeid
 				}, function(err, theme){
-					assert(err === null);
-					assert(theme !== undefined);
+					Code.expect(err).to.be.null();
+					Code.expect(theme).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return error when systemid is undefined", function(done){
+			lab.test("should return error when systemid is undefined", function(done){
 				Mely.Administrator.activateTheme({
 					id: themeid
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when id is undefined", function(done){
+			lab.test("should return error when id is undefined", function(done){
 				Mely.Administrator.activateTheme({
 					systemid: systemid
 				}, function(err, theme){
-					assert(err instanceof Error);
-					assert(theme === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(theme).to.be.undefined();
 					done();
 				});
 			});
 		});
 	});
-	describe("#functions", function(){
-		describe("#getThemeFiles()", function(){
-			it("should return array of file name objects", function(done){
+	lab.experiment("Other Functions", function(){
+		lab.experiment("GetThemeFiles()", function(){
+			lab.test("should return array of file name objects", function(done){
 				Mely.Administrator.getThemeFiles({
 				}, function(err, files){
-					assert(err === null);
-					assert(files !== undefined);
+					Code.expect(err).to.be.null();
+					Code.expect(files).to.not.equal(undefined);
 					done();
 				});
 			});
 		});
 	});
-	describe("#comments",function(){
-		describe("#createComment()",function(){
-			it("should return comment object",function(done){
+	lab.experiment("Comments", function(){
+		lab.experiment("CreateComment()", function(){
+			lab.test("should return comment object", function(done){
 				Mely.Administrator.createComment({
 					systemid: systemid,
 					email: email,
 					content: content,
 					postid: postid
 				},function(err, comment){
-					assert(err === null);
-					assert(comment !== undefined);
-					assert(comment.id !== undefined);
-					assert(comment.email !== undefined && comment.email === email);
-					assert(comment.content !== undefined && comment.content === content);
-					assert(comment.PostId !== undefined && comment.PostId === postid);
+					Code.expect(err).to.be.null();
+					Code.expect(comment).to.not.equal(undefined);
+					Code.expect(comment.email).to.equal(email);
+					Code.expect(comment.content).to.equal(content);
+					Code.expect(comment.PostId).to.equal(postid);
 					done();
 				});
 			});
-			it("should return error if email is undefined",function(done){
+			lab.test("should return error if email is undefined", function(done){
 				Mely.Administrator.createComment({
 					systemid: systemid,
 					content: content,
 					postid: postid
 				},function(err, comment){
-					assert(err instanceof Error);
-					assert(comment === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(comment).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error if content is undefined",function(done){
+			lab.test("should return error if content is undefined", function(done){
 				Mely.Administrator.createComment({
 					systemid: systemid,
 					email: email,
 					postid: postid
 				},function(err, comment){
-					assert(err instanceof Error);
-					assert(comment === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(comment).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error if postid is undefined",function(done){
+			lab.test("should return error if postid is undefined", function(done){
 				Mely.Administrator.createComment({
 					systemid: systemid,
 					email: email,
 					content: content
 				},function(err, comment){
-					assert(err instanceof Error);
-					assert(comment === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(comment).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error if systemid is undefined",function(done){
+			lab.test("should return error if systemid is undefined", function(done){
 				Mely.Administrator.createComment({
 					email: email,
 					content: content,
 					postid: postid
 				},function(err, comment){
-					assert(err instanceof Error);
-					assert(comment === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(comment).to.be.undefined();
 					done();
 				});
 			});
 		});
-		describe("#getComment()",function(){
-			it("should return array w/ ALL comment objects", function(done){
+		lab.experiment("GetComment()", function(){
+			lab.test("should return array w/ ALL comment objects", function(done){
 				Mely.Administrator.getComment({
 					systemid: systemid
 				}, function(err, comments){
-					assert(err === null);
-					assert(comments !== undefined);
+					Code.expect(err).to.be.null();
+					Code.expect(comments).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return array w/ approved comment objects ONLY of postid", function(done){
+			lab.test("should return array w/ approved comment objects ONLY of postid", function(done){
 				Mely.Administrator.getComment({
 					systemid: systemid,
 					postid: postid,
 					approved: true
 				}, function(err, comments){
 					for(var item in comments){
-						assert(comments[item].postid === postid);
+						Code.expect(comments[item].postid).to.equal(postid);
 					}
-					assert(err === null);
-					assert(comments !== undefined);
+					Code.expect(err).to.be.null();
+					Code.expect(comments).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return error when systemid is undefined", function(done){
+			lab.test("should return error when systemid is undefined", function(done){
 				Mely.Administrator.getComment({
 				}, function(err, comments){
-					assert(err instanceof Error);
-					assert(comments === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(comments).to.be.undefined();
 					done();
 				});
 			});
 		});
-		describe("#approveComment()",function(){
-			it("should approve comment", function(done){
+		lab.experiment("ApproveComment()", function(){
+			lab.test("should approve comment", function(done){
 				Mely.Administrator.approveComment({
 					commentid: commentid,
 					direction: directionOfApproval
 				}, function(err, comment){
-					assert(err === null);
-					assert(comment !== undefined);
+					Code.expect(err).to.be.null();
+					Code.expect(comment).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return error when commentid is undefined", function(done){
+			lab.test("should return error when commentid is undefined", function(done){
 				Mely.Administrator.approveComment({
 					direction: directionOfApproval
 				}, function(err, comment){
-					assert(err instanceof Error);
-					assert(comment === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(comment).to.be.undefined();
 					done();
 				});
 			});
-			it("should return error when direction is undefined", function(done){
+			lab.test("should return error when direction is undefined", function(done){
 				Mely.Administrator.approveComment({
 					commentid: commentid
 				}, function(err, comment){
-					assert(err instanceof Error);
-					assert(comment === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(comment).to.be.undefined();
 					done();
 				});
 			});
 		});
-		describe("#upComment()",function(){
-			it("should upvote comment", function(done){
+		lab.experiment("UpComment()", function(){
+			lab.test("should upvote comment", function(done){
 				Mely.Administrator.upComment({
 					commentid: commentid,
 				}, function(err, comment){
-					assert(err === null);
-					assert(comment !== undefined);
+					Code.expect(err).to.be.null();
+					Code.expect(comment).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return error when commentid is undefined", function(done){
+			lab.test("should return error when commentid is undefined", function(done){
 				Mely.Administrator.upComment({
 				}, function(err, comment){
-					assert(err instanceof Error);
-					assert(comment === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(comment).to.be.undefined();
 					done();
 				});
 			});
 		});
-		describe("#downComment()",function(){
-			it("should downvote comment", function(done){
+		lab.experiment("DownComment()", function(){
+			lab.test("should downvote comment", function(done){
 				Mely.Administrator.downComment({
 					commentid: commentid,
 				}, function(err, comment){
-					assert(err === null);
-					assert(comment !== undefined);
+					Code.expect(err).to.be.null();
+					Code.expect(comment).to.not.equal(undefined);
 					done();
 				});
 			});
-			it("should return error when commentid is undefined", function(done){
+			lab.test("should return error when commentid is undefined", function(done){
 				Mely.Administrator.downComment({
 				}, function(err, comment){
-					assert(err instanceof Error);
-					assert(comment === undefined);
+					Code.expect(err).to.be.an.instanceof(Error);
+					Code.expect(comment).to.be.undefined();
 					done();
 				});
 			});

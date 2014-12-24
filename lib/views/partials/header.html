@@ -21,3 +21,53 @@
 		<script src="/js/jscolor/jscolor.js"></script>
 	</head>
 <body ng-app="Mely">
+<!--
+#####################
+## FACEBOOK SDK START
+#####################
+
+#####################
+## Note: Uncomment and fill in details marked with [variable_name]
+#####################
+
+<script>
+window.fbAsyncInit = function(){
+	FB.init({
+		appId: "[appId]",
+		cookie: true,
+		xfbml: true,
+		version: "v2.2"
+	});
+	FB.getLoginStatus(function(response){
+		statusChangeCallback(response);
+	});
+};
+(function(d, s, id){
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if(d.getElementById(id)){
+		return;
+	}
+	js = d.createElement(s);
+	js.id = id;
+	js.src = "//connect.facebook.net/en_US/sdk.js";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, "script", "facebook-jssdk"));
+function checkLoginState(){
+	FB.getLoginStatus(function(response){
+		statusChangeCallback(response);
+	});
+};
+function statusChangeCallback(response) {
+	if(response.status === "connected"){
+		FB.api("/me", function(response){
+			$("#email").val(response.email);
+			$("#email").attr("readonly", "readonly");
+		});
+	}
+};
+</script>
+
+#####################
+## FACEBOOK SDK END
+#####################
+-->

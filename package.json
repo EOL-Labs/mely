@@ -18,19 +18,23 @@
   "homepage": "https://github.com/EOL-Labs/mely",
   "dependencies": {
     "async": "^0.9.0",
-    "chance": "^0.5.9",
-    "change-case": "^2.1.1",
+    "chance": "^0.7.0",
+    "change-case": "^2.1.6",
     "crypto": "0.0.3",
-    "glob": "^4.0.5",
-    "handlebars": "^2.0.0-alpha.4",
-    "hapi": "^6.4.0",
-    "hapi-auth-cookie": "^1.3.2",
+    "glob": "^4.3.2",
+    "handlebars": "^2.0.0",
+    "hapi": "^8.0.0",
+    "hapi-auth-cookie": "^2.0.0",
+    "joi": "^5.0.2",
     "marked": "^0.3.2",
-    "mocha": "^1.21.4",
-    "moment": "^2.8.1",
-    "mysql": "^2.4.2",
-    "nodemailer": "^1.1.1",
+    "moment": "^2.8.4",
+    "mysql": "^2.5.4",
+    "nodemailer": "^1.3.0",
     "nodemailer-smtp-transport": "^0.1.13",
-    "sequelize": "^1.7.9"
+    "sequelize": "^2.0.0-rc3"
+  },
+  "devDependencies": {
+    "code": "^1.2.1",
+    "lab": "^5.1.0"
   }
 }

@@ -1,5 +1,6 @@
 test:
-	@if [ "$(NODE_ENV)" = "" ]; then NODE_ENV=test ./node_modules/.bin/mocha --reporter spec; else ./node_modules/.bin/mocha --reporter spec; fi
-install:
-	npm install .
+	@node node_modules/lab/bin/lab -v -c -e test_travis
+test-local:
+	@node node_modules/lab/bin/lab -v -c
+
 .PHONY: test
