@@ -1,7 +1,7 @@
 var Code = require("code");
 var Lab = require("lab");
 var models = require("../lib/models");
-var database = require("../config").database;
+var database = require("../config");
 var Mely = {};
 Mely.Administrator = require("../lib/administration");
 var lab = exports.lab = Lab.script();
