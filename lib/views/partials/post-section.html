@@ -15,7 +15,12 @@
 				<tbody>
 					<tr ng-repeat="article in posts">
 						<td class="text-center" ng-bind="article.title"></td>
-						<td class="text-center"><a href="/post/\{{article.postId}}">Preview</a></td>
+						<td class="text-center">
+							<ANY ng-switch="article.status">
+								<ANY ng-switch-when="1"><a href="/post/\{{article.postId}}?draft">Preview</a></ANY>
+								<ANY ng-switch-when="2"><a href="/post/\{{article.postId}}">Preview</a></ANY>
+							</ANY>
+						</td>
 						<td class="text-center">
 							<ANY ng-switch="article.status">
 								<ANY ng-switch-when="1">Draft</ANY>

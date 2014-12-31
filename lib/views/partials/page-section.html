@@ -16,7 +16,12 @@
 				<tbody>
 					<tr ng-repeat="article in pages">
 						<td class="text-center" ng-bind="article.title"></td>
-						<td class="text-center"><a href="\{{article.title}}">Preview</a></td>
+						<td class="text-center">
+							<ANY ng-switch="article.status">
+								<ANY ng-switch-when="1"><a href="\{{article.title}}?draft">Preview</a></ANY>
+								<ANY ng-switch-when="2"><a href="\{{article.title}}">Preview</a></ANY>
+							</ANY>
+						</td>
 						<td class="text-center" ng-bind="article.order"></td>
 						<td class="text-center">
 							<ANY ng-switch="article.onmenu">
