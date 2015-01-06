@@ -33,4 +33,24 @@ lab.experiment("System", function(){
 			});
 		});
 	});
+	lab.experiment("GetSystem()", function(){
+		lab.test("Get Current System", function(done){
+			Mely.System.getSystem({
+			},function(err, system){
+				Code.expect(err).to.be.null();
+				Code.expect(system).to.not.equal(undefined);
+				done();
+			});
+		});
+	});
+	lab.experiment("GetSystemCount()", function(){
+		lab.test("Get Current System Count", function(done){
+			Mely.System.getSystemCount({
+			},function(err, count){
+				Code.expect(err).to.be.null();
+				Code.expect(count).to.be.a.number();
+				done();
+			});
+		});
+	});	
 });

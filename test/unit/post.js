@@ -30,7 +30,8 @@ lab.experiment("Post", function(){
 				content: defaults.test_content,
 				status: defaults.is_published,
 				systemid: defaults.system_id,
-				userid: defaults.user_id
+				userid: defaults.user_id,
+				comments: defaults.is_comments
 			},function(err, post){
 				Code.expect(err).to.be.null();
 				Code.expect(post).to.not.equal(undefined);
@@ -124,6 +125,18 @@ lab.experiment("Post", function(){
 				done();
 			});
 		});
+		lab.test("should return array w/ 1 post object", function(done){
+			Mely.Post.getPost({
+				systemid: defaults.system_id,
+				id: defaults.post_id,
+				status: defaults.is_published
+			}, function(err, posts){
+				Code.expect(posts).to.be.an.array();
+				Code.expect(err).to.be.null();
+				Code.expect(posts).to.not.equal(undefined);
+				done();
+			});
+		});
 		lab.test("should return error when systemid is undefined", function(done){
 			Mely.Post.getPost({
 			}, function(err, posts){
@@ -139,7 +152,8 @@ lab.experiment("Post", function(){
 				id: defaults.post_id,
 				title: defaults.test_title,
 				content: defaults.test_content,
-				status: defaults.is_published
+				status: defaults.is_published,
+				comments: defaults.is_comments
 			}, function(err, post){
 				Code.expect(err).to.be.null();
 				Code.expect(post).to.not.equal(undefined);
@@ -184,6 +198,25 @@ lab.experiment("Post", function(){
 				id: defaults.post_id,
 				title: defaults.test_title,
 				content: defaults.test_content
+			}, function(err, post){
+				Code.expect(err).to.be.an.instanceof(Error);
+				Code.expect(post).to.be.undefined();
+				done();
+			});
+		});
+	});
+	lab.experiment("DeletePost()", function(){
+		lab.test("should delete post", function(done){
+			Mely.Post.deletePost({
+				id: defaults.post_id
+			}, function(err, post){
+				Code.expect(err).to.be.null();
+				Code.expect(post).to.not.equal(undefined);
+				done();
+			});
+		});
+		lab.test("should error when id is not passed", function(done){
+			Mely.Post.deletePost({
 			}, function(err, post){
 				Code.expect(err).to.be.an.instanceof(Error);
 				Code.expect(post).to.be.undefined();

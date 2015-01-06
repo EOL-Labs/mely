@@ -483,7 +483,8 @@ lab.experiment("Theme", function(){
 		lab.test("should return array w/ 1 theme object", function(done){
 			Mely.Theme.getTheme({
 				systemid: defaults.system_id,
-				id: defaults.theme_id
+				id: defaults.theme_id,
+				active: defaults.is_live
 			}, function(err, themes){
 				Code.expect(themes).to.be.an.array();
 				Code.expect(err).to.be.null();
@@ -539,7 +540,7 @@ lab.experiment("Theme", function(){
 				pagetitlecolor: defaults.black_hex,
 				pagetitlesize: defaults.theme_font_size,
 				pagecontentcolor: defaults.black_hex,
-				pagecontentsize: defaults.theme_font_size,
+				pagecontentsize: defaults.theme_font_size
 			}, function(err, theme){
 				Code.expect(err).to.be.null();
 				Code.expect(theme).to.not.equal(undefined);
@@ -971,6 +972,58 @@ lab.experiment("Theme", function(){
 				done();
 			});
 		});
+		lab.test("should return error when theme id is not correct", function(done){
+			Mely.Theme.updateTheme({
+				id: defaults.theme_id2,
+				name: defaults.test_theme_name,
+				description: defaults.test_theme_description,
+				logo: defaults.theme_test_logo,
+				headback: defaults.white_hex,
+				headfontcolor: defaults.black_hex,
+				headfontsize: defaults.theme_font_size,
+				menuback: defaults.white_hex,
+				menufontcolor: defaults.black_hex,
+				menufontsize: defaults.theme_font_size,
+				posttitlecolor: defaults.black_hex,
+				posttitlesize: defaults.theme_font_size,
+				postcontentcolor: defaults.black_hex,
+				postcontentsize: defaults.theme_font_size,
+				pagetitlecolor: defaults.black_hex,
+				pagetitlesize: defaults.theme_font_size,
+				pagecontentcolor: defaults.black_hex,
+				pagecontentsize: defaults.theme_font_size
+			}, function(err, theme){
+				Code.expect(err).to.be.an.instanceof(Error);
+				Code.expect(theme).to.be.undefined();
+				done();
+			});
+		});
+		lab.test("should return error when theme setting is not correct", function(done){
+			Mely.Theme.updateTheme({
+				id: defaults.theme_id,
+				name: defaults.test_theme_name,
+				description: defaults.test_theme_description,
+				logo: defaults.theme_test_logo,
+				headback: defaults.white_hex,
+				headfontcolor: defaults.black_hex,
+				headfontsize: defaults.theme_font_size,
+				menuback: defaults.white_hex,
+				menufontcolor: defaults.black_hex,
+				menufontsize: defaults.theme_font_size,
+				posttitlecolor: defaults.black_hex,
+				posttitlesize: defaults.theme_font_size,
+				postcontentcolor: defaults.black_hex,
+				postcontentsize: defaults.theme_font_size,
+				pagetitlecolor: defaults.black_hex,
+				pagetitlesize: defaults.theme_font_size,
+				pagecontentcolor: defaults.theme_font_size,
+				pagecontentsize: defaults.theme_font_size
+			}, function(err, theme){
+				Code.expect(err).to.be.an.instanceof(Error);
+				Code.expect(theme).to.be.undefined();
+				done();
+			});
+		});
 	});
 	lab.experiment("ActivateTheme()", function(){
 		lab.test("should activate theme", function(done){
@@ -1008,6 +1061,62 @@ lab.experiment("Theme", function(){
 			}, function(err, files){
 				Code.expect(err).to.be.null();
 				Code.expect(files).to.not.equal(undefined);
+				done();
+			});
+		});
+	});
+	lab.experiment("GetFileContents()", function(){
+		lab.test("should return mely file contents", function(done){
+			Mely.Theme.getFileContents({
+				id: defaults.theme_file2
+			}, function(err, file){
+				Code.expect(err).to.be.null();
+				Code.expect(file).to.not.equal(undefined);
+				done();
+			});
+		});
+		lab.test("should return partial file contents", function(done){
+			Mely.Theme.getFileContents({
+				id: defaults.theme_file
+			}, function(err, file){
+				Code.expect(err).to.be.null();
+				Code.expect(file).to.not.equal(undefined);
+				done();
+			});
+		});
+		lab.test("should return error when file is not provided", function(done){
+			Mely.Theme.getFileContents({
+			}, function(err, file){
+				Code.expect(err).to.be.an.instanceof(Error);
+				Code.expect(file).to.be.undefined();
+				done();
+			});
+		});
+	});
+	lab.experiment("WriteFileContents()", function(){
+		lab.test("should return mely file contents", function(done){
+			Mely.Theme.writeFileContents({
+				filename: defaults.theme_file2
+			}, function(err, file){
+				Code.expect(err).to.be.null();
+				Code.expect(file).to.not.equal(undefined);
+				done();
+			});
+		});
+		lab.test("should return partial file contents", function(done){
+			Mely.Theme.writeFileContents({
+				filename: defaults.theme_file
+			}, function(err, file){
+				Code.expect(err).to.be.null();
+				Code.expect(file).to.not.equal(undefined);
+				done();
+			});
+		});
+		lab.test("should return error when file is not provided", function(done){
+			Mely.Theme.writeFileContents({
+			}, function(err, file){
+				Code.expect(err).to.be.an.instanceof(Error);
+				Code.expect(file).to.be.undefined();
 				done();
 			});
 		});

@@ -74,6 +74,16 @@ lab.experiment("User", function(){
 				done();
 			});
 		});
+		lab.test("should return array w/ 1 user object", function(done){
+			Mely.User.getUser({
+				systemid: defaults.system_id,
+				userid: defaults.user_id
+			}, function(err, users){
+				Code.expect(err).to.be.null();
+				Code.expect(users).to.not.equal(undefined);
+				done();
+			});
+		});
 		lab.test("should return error when systemid is undefined", function(done){
 			Mely.User.getUser({
 			}, function(err, users){

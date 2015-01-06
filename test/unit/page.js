@@ -150,6 +150,18 @@ lab.experiment("Page", function(){
 				done();
 			});
 		});
+		lab.test("should return array w/ 1 page object if id is present", function(done){
+			Mely.Page.getPage({
+				systemid: defaults.system_id,
+				id: defaults.page_id,
+				status: defaults.is_published
+			}, function(err, pages){
+				Code.expect(pages).to.be.an.array();
+				Code.expect(err).to.be.null();
+				Code.expect(pages).to.not.equal(undefined);
+				done();
+			});
+		});
 		lab.test("should return array w/ 1 page object if title is present", function(done){
 			Mely.Page.getPage({
 				systemid: defaults.system_id,
@@ -243,6 +255,25 @@ lab.experiment("Page", function(){
 				content: defaults.test_content,
 				status: defaults.is_published,
 				menuview: defaults.is_on_menu
+			}, function(err, page){
+				Code.expect(err).to.be.an.instanceof(Error);
+				Code.expect(page).to.be.undefined();
+				done();
+			});
+		});
+	});
+	lab.experiment("DeletePage()", function(){
+		lab.test("should delete page", function(done){
+			Mely.Page.deletePage({
+				id: defaults.page_id
+			}, function(err, page){
+				Code.expect(err).to.be.null();
+				Code.expect(page).to.not.equal(undefined);
+				done();
+			});
+		});
+		lab.test("should error when id is not passed", function(done){
+			Mely.Page.deletePage({
 			}, function(err, page){
 				Code.expect(err).to.be.an.instanceof(Error);
 				Code.expect(page).to.be.undefined();

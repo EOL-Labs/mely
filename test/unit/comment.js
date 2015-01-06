@@ -23,7 +23,8 @@ lab.experiment("Comment", function(){
 						content: defaults.test_content,
 						status: defaults.is_live,
 						systemid: defaults.system_id,
-						userid: defaults.user_id
+						userid: defaults.user_id,
+						comments: defaults.is_comments
 					},function(err, post){
 						done();
 					});
@@ -124,6 +125,17 @@ lab.experiment("Comment", function(){
 				done();
 			});
 		});
+		lab.test("should return error when systemid is a not a number", function(done){
+			Mely.Comment.getComment({
+				systemid: defaults.system_id2,
+				postid: defaults.post_id,
+				approved: defaults.is_approved
+			}, function(err, comments){
+				Code.expect(err).to.be.an.instanceof(Error);
+				Code.expect(comments).to.be.undefined();
+				done();
+			});
+		});
 	});
 	lab.experiment("ApproveComment()", function(){
 		lab.test("should approve comment", function(done){
@@ -145,9 +157,20 @@ lab.experiment("Comment", function(){
 				done();
 			});
 		});
-		lab.test("should return error when direction is undefined", function(done){
+		lab.test("should return error when commentid is not a number", function(done){
 			Mely.Comment.approveComment({
-				commentid: defaults.comment_id
+				commentid: defaults.comment_id2,
+				direction: defaults.comment_approval
+			}, function(err, comment){
+				Code.expect(err).to.be.an.instanceof(Error);
+				Code.expect(comment).to.be.undefined();
+				done();
+			});
+		});
+		lab.test("should return error when commentid is not a boolean", function(done){
+			Mely.Comment.approveComment({
+				commentid: defaults.comment_id,
+				direction: defaults.comment_approval2
 			}, function(err, comment){
 				Code.expect(err).to.be.an.instanceof(Error);
 				Code.expect(comment).to.be.undefined();
@@ -173,6 +196,15 @@ lab.experiment("Comment", function(){
 				done();
 			});
 		});
+		lab.test("should return error when commentid is not a number", function(done){
+			Mely.Comment.upComment({
+				commentid: defaults.comment_id2,
+			}, function(err, comment){
+				Code.expect(err).to.be.an.instanceof(Error);
+				Code.expect(comment).to.be.undefined();
+				done();
+			});
+		});
 	});
 	lab.experiment("DownComment()", function(){
 		lab.test("should downvote comment", function(done){
@@ -186,6 +218,15 @@ lab.experiment("Comment", function(){
 		});
 		lab.test("should return error when commentid is undefined", function(done){
 			Mely.Comment.downComment({
+			}, function(err, comment){
+				Code.expect(err).to.be.an.instanceof(Error);
+				Code.expect(comment).to.be.undefined();
+				done();
+			});
+		});
+		lab.test("should return error when commentid is not a number", function(done){
+			Mely.Comment.downComment({
+				commentid: defaults.comment_id2,
 			}, function(err, comment){
 				Code.expect(err).to.be.an.instanceof(Error);
 				Code.expect(comment).to.be.undefined();
