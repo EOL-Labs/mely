@@ -2,20 +2,27 @@
 	<br>
 	<div class="row">
 		<div class="col-lg-12">
-			<table class="table table-bordered">
+			<table class="table table-bordered sortable">
 				<thead>
 					<tr>
-						<th class="text-center" width="22%">Title</th>
-						<th class="text-center" width="22%">Content</th>
-						<th class="text-center" width="22%">Status</th>
-						<th class="text-center" width="22%">Comments Allowed?</th>
-						<th class="text-center"><a class="btn btn-success btn-xs" data-toggle="modal" data-target="#PostModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New</a></th>
+						<th class="text-center" width="18%">Title</th>
+						<th class="text-center sorttable_nosort" width="18%">Content</th>
+						<th class="text-center" width="18%">Created</th>
+						<th class="text-center" width="18%">Status</th>
+						<th class="text-center" width="18%">Comments Allowed?</th>
+						<th class="text-center sorttable_nosort"><a class="btn btn-success btn-xs" data-toggle="modal" data-target="#PostModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New</a></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="article in posts">
 						<td class="text-center" ng-bind="article.title"></td>
-						<td class="text-center"><a href="/post/\{{article.postId}}">Preview</a></td>
+						<td class="text-center">
+							<ANY ng-switch="article.status">
+								<ANY ng-switch-when="1"><a href="/post/\{{article.postId}}?draft">Preview</a></ANY>
+								<ANY ng-switch-when="2"><a href="/post/\{{article.postId}}">Preview</a></ANY>
+							</ANY>
+						</td>
+						<td class="text-center" ng-bind="article.createdDate"></td>
 						<td class="text-center">
 							<ANY ng-switch="article.status">
 								<ANY ng-switch-when="1">Draft</ANY>
@@ -33,7 +40,7 @@
 						</td>
 					</tr>
 					<tr ng-if="posts.length === 0">
-						<td colspan="5" class="text-center">No Posts</td>
+						<td colspan="6" class="text-center">No Posts</td>
 					</tr>
 				</tbody>
 			</table>

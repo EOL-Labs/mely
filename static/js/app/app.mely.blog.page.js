@@ -6,6 +6,9 @@ app.controller("BlogPage", function($scope, $http, $location, styles){
 	var linkArray = $location.absUrl().split("/");
 	$http.get("/api/page/" + linkArray[3],{
 	}).success(function(data){
+		if(data.length === 0){
+			location.href = "/";
+		}
 		$scope.page = data;
 	}).error(function(data){
 		console.log("Error on Post API");

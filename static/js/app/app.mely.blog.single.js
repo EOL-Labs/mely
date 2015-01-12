@@ -6,6 +6,9 @@ app.controller("BlogSinglePost", function($scope, $http, $location, styles){
 	var linkArray = $location.absUrl().split("/");
 	$http.get("/api/post/" + linkArray[4],{
 	}).success(function(data){
+		if(data.length === 0){
+			location.href = "/";
+		}
 		$scope.posts = data;
 		for(var item in data){
 			$.ajax({
