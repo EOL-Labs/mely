@@ -3,14 +3,14 @@
 	<div class="col-lg-8 col-lg-offset-2">
 		<ANY ng-repeat="article in posts">
 			<div class="row">
-				<div class="col-lg-12" ng-style="\{{postTitleStyle}}">
+				<div class="col-lg-12" ng-cloak class="ng-cloak" ng-style="\{{postTitleStyle}}">
 					<a ng-href="/post/\{{article.id}}" ng-bind="article.title"></a> | \{{article.author}}
 					<br>\{{article.createdAt}}
 				</div>
 			</div>
 			<hr>
 			<div class="row">
-				<div class="col-lg-12" ng-bind-html="article.content" ng-style="\{{postContentStyle}}">
+				<div class="col-lg-12" ng-bind-html="article.content" ng-cloak class="ng-cloak" ng-style="\{{postContentStyle}}">
 				</div>
 			</div>
 			<ANY ng-switch="article.comments_allowed">
@@ -30,7 +30,7 @@
 									<a href="#" ng-click="predicate = 'commentcreatedate'; reverse=false">Oldest</a>
 								</small>
 							</div>
-							<ANY ng-switch="comments.length">
+							<ANY ng-cloak class="ng-cloak" ng-switch="comments.length">
 								<ANY ng-switch-when="0">
 									No comments
 								</ANY>
@@ -43,7 +43,7 @@
 										</div>
 										<div class="btn-group" role="group" aria-label="...">
 											<button type="button" class="btn btn-success btn-sm" ng-click="up(comment.commentid)">
-												<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span> \{{comment.upvote}} Votes
+												<span class="glyphicon glyphicon-arrow-up" aria-hidden="true" ></span> \{{comment.upvote}} Votes
 											</button>
 											<button type="button" class="btn btn-danger btn-sm" ng-click="down(comment.commentid)">
 												<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span> \{{comment.downvote}} Votes
