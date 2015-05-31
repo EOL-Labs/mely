@@ -1,3 +1,7 @@
+$("#menu-toggle").click(function(e){
+	e.preventDefault();
+	$("#wrapper").toggleClass("toggled");
+});
 var app = angular.module("Mely", ["ngSanitize","fox.scrollReveal"]);
 app.directive("onFinishRender", ["$timeout",function ($timeout){
 	return {
