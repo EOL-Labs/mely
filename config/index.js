@@ -1,4 +1,4 @@
-switch (process.env.NODE_ENV) {
+switch (process.env.NODE_ENV){
 	case "test_travis":
         exports.database = require("./database.test_travis");
 		break;
