@@ -1,19 +1,18 @@
-{{>header}}
+{{>shared/header}}
 <div class="container" ng-controller="Login">
 	<div class="row">
 		<div class="col-lg-12 text-center">
-			<h1>Mely</h1>
+			<h1 style="font-family: 'Arvo', serif;">Mely</h1>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-lg-12 text-center">
-			<br>
 			<b>M</b>ake | <b>E</b>verything | <b>L</b>ook <b> | Y</b>ours
 			<br><br>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12">
+		<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12">
 			<div class="alert alert-danger hide" id="loginAlert" role="alert">Invalid Login!</div>
 			<form role="form" id="LoginForm" method="POST" action="/login">
 				<div class="form-group">
@@ -35,6 +34,6 @@
 		</div>
 	</div>
 </div>
-{{>footer}}
+{{>shared/footer}}
 <script src="/js/app/app.mely.js"></script>
 <script src="/js/app/app.mely.login.js"></script>
